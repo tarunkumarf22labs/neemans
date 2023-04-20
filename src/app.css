@@ -2,7 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: sans-serif;
 }
 
 .f22__stories {
@@ -27,3 +27,30 @@ h6 {
   overflow: scroll;
 }
 
+.plugin__header {
+  position: absolute;
+    z-index: 2147483647;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    top: 10px;
+   padding: 10px;
+   align-items: center;
+
+}
+
+.plugin__header__img {
+   width: 34px;
+   height: 34px;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+
+.plugin_icon {
+  z-index: 10000000000000000000;
+  background: yellowgreen;
+  margin-bottom: 10px;
+  border-radius: 50%;
+  margin-right: 3px;
+}

@@ -1,5 +1,5 @@
 
-import { useState } from "uelements";
+import { useEffect, useState } from "uelements";
 import { nanoid } from "nanoid";
 import nemmas1 from "./assets/neemans1.png";
 import nemmas2 from "./assets/neemans2.png";
@@ -85,12 +85,16 @@ export default function App({ dataURL }: { dataURL: string }) {
       name: "Fluffy Flips",
     }
   ];
+
   if (show) {
    return <Ampstory  data = {data} setshow= {setshow} />
   }
+
+
   return (
     <>
 
+ 
     <div style={{ display : 'flex' , borderBottom : "1px solid rgba(0,0,0,0.1)" , padding : '10px' }}  className="styles" >  
       {headerImages.map((items) => {
         return (
