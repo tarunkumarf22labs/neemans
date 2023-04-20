@@ -11,10 +11,17 @@ import nemmas7 from "./assets/neemans7.jpg";
 
 import "./app.css";
 import Ampstory from "./components/Ampstory";
+
+interface Ival {
+  id: string,
+  image: string,
+  largeimg : string,
+  name: string,
+}
 export default function App({ dataURL }: { dataURL: string }) {
   const [show, setshow] = useState(false)
-  const [data, setData] = useState(null)
-   function handledata(val) {
+  const [data, setData] = useState<null | Ival >(null)
+   function handledata(val : Ival  ) {
     setData(val)
     setshow((prev)  => !prev)
    }
