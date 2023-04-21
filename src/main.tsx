@@ -9,3 +9,6 @@ define(
 	["dataURL" ],
 	() => console.log("F22 Plugin cleanup")
 );
+let el = document.createElement('f22-stories')
+el.setAttribute('dataUrl', "https://f22videoplugin.s3.ap-northeast-1.amazonaws.com/exhibitionexperts/f22exhibition.json")
+document.body.append(el)
