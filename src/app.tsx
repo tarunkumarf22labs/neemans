@@ -13,13 +13,18 @@ export default function App({ dataURL }: { dataURL: string }) {
     setshow((prev)  => !prev)
    }
 
-   const  memoizedhandleoverlay =    useCallback((items : Ival ) => {
+   const  memoizedhandleoverlay = useCallback((items : Ival ) => {
     setData(items)
     handleoverlay()
-  
    } , [])
 
+ const handledata = (itemid : number) => {
+ let data =  headerImages.find((image) => {
+   return image.productid === itemid
+  } )
+    setData(data!) 
 
+ }
 
   return (
     <>
@@ -31,7 +36,7 @@ export default function App({ dataURL }: { dataURL: string }) {
       })}
       </div>
 
-      { show ? <StoryContainer data={data!} handleoverlay={handleoverlay} /> : "" }
+      { show ? <StoryContainer data={data!} handleoverlay={handleoverlay}  handledata = {handledata}  setshow = {setshow}  /> : "" }
       
     </>
   );

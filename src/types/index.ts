@@ -4,6 +4,7 @@
     image: string,
     largeimg : string,
     name: string,
+    nextid ?: number
   }
 
 // product type 

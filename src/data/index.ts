@@ -13,6 +13,7 @@ export const headerImages = [
       largeimg : nemmas5,
       name: "Relive Knit S...",
       productid : 7624054767775,
+      nextid : 7624051327135
     },
     {
       id: nanoid(),
@@ -20,6 +21,7 @@ export const headerImages = [
       largeimg : nemmas7,
       name: "Urban Casuals",
       productid : 7624051327135,
+      nextid : 7624054767775
     },
     {
       id: nanoid(),
