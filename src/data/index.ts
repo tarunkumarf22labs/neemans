@@ -13,7 +13,55 @@ export const headerImages = [
       largeimg : nemmas5,
       name: "Relive Knit S...",
       productid : 7624054767775,
-      nextid : 7624051327135
+      nextid : 7624051327135,
+      count : 8,
+      childstories : [
+        {
+          id : nanoid(),
+          storiescontnet : nemmas5,
+          productid : 7624054767775,
+        } ,
+
+        {
+          id : nanoid(),
+          storiescontnet : nemmas7,
+          productid : 7624051327135,
+        } ,
+        {
+          id : nanoid(),
+          storiescontnet : nemmas5,
+          productid : 7624054767775,
+        } ,
+
+        {
+          id : nanoid(),
+          storiescontnet : nemmas7,
+          productid : 7624051327135,
+        } ,
+
+        {
+          id : nanoid(),
+          storiescontnet : nemmas5,
+          productid : 7624054767775,
+        } ,
+
+        {
+          id : nanoid(),
+          storiescontnet : nemmas7,
+          productid : 7624051327135,
+        } ,
+        {
+          id : nanoid(),
+          storiescontnet : nemmas5,
+          productid : 7624054767775,
+        } ,
+
+        {
+          id : nanoid(),
+          storiescontnet : nemmas7,
+          productid : 7624051327135,
+        } 
+      ]
     },
     {
       id: nanoid(),

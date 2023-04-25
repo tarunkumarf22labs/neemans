@@ -1,4 +1,5 @@
  export  interface Ival {
+    childstories: any;
     productid: number;
     id: string,
     image: string,

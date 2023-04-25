@@ -1,7 +1,8 @@
 import Client from "shopify-buy";
-import { useEffect, useState } from "uelements";
+import { useEffect, useState  } from "uelements";
 import Customslider from "./Customslider";
 import { Variant, shopify } from "../types";
+import { memo } from 'preact/compat'
 function StoryDrawer({
   isOpen,
   productid,
@@ -12,11 +13,9 @@ function StoryDrawer({
   const [product, setProduct] = useState<any>();
   let client: Client;
 
-
-  const apiKey = 'a43de55bc7186e138cbb30e7d780e5e1';
-  const password = 'd56c777af55c5676766df25296e1e865';
-  const storeName = 'test-for-qa';
-
+  const apiKey = "a43de55bc7186e138cbb30e7d780e5e1";
+  const password = "d56c777af55c5676766df25296e1e865";
+  const storeName = "test-for-qa"; 
   useEffect(() => {
     if (!client) {
       client = Client.buildClient({
@@ -29,31 +28,28 @@ function StoryDrawer({
     const productId = `gid://shopify/Product/${productid}`;
     client.product.fetch(productId).then((product: any) => {
       // Do something with the product
+      
       setProduct(product);
     });
 
-
-
-  //   fetch(`https://${  }:${password}@${storeName}.myshopify.com/admin/api/2021-07/products.json`)
-  //   .then(response => response.json())
-  //   .then(data => {
-  //     // const productList = data.products;
-  //  console.log(data);
-  //     // setProducts(productList);
-  //   })
-  //   .catch(error => console.error(error));
-
-    
-  }, []);
+    //   fetch(`https://${  }:${password}@${storeName}.myshopify.com/admin/api/2021-07/products.json`)
+    //   .then(response => response.json())
+    //   .then(data => {
+    //     // const productList = data.products;
+    //  
+    //     // setProducts(productList);
+    //   })
+    //   .catch(error => console.error(error));
+  }, [productid]);
 
   if (!product) {
     return <div>Loading...</div>;
   }
 
   return (
-    <div className={`drawer ${isOpen ? "open" : ""}`}>
+    <div className={`drawer ${isOpen ? "open" : ""}`} onClick={(e) => e.stopPropagation() } >
       <Customslider productimages={product.images} />
-      <div className="size_container">
+      <div className="size_container" >
         {product.variants.map((p: Variant) => {
           return <h6 data-id={p.id}>{p.title}</h6>;
         })}
@@ -73,10 +69,18 @@ function StoryDrawer({
           {product.variants[0].price.amount}{" "}
         </h5>
         <br />
-        <button className="atc_button"> ADD TO CART </button>
+        <button className="atc_button" >
+           <a href="https://test-for-qa.myshopify.com/cart/add?id=42920788230303&quantity=1&size=6">
+           ADD TO CART
+           </a>
+         
+           
+            </button>
       </div>
     </div>
   );
 }
 
-export default StoryDrawer;
+
+export const MemoizedStoryDrawer  = memo(StoryDrawer)
+// export default StoryDrawer;
