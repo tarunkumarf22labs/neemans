@@ -1,9 +1,10 @@
 import { useEffect, useRef, useState } from "uelements";
 import { Bag, Cross } from "../assets/Icons";
-import { Ival } from "../types";
+import { Iloaction, Ival } from "../types";
 import { MemoizedStoryDrawer } from "./StoryDrawer";
 import { StateUpdater } from "preact/hooks";
 import { JSXInternal } from "preact/src/jsx";
+import { useLocalStorage } from "../hook/useLocalStorage";
 
 interface IStoryContainerProps {
   data: Ival;
@@ -18,11 +19,25 @@ function StoryContainer({
   handledata,
   setshow,
 }: IStoryContainerProps) {
+  function handlecount(location  : Iloaction[] , ids :string  ) {
+    console.log(location, ids);
+    let  value 
+    let opi = location.filter((e) => {
+      if (e.id === ids) {
+         value = e.count
+        return e;
+      }
+    });
+    return value;
+  }
+
   const [isopen, setisopen] = useState(false);
   const [currentTime, setCurrentTime] = useState(() => 0);
   const intervalRef = useRef<null | number>(null);
-  const [actualTime, setactualTime] = useState(0);
-
+  const [location, setLocation] = useLocalStorage("whentostart", []);
+  const [actualTime, setactualTime] = useState(
+    () => handlecount(location, data.id) || 0
+  );
   useEffect(() => {
     intervalRef.current = setInterval(updateProgress, 100);
     return () => clearInterval(intervalRef.current!);
@@ -36,12 +51,21 @@ function StoryContainer({
   };
 
   const startProgress = () => {
-   
-
     intervalRef.current = setInterval(updateProgress, 100);
   };
   const stopProgress = () => {
-    
+    setLocation((prev : Iloaction[] ) => {
+      let val = prev.find((prevdata : Iloaction ) => prevdata.id === data.id);
+      console.log("Sahiprev", val);
+      if (!val) {
+        return [...prev, { id: data.id, count: actualTime }];
+      }
+      if (val) {
+        let arr = prev.filter((o) => o.id !== data.id);
+        return [...arr, { id: data.id, count: actualTime }];
+      }
+      return prev;
+    });
     clearInterval(intervalRef.current!);
   };
 
@@ -51,14 +75,16 @@ function StoryContainer({
         if (actualTime === data.count - 1) {
           stopProgress();
           setCurrentTime(0);
-          console.log("stop");
-          return;
+          setactualTime(0);
+          handledata(data.nextid!);
+          return 0;
         }
 
         if (prevProgress >= 100 && actualTime !== data.count) {
           stopProgress();
           setCurrentTime(0);
           setactualTime((prev) => prev + 1);
+
           return 0;
         } else {
           stopProgress();
@@ -66,8 +92,8 @@ function StoryContainer({
           setCurrentTime(100);
           return 100;
         }
-        // handledata(data.nextid!);
       }
+
       return prevProgress + 1;
     });
   };
@@ -82,11 +108,11 @@ function StoryContainer({
     if (distance > 360) setshow(false);
   }
 
-    function handlePointerUp() {
-      if (!isopen) {
-        startProgress()
-      }
+  function handlePointerUp() {
+    if (!isopen) {
+      startProgress();
     }
+  }
 
   return (
     <div
@@ -97,7 +123,7 @@ function StoryContainer({
     >
       <div
         className="playbar"
-        style={{ gridTemplateColumns: ` repeat(${data.count} ,1fr)` }}
+        style={{ gridTemplateColumns: ` repeat(${data?.count} ,1fr)  ` }}
       >
         {data?.childstories.map((child, i) => {
           return (
@@ -112,7 +138,6 @@ function StoryContainer({
             ></div>
           );
         })}
-     
       </div>
 
       <header className="main_StoryContainer_header">
@@ -124,22 +149,28 @@ function StoryContainer({
           <Cross onclose={handleoverlay} />
         </nav>
 
+        <button
+          onClick={() => {
+            setisopen(false);
+            setactualTime((prev) => prev - 1);
+            // startProgress()
+            setCurrentTime(0);
+          }}
+          className="stories_button"
+        >
+          -
+        </button>
 
         <button
           onClick={() => {
+            setisopen(false);
             setactualTime((prev) => prev + 1);
+            // startProgress()
             setCurrentTime(0);
           }}
+          className="stories_button"
         >
           +
-        </button>
-        <button
-          onClick={() => {
-            setactualTime((prev) => prev - 1);
-            setCurrentTime(0);
-          }}
-        >
-          -
         </button>
       </header>
 
@@ -160,6 +191,9 @@ function StoryContainer({
         onClick={() => {
           setisopen((prev) => !prev);
           stopProgress();
+          if (isopen) {
+            startProgress();
+          }
         }}
       >
         <span className="span_className" />

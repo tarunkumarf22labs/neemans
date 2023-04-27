@@ -1,5 +1,6 @@
-// @ts-ignore
-import './css/customSlide.css'
+
+// @ts-nocheck
+import "./css/customSlide.css";
 import { useState } from "uelements";
 import { ImageElement } from "../types";
 
@@ -17,13 +18,12 @@ function Customslider({ productimages }: { productimages: ImageElement[] }) {
   //     setState(data);
   //   }
   // }
-  console.log(productimages)
 
   const [slides, setSlides] = useState(() => ({
     currentImg: productimages[0].src,
     currentImgIndex: 0,
     imgData: productimages,
-    totalSlides: productimages.length
+    totalSlides: productimages.length,
   }));
 
   const onCarouselProdClick = (index) => {
@@ -53,30 +53,15 @@ function Customslider({ productimages }: { productimages: ImageElement[] }) {
   };
 
   return (
-    <section class="slider">
-      {/* <img  style={{ width : '50px'  }} src={productimages[state].src}  />  
-      <button onClick={() => { 
-          handlecount()
-       } } > + </button>
-       {productimages.map((data) => {
-          return  <img  style={{ width : '50px'  }} src={data.src} key={data.id} />
-         } )} */}
-      
-      <div>
-        {/* <div className="container">
-          {productimages.map((data , i ) => {
-          return  <img  style={{ width : '50px'  }}  className="sm_product_icon" src={data.src} key={data.id} onClick={() => handlecountslider(i)}  />
-         } )}
-          </div> */}
-        <div id="main__container">
-          <SwipeableComponent
-            onSwipeLeft={onClickPrev}
-            onSwipeRight={onClickNext}
-            slides={slides}
-          >
-            <MainSlide slides={slides} currImgIndex={slides.currentImgIndex} />
-          </SwipeableComponent>
-          <div id="all__slides__container">
+    <div id="main__container">
+      <SwipeableComponent
+        onSwipeLeft={onClickPrev}
+        onSwipeRight={onClickNext}
+        slides={slides}
+      >
+        <MainSlide slides={slides} currImgIndex={slides.currentImgIndex} />
+      </SwipeableComponent>
+      <div id="all__slides__container">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -122,9 +107,7 @@ function Customslider({ productimages }: { productimages: ImageElement[] }) {
           />
         </svg>
       </div>
-        </div>
-      </div>
-    </section>
+    </div>
   );
 }
 const MainSlide = ({ slides, currImgIndex }) => {
@@ -136,16 +119,34 @@ const MainSlide = ({ slides, currImgIndex }) => {
       {
         // eslint-disable-next-line react/prop-types
         slides.imgData.map((slide) => (
-          <img src={slide.src} key={slide.id} alt="product" />
+          <div className="main__slide__img">
+            <img src={slide.src} key={slide.id} alt="product" />
+          </div>
         ))
       }
     </div>
   );
 };
 
-const Slide = ({ slide: { src }, handler, currImgIndex, index, totalSlides }) => {
+const Slide = ({
+  slide: { src },
+  handler,
+  currImgIndex,
+  index,
+  totalSlides,
+}) => {
   return (
-    <div className="slide__container" onClick={() => handler(index)} style={{transform: `${totalSlides - 3 > currImgIndex  ? `translateX(-${currImgIndex * 100}%)`: `translateX(-${2.1 * 100}%)`}`}}>
+    <div
+      className="slide__container"
+      onClick={() => handler(index)}
+      style={{
+        transform: `${
+          totalSlides - 3 > currImgIndex
+            ? `translateX(-${currImgIndex * 100}%)`
+            : `translateX(-${1* 100}%)`
+        }`,
+      }}
+    >
       <img
         src={src}
         alt="product1"
@@ -154,7 +155,6 @@ const Slide = ({ slide: { src }, handler, currImgIndex, index, totalSlides }) =>
     </div>
   );
 };
-
 
 function SwipeableComponent({ children, onSwipeLeft, onSwipeRight }) {
   const [touchStart, setTouchStart] = useState(0);
@@ -187,6 +187,7 @@ function SwipeableComponent({ children, onSwipeLeft, onSwipeRight }) {
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
+      className="swipeable__component"
     >
       {children}
     </div>

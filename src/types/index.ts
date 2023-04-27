@@ -1,13 +1,19 @@
  export  interface Ival {
-    childstories: any;
     productid: number;
     id: string,
     image: string,
     largeimg : string,
     name: string,
-    nextid ?: number
+    nextid ?: number,
+    count : number
+    childstories: o[]
   }
 
+  interface o {
+    id:  string;
+    storiescontnet:string;
+    productid: number
+  }
 // product type 
 
 export interface shopify {
@@ -274,4 +280,9 @@ export interface HilariousFieldBaseTypes {
     referenceValue: Height;
 }
 
+
+export interface Iloaction {
+ id : string ,
+ count : number
+}
 

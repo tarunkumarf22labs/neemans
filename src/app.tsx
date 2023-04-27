@@ -1,5 +1,5 @@
-import { useCallback, useState } from "uelements";
-import { headerImages } from "./data";
+import { useCallback, useEffect, useState } from "uelements";
+// import { headerImages } from "./data";
 import StoryContainer from "./components/StoryContainer";
 import { Ival } from "./types";
 import "./app.css";
@@ -8,6 +8,16 @@ import Story from "./components/Story";
 export default function App({ dataURL }: { dataURL: string }) {
   const [show, setshow] = useState(false);
   const [data, setData] = useState<null | Ival>(null);
+  const [jsondata, setJsondata] = useState<[] | Ival[] >([])
+   
+   useEffect(() => {
+    async function handledata() {
+      let data = await fetch('http://localhost:8000/data') 
+      let dataval = await data.json()
+      setJsondata(dataval)    
+    }
+    handledata()
+   } ,[] )
 
   function handleoverlay() {
     setshow((prev) => !prev);
@@ -19,7 +29,9 @@ export default function App({ dataURL }: { dataURL: string }) {
   }, []);
 
   const handledata = (itemid: number) => {
-    let data = headerImages.find((image) => {
+    let data = jsondata.find((image) => {
+      console.log(image);
+      
       return image.productid === itemid;
     });
     setData(data!);
@@ -35,7 +47,7 @@ export default function App({ dataURL }: { dataURL: string }) {
         }}
         className="styles"
       >
-        {headerImages.map((items) => {
+        {jsondata?.map((items) => {
           return (
             <Story
               items={items}

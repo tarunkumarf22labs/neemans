@@ -1,0 +1,310 @@
+{
+  "data" :  [
+    {
+        "id": 1,
+        "image": "/src/assets/neemans1.png",
+        "largeimg": "/src/assets/neemans5.png",
+        "name": "Relive Knit S...",
+        "productid": 7624054767775,
+        "nextid": 7624051327135,
+        "count": 8,
+        "childstories": [
+            {
+                "id": "EJxDGyV__PgXYDKORszTu",
+                "storiescontnet": "/src/assets/neemans5.png",
+                "productid": 7624054767775
+            },
+            {
+                "id": "O9CBKmJYaUvu8RxcF2mt5",
+                "storiescontnet": "/src/assets/neemans7.jpg",
+                "productid": 7624051327135
+            },
+            {
+                "id": "qfYLTsieQt2BsXesGRcvu",
+                "storiescontnet": "/src/assets/neemans5.png",
+                "productid": 7624054767775
+            },
+            {
+                "id": "PhEZKDpaFZvvOkFW4qCpa",
+                "storiescontnet": "/src/assets/neemans7.jpg",
+                "productid": 7624051327135
+            },
+            {
+                "id": "nuDeSo-17Qz72ELBJKL_w",
+                "storiescontnet": "/src/assets/neemans5.png",
+                "productid": 7624054767775
+            },
+            {
+                "id": "JcuTTg2SjMsmu-XeceE4e",
+                "storiescontnet": "/src/assets/neemans7.jpg",
+                "productid": 7624051327135
+            },
+            {
+                "id": "H3qCHulSy6qdk_F6Na8hk",
+                "storiescontnet": "/src/assets/neemans5.png",
+                "productid": 7624054767775
+            },
+            {
+                "id": "mAmIaYXACnxxHaP70y7La",
+                "storiescontnet": "/src/assets/neemans7.jpg",
+                "productid": 7624051327135
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "image": "/src/assets/neemans2.png",
+        "largeimg": "/src/assets/neemans7.jpg",
+        "name": "Urban Casuals",
+        "productid": 7624051327135,
+        "nextid": 7624054767775,
+        "count": 8,
+        "childstories": [
+            {
+                "id": "D-rzoLLYqlnx-MHeUuJFE",
+                "storiescontnet": "/src/assets/neemans5.png",
+                "productid": 7624054767775
+            },
+            {
+                "id": "sFc6Zh-kZo3NTrGEQ7yVD",
+                "storiescontnet": "/src/assets/neemans7.jpg",
+                "productid": 7624051327135
+            },
+            {
+                "id": "9p7jdcIEkvUhuF53UxSN2",
+                "storiescontnet": "/src/assets/neemans5.png",
+                "productid": 7624054767775
+            },
+            {
+                "id": "gpYRmzlyLX5OdVNdDqWzx",
+                "storiescontnet": "/src/assets/neemans7.jpg",
+                "productid": 7624051327135
+            },
+            {
+                "id": "IaYKhjVEduNJvCudVx4AE",
+                "storiescontnet": "/src/assets/neemans5.png",
+                "productid": 7624054767775
+            },
+            {
+                "id": "u_X175VaGDtyB1bNdZVOq",
+                "storiescontnet": "/src/assets/neemans7.jpg",
+                "productid": 7624051327135
+            },
+            {
+                "id": "JOrBfZ90mKeKkgSQfCbUl",
+                "storiescontnet": "/src/assets/neemans5.png",
+                "productid": 7624054767775
+            },
+            {
+                "id": "gN1puWFvchN7hhEglNEmD",
+                "storiescontnet": "/src/assets/neemans7.jpg",
+                "productid": 7624051327135
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "image": "/src/assets/neemans3.png",
+        "largeimg": "/src/assets/neemans6.png",
+        "name": "Cotton Clas...",
+        "productid": 7624057815199,
+        "nextid": 7624054767775,
+        "count": 8,
+        "childstories": [
+            {
+                "id": "uLkfTmgdz3Um-ETkwMzTV",
+                "storiescontnet": "/src/assets/neemans5.png",
+                "productid": 7624054767775
+            },
+            {
+                "id": "RY7VsRxWu322DomAIrBUJ",
+                "storiescontnet": "/src/assets/neemans7.jpg",
+                "productid": 7624051327135
+            },
+            {
+                "id": "ZQM7SIyhG2aKEgpzAVqK0",
+                "storiescontnet": "/src/assets/neemans5.png",
+                "productid": 7624054767775
+            },
+            {
+                "id": "WyGesax7-xaIMsZsw0ioA",
+                "storiescontnet": "/src/assets/neemans7.jpg",
+                "productid": 7624051327135
+            },
+            {
+                "id": "mxcD-Ake08TBeLR018AN4",
+                "storiescontnet": "/src/assets/neemans5.png",
+                "productid": 7624054767775
+            },
+            {
+                "id": "6a7cGFTmDb5PPi4XiWOfn",
+                "storiescontnet": "/src/assets/neemans7.jpg",
+                "productid": 7624051327135
+            },
+            {
+                "id": "JWR_vXG_1271iXGlSohsl",
+                "storiescontnet": "/src/assets/neemans5.png",
+                "productid": 7624054767775
+            },
+            {
+                "id": "dZFM1uCJUKLWhwUmW_VJV",
+                "storiescontnet": "/src/assets/neemans7.jpg",
+                "productid": 7624051327135
+            }
+        ]
+    },
+    {
+        "id": "d7_mvjVDWb9CxVmJIXEnx",
+        "image": "/src/assets/neemans4.png",
+        "name": "Fluffy Flips",
+        "largeimg": "/src/assets/neemans7.jpg",
+        "productid": 7624061583519,
+        "nextid": 7624054767775,
+        "count": 8,
+        "childstories": [
+            {
+                "id": "WqWa33DOccxkmRy3IQwXK",
+                "storiescontnet": "/src/assets/neemans5.png",
+                "productid": 7624054767775
+            },
+            {
+                "id": "sGcE5X3NIKsH-wpYmSPhZ",
+                "storiescontnet": "/src/assets/neemans7.jpg",
+                "productid": 7624051327135
+            },
+            {
+                "id": "JzDvIZX5HiIE7UVwu6JwQ",
+                "storiescontnet": "/src/assets/neemans5.png",
+                "productid": 7624054767775
+            },
+            {
+                "id": "wfgdW7MdtAiIVADi28qJP",
+                "storiescontnet": "/src/assets/neemans7.jpg",
+                "productid": 7624051327135
+            },
+            {
+                "id": "KgrP9lqHL2acZnI-vkLpW",
+                "storiescontnet": "/src/assets/neemans5.png",
+                "productid": 7624054767775
+            },
+            {
+                "id": "FOc5xG1raqjyLesD_S-V_",
+                "storiescontnet": "/src/assets/neemans7.jpg",
+                "productid": 7624051327135
+            },
+            {
+                "id": "DSQAAgXDPMLQGta1gdTXD",
+                "storiescontnet": "/src/assets/neemans5.png",
+                "productid": 7624054767775
+            },
+            {
+                "id": "2y947gqtZ5fVvB8KBwDPh",
+                "storiescontnet": "/src/assets/neemans7.jpg",
+                "productid": 7624051327135
+            }
+        ]
+    },
+    {
+        "id": "s73ZP1MC-Rt0uSxFD7dNn",
+        "image": "/src/assets/neemans4.png",
+        "name": "Fluffy Flips",
+        "largeimg": "/src/assets/neemans6.png",
+        "productid": 7624054767775,
+        "nextid": 7624054767775,
+        "count": 8,
+        "childstories": [
+            {
+                "id": "B4Mw_qaHezrwUk5d7Iokt",
+                "storiescontnet": "/src/assets/neemans5.png",
+                "productid": 7624054767775
+            },
+            {
+                "id": "CepVO7MOyFzm0b5nmNKgi",
+                "storiescontnet": "/src/assets/neemans7.jpg",
+                "productid": 7624051327135
+            },
+            {
+                "id": "r5O2ErmHwk6WoVDV9qWQZ",
+                "storiescontnet": "/src/assets/neemans5.png",
+                "productid": 7624054767775
+            },
+            {
+                "id": "jPqA3KUVDhAREdrXi9oDl",
+                "storiescontnet": "/src/assets/neemans7.jpg",
+                "productid": 7624051327135
+            },
+            {
+                "id": "HyjpEU9SP-7t9ZAtl5EaE",
+                "storiescontnet": "/src/assets/neemans5.png",
+                "productid": 7624054767775
+            },
+            {
+                "id": "Zl2jvjGJ8GZxWZ04siGHt",
+                "storiescontnet": "/src/assets/neemans7.jpg",
+                "productid": 7624051327135
+            },
+            {
+                "id": "MZMM5lXP55PJQJZt5qN7r",
+                "storiescontnet": "/src/assets/neemans5.png",
+                "productid": 7624054767775
+            },
+            {
+                "id": "7gcdVTKfMEuWwJNDxvPw3",
+                "storiescontnet": "/src/assets/neemans7.jpg",
+                "productid": 7624051327135
+            }
+        ]
+    },
+    {
+        "id": "IoYNrQxFNrXOf9xToVc1y",
+        "image": "/src/assets/neemans4.png",
+        "largeimg": "/src/assets/neemans7.jpg",
+        "name": "Fluffy Flips",
+        "productid": 7624051327135,
+        "nextid": 7624054767775,
+        "count": 8,
+        "childstories": [
+            {
+                "id": "QrHz4ERDuvPTEiqxGBoAT",
+                "storiescontnet": "/src/assets/neemans5.png",
+                "productid": 7624054767775
+            },
+            {
+                "id": "vN6xPuRfhFVQJycf1S5dU",
+                "storiescontnet": "/src/assets/neemans7.jpg",
+                "productid": 7624051327135
+            },
+            {
+                "id": "NWMtkeriaJ0SHJ-4xm6Vy",
+                "storiescontnet": "/src/assets/neemans5.png",
+                "productid": 7624054767775
+            },
+            {
+                "id": "gS7qJ00KD-oecAD3527h5",
+                "storiescontnet": "/src/assets/neemans7.jpg",
+                "productid": 7624051327135
+            },
+            {
+                "id": "xcm1id8VA1bF2XllGezqS",
+                "storiescontnet": "/src/assets/neemans5.png",
+                "productid": 7624054767775
+            },
+            {
+                "id": "RQGrY1b1hh13T6V2v-l-G",
+                "storiescontnet": "/src/assets/neemans7.jpg",
+                "productid": 7624051327135
+            },
+            {
+                "id": "feaYex1jiGD_i6U1H33aF",
+                "storiescontnet": "/src/assets/neemans5.png",
+                "productid": 7624054767775
+            },
+            {
+                "id": "AtJdCoKnUmb_B-euezrT7",
+                "storiescontnet": "/src/assets/neemans7.jpg",
+                "productid": 7624051327135
+            }
+        ]
+    }
+]
+}
