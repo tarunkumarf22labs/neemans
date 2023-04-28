@@ -330,7 +330,7 @@
   /* background-color: white; */
 }
 
-.f22storiesdrawer.open {
+ .f22open {
   height: 797px;
   transform: translateY(0%);
 }

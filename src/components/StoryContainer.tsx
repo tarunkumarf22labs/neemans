@@ -252,7 +252,7 @@ function StoryContainer({
       })}
 
       <div
-        className={`f22storiesdrawer ${isopen ? "open" : ""}`}
+        className={`f22storiesdrawer ${isopen ? "f22open" : ""}`}
         onClick={() => {
           setisopen((prev) => !prev);
           startProgress();
