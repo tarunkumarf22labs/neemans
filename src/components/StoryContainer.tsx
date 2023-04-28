@@ -183,6 +183,8 @@ function StoryContainer({
           return (
             <div
               style={{
+                display : "block !important"
+                ,
                 transform:
                   i == actualTime
                     ? `scaleX(${currentTime / 100})`
@@ -250,7 +252,7 @@ function StoryContainer({
       })}
 
       <div
-        className={`drawer ${isopen ? "open" : ""}`}
+        className={`f22storiesdrawer ${isopen ? "open" : ""}`}
         onClick={() => {
           setisopen((prev) => !prev);
           startProgress();

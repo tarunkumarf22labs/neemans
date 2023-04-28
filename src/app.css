@@ -316,7 +316,7 @@
 
 /*  drawer   */
 
-.drawer {
+.f22storiesdrawer {
   position: fixed;
   bottom: 0;
   left: 0;
@@ -330,7 +330,7 @@
   /* background-color: white; */
 }
 
-.drawer.open {
+.f22storiesdrawer .open{
   height: 797px;
   transform: translateY(0%);
 }
@@ -412,6 +412,7 @@
   width: 100%;
   border-radius: 20px;
   border-radius: 25px;
+  display: block !important;
   /* margin-left: 5px; */
   transform-origin: left;
   transition: transform 0.1s linear;
