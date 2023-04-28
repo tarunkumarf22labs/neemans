@@ -4,52 +4,69 @@
         "id": 1,
         "image": "/src/assets/neemans1.png",
         "largeimg": "/src/assets/neemans5.png",
-        "name": "Relive Knit S...",
+        "name": "Relive Knit Shops",
         "productid": 7624054767775,
         "nextid": 7624051327135,
+        "whichlidtolookinlocal" : 2 ,
         "count": 8,
         "childstories": [
             {
                 "id": "EJxDGyV__PgXYDKORszTu",
-                "storiescontnet": "/src/assets/neemans5.png",
-                "productid": 7624054767775
+                "storiescontnet": "/src/assets/largeimage4.png",
+                "productid": 7624054767775,
+                "dots" : [
+                    {
+                        "x" : 80,
+                        "y" : 40,
+                        "id" : 1 ,
+                        "productid" : 7624054767775
+                    } 
+                    
+                ]
+
             },
             {
                 "id": "O9CBKmJYaUvu8RxcF2mt5",
-                "storiescontnet": "/src/assets/neemans7.jpg",
-                "productid": 7624051327135
+                "storiescontnet": "/src/assets/largeimage.png",
+                "productid": 7624051327135,
+                "dots" : [
+                    {
+                        "x" : 80,
+                        "y" : 25,
+                        "id" : 1 ,
+                        "productid" : 7624054767775
+                    } , 
+                    {
+                        "x" : 70,
+                        "y" : 40,
+                        "id" : 2 ,
+                        "productid" : 7624051327135
+                    } ,
+                    {
+                        "x" : 57,
+                        "y" : 60,
+                        "id" : 3 ,
+                        "productid" : 7624057815199
+                    } 
+                    
+                ]
             },
             {
                 "id": "qfYLTsieQt2BsXesGRcvu",
-                "storiescontnet": "/src/assets/neemans5.png",
-                "productid": 7624054767775
-            },
-            {
-                "id": "PhEZKDpaFZvvOkFW4qCpa",
-                "storiescontnet": "/src/assets/neemans7.jpg",
-                "productid": 7624051327135
-            },
-            {
-                "id": "nuDeSo-17Qz72ELBJKL_w",
-                "storiescontnet": "/src/assets/neemans5.png",
-                "productid": 7624054767775
-            },
-            {
-                "id": "JcuTTg2SjMsmu-XeceE4e",
-                "storiescontnet": "/src/assets/neemans7.jpg",
-                "productid": 7624051327135
-            },
-            {
-                "id": "H3qCHulSy6qdk_F6Na8hk",
-                "storiescontnet": "/src/assets/neemans5.png",
-                "productid": 7624054767775
-            },
-            {
-                "id": "mAmIaYXACnxxHaP70y7La",
-                "storiescontnet": "/src/assets/neemans7.jpg",
-                "productid": 7624051327135
+                "storiescontnet": "/src/assets/largeimage2.png",
+                "productid": 7624054767775,
+                "dots" : [
+                    {
+                        "x" : 44,
+                        "y" : 10,
+                        "id" : 1 ,
+                        "productid" : 7624054767775
+                    } 
+                    
+                ]
             }
         ]
+       
     },
     {
         "id": 2,
@@ -57,7 +74,10 @@
         "largeimg": "/src/assets/neemans7.jpg",
         "name": "Urban Casuals",
         "productid": 7624051327135,
+        "previousid" : 7624054767775,
         "nextid": 7624054767775,
+        "whichlidtolookinlocal" : 3 ,
+        "whichlidtolookinlocalback" : 1,
         "count": 8,
         "childstories": [
             {
@@ -110,6 +130,7 @@
         "productid": 7624057815199,
         "nextid": 7624054767775,
         "count": 8,
+        "whichlidtolookinlocal" : 4 ,
         "childstories": [
             {
                 "id": "uLkfTmgdz3Um-ETkwMzTV",
@@ -148,159 +169,6 @@
             },
             {
                 "id": "dZFM1uCJUKLWhwUmW_VJV",
-                "storiescontnet": "/src/assets/neemans7.jpg",
-                "productid": 7624051327135
-            }
-        ]
-    },
-    {
-        "id": "d7_mvjVDWb9CxVmJIXEnx",
-        "image": "/src/assets/neemans4.png",
-        "name": "Fluffy Flips",
-        "largeimg": "/src/assets/neemans7.jpg",
-        "productid": 7624061583519,
-        "nextid": 7624054767775,
-        "count": 8,
-        "childstories": [
-            {
-                "id": "WqWa33DOccxkmRy3IQwXK",
-                "storiescontnet": "/src/assets/neemans5.png",
-                "productid": 7624054767775
-            },
-            {
-                "id": "sGcE5X3NIKsH-wpYmSPhZ",
-                "storiescontnet": "/src/assets/neemans7.jpg",
-                "productid": 7624051327135
-            },
-            {
-                "id": "JzDvIZX5HiIE7UVwu6JwQ",
-                "storiescontnet": "/src/assets/neemans5.png",
-                "productid": 7624054767775
-            },
-            {
-                "id": "wfgdW7MdtAiIVADi28qJP",
-                "storiescontnet": "/src/assets/neemans7.jpg",
-                "productid": 7624051327135
-            },
-            {
-                "id": "KgrP9lqHL2acZnI-vkLpW",
-                "storiescontnet": "/src/assets/neemans5.png",
-                "productid": 7624054767775
-            },
-            {
-                "id": "FOc5xG1raqjyLesD_S-V_",
-                "storiescontnet": "/src/assets/neemans7.jpg",
-                "productid": 7624051327135
-            },
-            {
-                "id": "DSQAAgXDPMLQGta1gdTXD",
-                "storiescontnet": "/src/assets/neemans5.png",
-                "productid": 7624054767775
-            },
-            {
-                "id": "2y947gqtZ5fVvB8KBwDPh",
-                "storiescontnet": "/src/assets/neemans7.jpg",
-                "productid": 7624051327135
-            }
-        ]
-    },
-    {
-        "id": "s73ZP1MC-Rt0uSxFD7dNn",
-        "image": "/src/assets/neemans4.png",
-        "name": "Fluffy Flips",
-        "largeimg": "/src/assets/neemans6.png",
-        "productid": 7624054767775,
-        "nextid": 7624054767775,
-        "count": 8,
-        "childstories": [
-            {
-                "id": "B4Mw_qaHezrwUk5d7Iokt",
-                "storiescontnet": "/src/assets/neemans5.png",
-                "productid": 7624054767775
-            },
-            {
-                "id": "CepVO7MOyFzm0b5nmNKgi",
-                "storiescontnet": "/src/assets/neemans7.jpg",
-                "productid": 7624051327135
-            },
-            {
-                "id": "r5O2ErmHwk6WoVDV9qWQZ",
-                "storiescontnet": "/src/assets/neemans5.png",
-                "productid": 7624054767775
-            },
-            {
-                "id": "jPqA3KUVDhAREdrXi9oDl",
-                "storiescontnet": "/src/assets/neemans7.jpg",
-                "productid": 7624051327135
-            },
-            {
-                "id": "HyjpEU9SP-7t9ZAtl5EaE",
-                "storiescontnet": "/src/assets/neemans5.png",
-                "productid": 7624054767775
-            },
-            {
-                "id": "Zl2jvjGJ8GZxWZ04siGHt",
-                "storiescontnet": "/src/assets/neemans7.jpg",
-                "productid": 7624051327135
-            },
-            {
-                "id": "MZMM5lXP55PJQJZt5qN7r",
-                "storiescontnet": "/src/assets/neemans5.png",
-                "productid": 7624054767775
-            },
-            {
-                "id": "7gcdVTKfMEuWwJNDxvPw3",
-                "storiescontnet": "/src/assets/neemans7.jpg",
-                "productid": 7624051327135
-            }
-        ]
-    },
-    {
-        "id": "IoYNrQxFNrXOf9xToVc1y",
-        "image": "/src/assets/neemans4.png",
-        "largeimg": "/src/assets/neemans7.jpg",
-        "name": "Fluffy Flips",
-        "productid": 7624051327135,
-        "nextid": 7624054767775,
-        "count": 8,
-        "childstories": [
-            {
-                "id": "QrHz4ERDuvPTEiqxGBoAT",
-                "storiescontnet": "/src/assets/neemans5.png",
-                "productid": 7624054767775
-            },
-            {
-                "id": "vN6xPuRfhFVQJycf1S5dU",
-                "storiescontnet": "/src/assets/neemans7.jpg",
-                "productid": 7624051327135
-            },
-            {
-                "id": "NWMtkeriaJ0SHJ-4xm6Vy",
-                "storiescontnet": "/src/assets/neemans5.png",
-                "productid": 7624054767775
-            },
-            {
-                "id": "gS7qJ00KD-oecAD3527h5",
-                "storiescontnet": "/src/assets/neemans7.jpg",
-                "productid": 7624051327135
-            },
-            {
-                "id": "xcm1id8VA1bF2XllGezqS",
-                "storiescontnet": "/src/assets/neemans5.png",
-                "productid": 7624054767775
-            },
-            {
-                "id": "RQGrY1b1hh13T6V2v-l-G",
-                "storiescontnet": "/src/assets/neemans7.jpg",
-                "productid": 7624051327135
-            },
-            {
-                "id": "feaYex1jiGD_i6U1H33aF",
-                "storiescontnet": "/src/assets/neemans5.png",
-                "productid": 7624054767775
-            },
-            {
-                "id": "AtJdCoKnUmb_B-euezrT7",
                 "storiescontnet": "/src/assets/neemans7.jpg",
                 "productid": 7624051327135
             }

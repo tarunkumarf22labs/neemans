@@ -12,7 +12,7 @@ function Story({ items, memoizedhandleoverlay }: IStoryProps) {
       className="f22__stories"
     >
       <img src={items.image} />
-      <h6>{items.name}</h6>
+      <h6  className="f22_storiesitem" >{items.name}</h6>
     </div>
   );
 }

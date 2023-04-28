@@ -1,31 +1,27 @@
 
 // @ts-nocheck
 import "./css/customSlide.css";
-import { useState } from "uelements";
+import { useEffect, useState } from "uelements";
 import { ImageElement } from "../types";
 
 function Customslider({ productimages }: { productimages: ImageElement[] }) {
-  // const [state, setState] = useState(0);
 
-  // function handlecount() {
-  //   if (state <= productimages.length - 1) {
-  //     setState((prev) => prev + 1);
-  //   }
-  // }
-
-  // function handlecountslider(data: number) {
-  //   if (data <= productimages.length - 1) {
-  //     setState(data);
-  //   }
-  // }
-
-  const [slides, setSlides] = useState(() => ({
+  console.log(productimages);
+  
+  const [slides, setSlides] = useState({
     currentImg: productimages[0].src,
     currentImgIndex: 0,
     imgData: productimages,
     totalSlides: productimages.length,
-  }));
-
+  });
+  useEffect(() => {
+    setSlides({
+      currentImg: productimages[0].src,
+    currentImgIndex: 0,
+    imgData: productimages,
+    totalSlides: productimages.length,
+    })
+  } ,[productimages[0].src] )
   const onCarouselProdClick = (index) => {
     const selectedProduct = slides.imgData[index];
     setSlides({
@@ -170,14 +166,11 @@ function SwipeableComponent({ children, onSwipeLeft, onSwipeRight }) {
 
   const handleTouchEnd = () => {
     if (touchStart - touchEnd > 50) {
-      // swipe right to left
-      //   console.log('swiped right');
       onSwipeRight();
     }
 
     if (touchStart - touchEnd < -50) {
       // swipe left to right
-      //   console.log('swiped left');
       onSwipeLeft();
     }
   };

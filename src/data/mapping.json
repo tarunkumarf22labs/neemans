@@ -1,0 +1,14 @@
+{
+    "value" : [
+        {
+            "id": "f22-storiesplugin1",
+            "url" : "http://localhost:8000/data"
+        } ,
+        {
+            "id": "f22-storiesplugin2",
+            "url" : "http://localhost:8000/data"
+        }
+    ]
+    
+    
+}
