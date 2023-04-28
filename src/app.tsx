@@ -13,7 +13,7 @@ export default function App({ dataURL }: { dataURL: string }) {
     async function handledata() {
       let data = await fetch(dataURL);
       let dataval = await data.json();
-      setJsondata(dataval);
+      setJsondata(dataval.record);
     }
     handledata();
   }, []);
@@ -28,9 +28,15 @@ export default function App({ dataURL }: { dataURL: string }) {
   }, []);
 
   const handledata = (itemid: number) => {
+     console.log(itemid);
+     
     let data = jsondata.find((image) => {
-      return image.productid === itemid;
+        console.log(image.productid , itemid);
+      
+      return image.productid === itemid
     });
+    console.log(data);
+    
     setData(data!);
   };
 

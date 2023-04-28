@@ -5,8 +5,6 @@ import { useEffect, useState } from "uelements";
 import { ImageElement } from "../types";
 
 function Customslider({ productimages }: { productimages: ImageElement[] }) {
-
-  console.log(productimages);
   
   const [slides, setSlides] = useState({
     currentImg: productimages[0].src,

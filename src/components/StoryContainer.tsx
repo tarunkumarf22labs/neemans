@@ -40,10 +40,12 @@ function StoryContainer({
     () => handlecount(location, data.id) || 0
   );
   const [productid, setProductId] = useState()
+  
+
   useEffect(() => {
     intervalRef.current = setInterval(updateProgress, 100);
     return () => clearInterval(intervalRef.current!);
-  }, [data.id, actualTime]);
+  }, [data?.id, actualTime]);
 
   const handleproduct = () => {
     if (isopen) {
@@ -71,16 +73,31 @@ function StoryContainer({
   };
 
   const updateProgress = () => {
+  
+   if (actualTime === data?.childstories.length - 1 && data?.stop ) {
+    setCurrentTime((prevProgress) =>  {
+       if (prevProgress <= 100) {
+        return  prevProgress + 1 
+       } 
+       stopProgress()
+       return 
+    })
+    return 
+   }
     setCurrentTime((prevProgress) => {
       if (prevProgress >= 100) {
         if (actualTime === data?.childstories.length - 1) {
           stopProgress();
-          setCurrentTime(0);
           setactualTime(
             handlecount(location, data.whichlidtolookinlocal!) || 0
           );
-          handledata(data.nextid!);
-          return 0;
+       if (!data.stop) {
+        handledata(data.nextid!);
+        return 0
+       }
+           
+            
+          
         }
 
         if (prevProgress >= 100 && actualTime !== data?.childstories.length) {
@@ -107,6 +124,7 @@ function StoryContainer({
     const touch = event.touches[0];
     const targetRect = (touch.target as Element).getBoundingClientRect();
     const distance = touch.clientY - targetRect.top;
+
     if (distance > 360) setshow(false);
   }
 
@@ -132,11 +150,15 @@ function StoryContainer({
   };
 
   const handleprevious = () => {
+
+
     if (actualTime <= 0) {
       if (data.previousid) {
+        console.log(data.previousid);
+        
         stopProgress();
         setCurrentTime(0);
-        setactualTime(handlecount(location, data.whichlidtolookinlocal!) || 0);
+        setactualTime(handlecount(location, data.whichlidtolookinlocalback!) || 0);
         handledata(data.previousid!);
         return;
       }
@@ -179,8 +201,8 @@ function StoryContainer({
       <header className="main_StoryContainer_header">
         <nav className="StoryContainer_nav">
           <div className="StoryContainer_titlebar">
-            <img src={data.image} alt="" />
-            <h5 className="StoryContainer_title">{data.name}</h5>
+            <img src={data?.image} alt="" />
+            <h5 className="StoryContainer_title">{data?.name}</h5>
           </div>
           <Cross onclose={handleoverlay} />
         </nav>
@@ -199,7 +221,7 @@ function StoryContainer({
           <main className={`  ${i === actualTime ? "StoryContainer" : "none"}`}>
             <img
               className={`  ${i < actualTime ? "none" : " data_img "} `}
-              src={value.storiescontnet}
+              src={value?.storiescontnet}
               onClick={handleproduct}
             />
           </main>
@@ -207,7 +229,7 @@ function StoryContainer({
       })}
   {/*  */}
 
-  {data?.childstories[actualTime].dots?.map((value, i) => {
+  {data?.childstories[actualTime]?.dots?.map((value, i) => {
         return (
           <div
           key={value?.id}
@@ -236,7 +258,7 @@ function StoryContainer({
       >
         <MemoizedStoryDrawer
           isOpen={isopen}
-          productid={productid || data?.childstories[actualTime].dots?.[0]?.productid}
+          productid={productid || data?.childstories[actualTime]?.dots?.[0]?.productid}
         />
       </div>
     </div>

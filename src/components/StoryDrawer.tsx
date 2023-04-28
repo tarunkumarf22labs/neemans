@@ -10,7 +10,6 @@ function StoryDrawer({
   isOpen: boolean;
   productid: number;
 }) {
-  console.log(productid , "productid" );
   
   function handledata(data) {
     let pattern = /^gid:\/\/shopify\/ProductVariant\//;    
@@ -26,7 +25,6 @@ function StoryDrawer({
        const value = await data.json()
        setProduct(value);
        setVariant(handledata(value?.variants[0].id));
-       console.log(product?.images);
        
     } 
     fetchdata()

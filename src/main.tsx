@@ -12,16 +12,16 @@ define(
 
 
 async function loaderofdata() {
-  const data = await fetch("http://localhost:3000/value");
+  const data = await fetch("https://api.jsonbin.io/v3/b/644b7f5e9d312622a353b0e6");
   const value = await data.json();
-  value.forEach((element: { id: string; url: string }) => {
+  
+  value.record.forEach((element: { id: string; url: string }) => {
     const mainelementsofstories = document.querySelector(`#${element.id}`);
      if (mainelementsofstories) {
       let el = document.createElement("f22-stories");
       el.setAttribute("dataUrl", element.url);
       mainelementsofstories?.appendChild(el);
       document.body.append(mainelementsofstories!);
-      console.log(mainelementsofstories);
      }
 
   });
