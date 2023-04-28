@@ -330,7 +330,7 @@
   /* background-color: white; */
 }
 
-.f22storiesdrawer .open{
+.f22storiesdrawer.open {
   height: 797px;
   transform: translateY(0%);
 }
@@ -357,7 +357,7 @@
 }
 
 .size_container {
-  display: flex !important;
+  display: flex  ;
   justify-content: center;
   width: 100%;
 }
@@ -412,7 +412,6 @@
   width: 100%;
   border-radius: 20px;
   border-radius: 25px;
-  display: block !important;
   /* margin-left: 5px; */
   transform-origin: left;
   transition: transform 0.1s linear;
