@@ -222,6 +222,7 @@ function StoryContainer({
         return (
           <main className={`  ${i === actualTime ? "StoryContainer" : "none"}`}>
             <img
+            style={{ pointerEvents : "none" }}
               className={`  ${i < actualTime ? "none" : " data_img "} `}
               src={value?.storiescontnet}
               onClick={handleproduct}

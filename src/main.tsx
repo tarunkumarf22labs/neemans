@@ -29,6 +29,7 @@ define(
 // loaderofdata();
 
 
-let el = document.createElement('f22-stories')
-el.setAttribute('dataUrl', "https://api.jsonbin.io/v3/b/644b96d98e4aa6225e92895b")
-document.body.append(el)
+// let el = document.createElement('f22-stories')
+// el.setAttribute('dataUrl', "https://api.jsonbin.io/v3/b/644b96d98e4aa6225e92895b")
+// document.body.append(el)
+
