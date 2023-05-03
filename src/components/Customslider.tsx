@@ -5,26 +5,28 @@ import { useEffect, useState } from "uelements";
 import { ImageElement } from "../types";
 
 function Customslider({ productimages }: { productimages: ImageElement[] }) {
+  // console.log(productimages);
   
   const [slides, setSlides] = useState({
-    currentImg: productimages[0].src,
+    currentImg: productimages[0].image,
     currentImgIndex: 0,
     imgData: productimages,
     totalSlides: productimages.length,
   });
+  
   useEffect(() => {
     setSlides({
-      currentImg: productimages[0].src,
+      currentImg: productimages[0].image,
     currentImgIndex: 0,
     imgData: productimages,
     totalSlides: productimages.length,
     })
-  } ,[productimages[0].src] )
+  } ,[productimages[0].image] )
   const onCarouselProdClick = (index) => {
     const selectedProduct = slides.imgData[index];
     setSlides({
       ...slides,
-      currentImg: selectedProduct.src,
+      currentImg: selectedProduct.image,
       currentImgIndex: index,
     });
   };
@@ -33,7 +35,7 @@ function Customslider({ productimages }: { productimages: ImageElement[] }) {
     if (slides.currentImgIndex - 1 >= 0)
       setSlides({
         ...slides,
-        currentImg: productimages[slides.currentImgIndex - 1].src,
+        currentImg: productimages[slides.currentImgIndex - 1].image,
         currentImgIndex: slides.currentImgIndex - 1,
       });
   };
@@ -41,7 +43,7 @@ function Customslider({ productimages }: { productimages: ImageElement[] }) {
     if (slides.currentImgIndex + 1 < slides.imgData.length)
       setSlides({
         ...slides,
-        currentImg: productimages[slides.currentImgIndex + 1].src,
+        currentImg: productimages[slides.currentImgIndex + 1].image,
         currentImgIndex: slides.currentImgIndex + 1,
       });
   };
@@ -114,7 +116,7 @@ const MainSlide = ({ slides, currImgIndex }) => {
         // eslint-disable-next-line react/prop-types
         slides.imgData.map((slide) => (
           <div className="main__slide__img">
-            <img src={slide.src} key={slide.id} alt="product" />
+            <img src={slide.image} key={slide.id} alt="product" />
           </div>
         ))
       }
@@ -123,7 +125,7 @@ const MainSlide = ({ slides, currImgIndex }) => {
 };
 
 const Slide = ({
-  slide: { src },
+  slide: { image },
   handler,
   currImgIndex,
   index,
@@ -142,7 +144,7 @@ const Slide = ({
       }}
     >
       <img
-        src={src}
+        src={image}
         alt="product1"
         className={currImgIndex === index ? "active" : ""}
       />

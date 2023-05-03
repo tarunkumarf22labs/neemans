@@ -12,6 +12,7 @@ interface IStoryContainerProps {
   handleoverlay: () => void;
   handledata: (data: number) => void;
   setshow: StateUpdater<boolean>;
+  setNext : StateUpdater<number>
 }
 
 function StoryContainer({
@@ -19,7 +20,12 @@ function StoryContainer({
   handleoverlay,
   handledata,
   setshow,
+  setNext,
+  jsondata,
+  next
 }: IStoryContainerProps) {
+  console.log(next);
+  
   function handlecount(location: Iloaction[], ids: string) {
     let value;
     location.filter((e) => {
@@ -31,7 +37,6 @@ function StoryContainer({
     return value;
   }
 
-
   const [isopen, setisopen] = useState(false);
   const [currentTime, setCurrentTime] = useState(() => 0);
   const intervalRef = useRef<null | number>(null);
@@ -39,14 +44,16 @@ function StoryContainer({
   const [actualTime, setactualTime] = useState(
     () => handlecount(location, data.id) || 0
   );
-  const [productid, setProductId] = useState()
-  
+  const [productid, setProductId] = useState();
 
   useEffect(() => {
     intervalRef.current = setInterval(updateProgress, 100);
     return () => clearInterval(intervalRef.current!);
   }, [data?.id, actualTime]);
 
+
+  console.log(actualTime);
+  
   const handleproduct = () => {
     if (isopen) {
       setisopen((prev) => !prev);
@@ -73,34 +80,46 @@ function StoryContainer({
   };
 
   const updateProgress = () => {
-  
-   if (actualTime === data?.childstories.length - 1 && data?.stop ) {
-    setCurrentTime((prevProgress) =>  {
-       if (prevProgress <= 100) {
-        return  prevProgress + 1 
-       } 
-       stopProgress()
-       return 
-    })
-    return 
-   }
+    if (actualTime === data?.childstories.length - 1 && data?.stop) {
+      setCurrentTime((prevProgress) => {
+        if (prevProgress <= 100) {
+          return prevProgress + 1;
+        }
+        stopProgress();
+        return;
+      });
+      return;
+    }
     setCurrentTime((prevProgress) => {
       if (prevProgress >= 100) {
         if (actualTime === data?.childstories.length - 1) {
           stopProgress();
-          setactualTime(
-            handlecount(location, data.whichlidtolookinlocal!) || 0
-          );
-       if (!data.stop) {
-        handledata(data.nextid!);
-        return 0
-       }
-           
-            
+          console.log(next);
           
+       
+          if (!data.stop) {
+            handledata("plus");
+            setNext((prev) => prev + 1);
+            
+            
+             
+            if (jsondata.length === next + 2) {
+              console.log("babay");
+              
+              setactualTime(
+                handlecount(location, data.id + 1) || 0
+              );
+              return 0
+            }
+            setactualTime(
+              handlecount(location, data.id + 1) || 0
+            );
+            return 0;
+          }
         }
 
         if (prevProgress >= 100 && actualTime !== data?.childstories.length) {
+         
           stopProgress();
           setCurrentTime(0);
           setactualTime((prev) => prev + 1);
@@ -113,7 +132,7 @@ function StoryContainer({
           return 100;
         }
       }
-
+      
       return prevProgress + 1;
     });
   };
@@ -133,14 +152,16 @@ function StoryContainer({
       startProgress();
     }
   }
-
+  console.log(jsondata.length , next);
+  
   const handlenext = () => {
     if (actualTime >= data?.childstories.length - 1) {
-      if (data.nextid) {
+      if (jsondata.length > next + 1) {
         stopProgress();
         setCurrentTime(0);
-        setactualTime(handlecount(location, data.whichlidtolookinlocal!) || 0);
-        handledata(data.nextid!);
+        setactualTime(0);
+        handledata("plus");
+        setNext((prev) => prev + 1);
         return;
       }
       return;
@@ -150,16 +171,17 @@ function StoryContainer({
   };
 
   const handleprevious = () => {
-
-
     if (actualTime <= 0) {
-      if (data.previousid) {
-        console.log(data.previousid);
-        
+       if (next > 0) {
         stopProgress();
         setCurrentTime(0);
-        setactualTime(handlecount(location, data.whichlidtolookinlocalback!) || 0);
-        handledata(data.previousid!);
+        setactualTime(
+          handlecount(location, next!) || 0
+        );
+        handledata("minus");
+        console.log(next);
+        
+        setNext((prev) => prev - 1);
         return;
       }
       return;
@@ -177,25 +199,29 @@ function StoryContainer({
     >
       <div
         className="playbar"
-        style={{ gridTemplateColumns: ` repeat(${data?.childstories.length} ,1fr)  ` }}
+        style={{
+          gridTemplateColumns: ` repeat(${data?.childstories.length} ,1fr)  `,
+        }}
       >
         {data?.childstories.map((child, i) => {
           return (
-            <div
-              style={{
-                display : "block !important"
-                ,
-                transform:
-                  i == actualTime
-                    ? `scaleX(${currentTime / 100})`
-                    : "scaleX(0)",
-                    WebkitTransform:
+            <div className="playbarinline__wrapper">
+              <div
+                style={{
+                  display: "block !important",
+                  transform:
                     i == actualTime
                       ? `scaleX(${currentTime / 100})`
                       : "scaleX(0)",
-              }}
-              className={`playbarinline  ${i < actualTime ? "contain" : ""} `}
-            ></div>
+                  WebkitTransform:
+                    i == actualTime
+                      ? `scaleX(${currentTime / 100})`
+                      : "scaleX(0)",
+                }}
+                className={`playbarinline  ${i < actualTime ? "contain" : ""} `}
+              ></div>
+              <div className="playbarinline__background"></div>
+            </div>
           );
         })}
       </div>
@@ -222,7 +248,7 @@ function StoryContainer({
         return (
           <main className={`  ${i === actualTime ? "StoryContainer" : "none"}`}>
             <img
-            style={{ pointerEvents : "none" }}
+              style={{ pointerEvents: "none" }}
               className={`  ${i < actualTime ? "none" : " data_img "} `}
               src={value?.storiescontnet}
               onClick={handleproduct}
@@ -230,25 +256,25 @@ function StoryContainer({
           </main>
         );
       })}
-  {/*  */}
+      {/*  */}
 
-  {data?.childstories[actualTime]?.dots?.map((value, i) => {
+      {data?.childstories[actualTime]?.dots?.map((value, i) => {
         return (
           <div
-          key={value?.id}
-          className="dot"
-          style={{ top : `${value.x}%` ,left : `${value.y}%` }}
-          onClick={() => {
-            setProductId(value?.productid)
-            setisopen((prev) => !prev);
-            stopProgress();
-            if (isopen) {
-              startProgress();
-            }
-          }}
-        >
-          <span className="span_className" />
-        </div>
+            key={value?.id}
+            className="dot"
+            style={{ top: `${value.x}%`, left: `${value.y}%` }}
+            onClick={() => {
+              setProductId(value?.productname);
+              setisopen((prev) => !prev);
+              stopProgress();
+              if (isopen) {
+                startProgress();
+              }
+            }}
+          >
+            <span className="span_className" />
+          </div>
         );
       })}
 
@@ -261,7 +287,9 @@ function StoryContainer({
       >
         <MemoizedStoryDrawer
           isOpen={isopen}
-          productid={productid || data?.childstories[actualTime]?.dots?.[0]?.productid}
+          productname={
+            productid || data?.childstories[actualTime]?.dots?.[0]?.productname
+          }
         />
       </div>
     </div>

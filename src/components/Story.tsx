@@ -3,12 +3,14 @@ import { Ival } from "../types";
 interface IStoryProps {
   items: Ival;
   memoizedhandleoverlay: (items: Ival) => void;
+  onClick : () => void
 }
 
-function Story({ items, memoizedhandleoverlay }: IStoryProps) {
+function Story({ items, memoizedhandleoverlay  , onClick}: IStoryProps) {
+  
   return (
     <div
-      onClick={() => memoizedhandleoverlay(items)}
+      onClick={() => {memoizedhandleoverlay(items)  , onClick()  }  }
       className="f22__stories"
     >
       <img src={items.image} />
