@@ -58,7 +58,8 @@ function StoryDrawer({
         const relevantData = handledata(xml);
         setProduct(relevantData);
         setVariant(relevantData?.variants[0]);
-        //  console.log(relevantData);
+      console.log( JSON.stringify(relevantData) , "value" );
+      
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -77,24 +78,12 @@ function StoryDrawer({
     >
       {product ? (
         <>
-          <Customslider productimages={product?.images} />
-          <div className="size_container">
-            {product.variants.map((p: Variant) => {
-              return (
-                <h6
-                  className={`${variant.id === p.id ? "selectedtag" : ""}`}
-                  onClick={() => setVariant(p)}
-                >
-                  {p.title}
-                </h6>
-              );
-            })}
-          </div>
+          <Customslider productimages={product?.images}  productVariants = {product.variants} setVariant={setVariant} />
           <div
             className="size_container"
             style={{ flexDirection: "column", justifyContent: "center" }}
           >
-            <h5 style={{ fontSize: "14px", textAlign: "center" }}>
+            <h5 style={{ fontSize: "14px", textAlign: "center" , paddingTop : "10px" }}>
               {product.title}
             </h5>
             <h5
