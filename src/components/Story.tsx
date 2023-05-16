@@ -4,13 +4,15 @@ interface IStoryProps {
   items: Ival;
   memoizedhandleoverlay: (items: Ival) => void;
   onClick : () => void
+  fetchUsers : () => void
+  creationparentdata : (data : string) => void
 }
 
-function Story({ items, memoizedhandleoverlay  , onClick}: IStoryProps) {
+function Story({ items, memoizedhandleoverlay  , onClick , fetchUsers , creationparentdata } : IStoryProps) {
   
   return (
     <div
-      onClick={() => {memoizedhandleoverlay(items)  , onClick()  }  }
+      onClick={() => {memoizedhandleoverlay(items)  , onClick() , fetchUsers() ,  creationparentdata(items.name) }  }
       className="f22__stories"
     >
       <img src={items.image} />

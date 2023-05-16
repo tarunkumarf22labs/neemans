@@ -12,7 +12,10 @@ interface IStoryContainerProps {
   handleoverlay: () => void;
   handledata: (data: number) => void;
   setshow: StateUpdater<boolean>;
-  setNext : StateUpdater<number>
+  setNext : StateUpdater<number>;
+  handeler : () => void
+  dotclickedtoupdate : () => void 
+  fetchUsers : fetchUsers
 }
 
 function StoryContainer({
@@ -22,9 +25,13 @@ function StoryContainer({
   setshow,
   setNext,
   jsondata,
-  next
+  next,
+  handeler,
+  dotclickedtoupdate,
+  creationparentdata,
+  fetchUsers
 }: IStoryContainerProps) {
-  console.log(next);
+
   
   function handlecount(location: Iloaction[], ids: string) {
     let value;
@@ -36,6 +43,10 @@ function StoryContainer({
     });
     return value;
   }
+
+
+
+
 
   const [isopen, setisopen] = useState(false);
   const [currentTime, setCurrentTime] = useState(() => 0);
@@ -52,7 +63,8 @@ function StoryContainer({
   }, [data?.id, actualTime]);
 
 
-  console.log(actualTime);
+
+    
   
   const handleproduct = () => {
     if (isopen) {
@@ -80,6 +92,8 @@ function StoryContainer({
   };
 
   const updateProgress = () => {
+    handeler(data?.childstories[actualTime] , data)
+    creationparentdata(data.name)
     if (actualTime === data?.childstories.length - 1 && data?.stop) {
       setCurrentTime((prevProgress) => {
         if (prevProgress <= 100) {
@@ -94,17 +108,17 @@ function StoryContainer({
       if (prevProgress >= 100) {
         if (actualTime === data?.childstories.length - 1) {
           stopProgress();
-          console.log(next);
+    
           
        
           if (!data.stop) {
             handledata("plus");
             setNext((prev) => prev + 1);
             
-            
+
              
             if (jsondata.length === next + 2) {
-              console.log("babay");
+         
               
               setactualTime(
                 handlecount(location, data.id + 1) || 0
@@ -144,7 +158,11 @@ function StoryContainer({
     const targetRect = (touch.target as Element).getBoundingClientRect();
     const distance = touch.clientY - targetRect.top;
 
-    if (distance > 360) setshow(false);
+    if (distance > 360) {
+      setshow(false)
+        fetchUsers()
+      
+      };
   }
 
   function handlePointerUp() {
@@ -152,7 +170,7 @@ function StoryContainer({
       startProgress();
     }
   }
-  console.log(jsondata.length , next);
+
   
   const handlenext = () => {
     if (actualTime >= data?.childstories.length - 1) {
@@ -160,6 +178,7 @@ function StoryContainer({
         stopProgress();
         setCurrentTime(0);
         setactualTime(0);
+        handeler(data?.childstories[actualTime] , data)
         handledata("plus");
         setNext((prev) => prev + 1);
         return;
@@ -167,6 +186,7 @@ function StoryContainer({
       return;
     }
     setactualTime((prev) => prev + 1);
+    handeler(data?.childstories[actualTime + 1] , data)
     setCurrentTime(0);
   };
 
@@ -179,7 +199,7 @@ function StoryContainer({
           handlecount(location, next!) || 0
         );
         handledata("minus");
-        console.log(next);
+
         
         setNext((prev) => prev - 1);
         return;
@@ -232,7 +252,7 @@ function StoryContainer({
             <img src={data?.image} alt="" />
             <h5 className="StoryContainer_title">{data?.name}</h5>
           </div>
-          <Cross onclose={handleoverlay} />
+          <Cross onclose={handleoverlay}  fetchUsers = {fetchUsers}  />
         </nav>
 
         <button onClick={handleprevious} className="stories_button">
@@ -266,6 +286,7 @@ function StoryContainer({
             style={{ top: `${value.x}%`, left: `${value.y}%` }}
             onClick={() => {
               setProductId(value?.productname);
+              dotclickedtoupdate(productid || data?.childstories[actualTime]?.dots?.[0]?.productname , data?.childstories[actualTime] , data)
               setisopen((prev) => !prev);
               stopProgress();
               if (isopen) {
@@ -283,6 +304,7 @@ function StoryContainer({
         onClick={() => {
           setisopen((prev) => !prev);
           startProgress();
+
         }}
       >
         <MemoizedStoryDrawer

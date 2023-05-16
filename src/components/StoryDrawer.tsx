@@ -58,7 +58,7 @@ function StoryDrawer({
         const relevantData = handledata(xml);
         setProduct(relevantData);
         setVariant(relevantData?.variants[0]);
-      console.log( JSON.stringify(relevantData) , "value" );
+
       
       } catch (error) {
         console.error("Error fetching data:", error);

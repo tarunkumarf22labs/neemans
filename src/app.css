@@ -1,3 +1,9 @@
+:root {
+  --f22stories-circlewidth : "";
+  --f22stories-circlecolor : "";
+  --circleanimationf22stories : ;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -13,8 +19,10 @@
 }
 .f22__stories img {
   border-radius: 50% !important ;
-  border: 1px solid #ceb38e !important ;
+  border:  var(--f22stories-circlewidth) solid var(--f22stories-circlecolor) !important ;
   padding: 1px !important ;
+  height: 64px;
+  width: 64px;
 }
 
 .f22_storiesitem {
@@ -128,8 +136,8 @@
 
 .span_className,
 .span_className::before {
-  height: 16px !important;
-  width: 16px !important;
+  height: var(--circleanimationf22stories) !important;
+  width: var(--circleanimationf22stories) !important;
 }
 .span_className {
   border-radius: 100%;
@@ -151,8 +159,8 @@
 
 .span_className::after {
   content: "";
-  height: calc(16px * 0.5);
-  width: calc(16px * 0.5);
+  height: calc(var(--circleanimationf22stories) * 0.5);
+  width: calc(var(--circleanimationf22stories) * 0.5);
   box-shadow: 0 2px 8px aliceblue;
   background-color: #fff !important;
   position: absolute;
@@ -454,6 +462,8 @@
   height: 100vh;
   width: 50%;
   opacity: 0;
+  outline: 0;
+  border: 0;
 }
 
 .plugin-inner_container {

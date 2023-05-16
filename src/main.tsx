@@ -63,7 +63,7 @@ function handlevalue() {
           const mainelementsofstories = document.querySelector(`#${element.id}`);
           if (mainelementsofstories) {
             let el = document.createElement("f22-stories");
-            el.setAttribute("dataUrl", element.url);
+            el.setAttribute("dataUrl", "https://api.jsonbin.io/v3/b/645a94088e4aa6225e99c543");
             mainelementsofstories.appendChild(el);
           }
         });

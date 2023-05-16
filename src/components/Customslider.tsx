@@ -4,7 +4,7 @@ import { useEffect, useState } from "uelements";
 import { ImageElement } from "../types";
 
 function Customslider({ productimages, productVariants ,setVariant }: { productimages: ImageElement[] }) {
-    console.log(productVariants);
+   
     
   const [slides, setSlides] = useState({
     currentImg: productimages[0].image,
@@ -15,7 +15,7 @@ function Customslider({ productimages, productVariants ,setVariant }: { producti
     sizeData: productVariants,
     totalSlides: productimages.length,
   });
-  console.log(slides);
+
   
   
   useEffect(() => {
@@ -80,10 +80,10 @@ function Customslider({ productimages, productVariants ,setVariant }: { producti
   }
   const onSliderSizeClick = (index) =>{
     const selectedSize = slides.sizeData[index];
-    console.log("selectedSize" , selectedSize ); 
+    
     
     setVariant(selectedSize)
-    console.log(index)
+
     setSlides({
       ...slides,
       currentSize: selectedSize.title,
@@ -243,7 +243,7 @@ const Slide = ({
 };
 
 const SizeSlide = ({ slide, handler, currSizeIndex, index, totalSlides }) => {
-  console.log('Slide', slide.title,currSizeIndex, index, totalSlides )
+ 
   return (
     <div className={`slide__container ${currSizeIndex === index? "active__size": ""}`} onClick={() => handler(index)} style={{transform: `${totalSlides - 3 > currSizeIndex  ? `translateX(-${currSizeIndex * 100}%)`: `translateX(-${3.5 * 100}%)`}`}}>
       <h6 className="size__text">{slide?.title}</h6>
