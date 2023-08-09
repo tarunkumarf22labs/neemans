@@ -59,14 +59,14 @@ function handlevalue() {
       setTimeout(async () => {
         const data = await fetch("https://api.jsonbin.io/v3/b/644b7f5e9d312622a353b0e6");
         const value = await data.json();
-        value.record.forEach((element : any ) => {
-          const mainelementsofstories = document.querySelector(`#${element.id}`);
+        // value.record.forEach((element : any ) => {
+          const mainelementsofstories = document.querySelector(`#f22-storiesplugin1`);
           if (mainelementsofstories) {
             let el = document.createElement("f22-stories");
-            el.setAttribute("dataUrl", "https://api.jsonbin.io/v3/b/645a94088e4aa6225e99c543");
+            el.setAttribute("dataUrl", "https://s3.f22labs.cloud/storiespluginassets/teststories.json");
             mainelementsofstories.appendChild(el);
           }
-        });
+        // });
       }, 2000);
     };
   } catch (error) {
