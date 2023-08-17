@@ -23,6 +23,7 @@
   padding: 1px !important ;
   height: 64px;
   width: 64px;
+  object-fit: cover;
 }
 
 .f22_storiesitem {

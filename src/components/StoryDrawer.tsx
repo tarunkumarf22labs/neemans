@@ -12,11 +12,13 @@ function StoryDrawer({
 }) {
   function handledata(xml) {
     const title = xml?.querySelector("title").textContent;
+    console.log(title , "Sahi");
+    
     const val = xml?.querySelectorAll("variants variant");
     const variants = Array.from(val).map((vals) => {
       return {
         id: parseInt(vals?.querySelector("id")?.textContent),
-        title: vals?.querySelector("option2").textContent,
+        title: vals?.querySelector("title").textContent,
         price: vals?.querySelector("price")?.textContent,
       };
     });
@@ -48,7 +50,7 @@ function StoryDrawer({
     async function fetchData() {
       try {
         const data = await fetch(
-          `https://neemans.com/products/${productname}.xml`,
+          `https://paperlondon.com/products/${productname}.xml`,
           { redirect: "follow" }
         );
         const value = await data.text();
@@ -93,12 +95,12 @@ function StoryDrawer({
                 marginTop: "10px",
               }}
             >
-              {variant.price}{" "}
+              £{variant.price}{" "}
             </h5>
             <br />
             <button className="atc_button">
               <a
-                href={`https://neemans.com/cart/add?id=${variant.id}&quantity=1&size=6`}
+                href={`https://paperlondon.com/cart/add?id=${variant.id}&quantity=1&size=6`}
               >
                 ADD TO CART
               </a>
