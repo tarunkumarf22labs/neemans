@@ -7,7 +7,7 @@ define(
   (el) => <App dataURL={el.getAttribute("dataURL") || ""} />,
   ["dataURL"],
   () => console.log("F22 Plugin cleanup")
-);
+); 
   
 
 
@@ -21,7 +21,7 @@ function handlevalue() {
           const mainelementsofstories = document.querySelector(`#f22-storiesplugin1`);
           if (mainelementsofstories) {
             let el = document.createElement("f22-stories");
-            el.setAttribute("dataUrl", "https://s3.f22labs.cloud/storiespluginassets/stories-paper.json");
+            el.setAttribute("dataUrl", "https://s3.f22labs.cloud/storiespluginassets/ps.json");
             mainelementsofstories.appendChild(el);
           }
         // });
