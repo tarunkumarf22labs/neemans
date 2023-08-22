@@ -21,8 +21,8 @@
   border-radius: 50% !important ;
   border:  var(--f22stories-circlewidth) solid var(--f22stories-circlecolor) !important ;
   padding: 1px !important ;
-  height: 64px;
-  width: 64px;
+  height: 77px;
+  width: 77px;
   object-fit: cover;
 }
 
@@ -399,6 +399,10 @@
   outline: none;
   margin: 0 10px;
   cursor: pointer;
+  color: white;
+  text-decoration: none;
+  text-align: center;
+  font-size: 1.1rem;
 }
 
 .playbar {
@@ -453,10 +457,6 @@
 }
 
 /*  */
-.atc_button a {
-  color: white;
-  text-decoration: none;
-}
 
 /*  stories button  */
 .stories_button {
@@ -469,15 +469,35 @@
 
 .plugin-inner_container {
   z-index: 2147483647;
-  height: 497px;
+  height: 38rem;
   position: absolute;
   width: 100%;
   bottom: 0px;
   background: white;
+  padding: 1rem;
 }
 
 @media screen and (min-width: 430px)  {
   .f22storiesstyles{
     display: none !important;
   }
+}
+
+.prev-arrow{
+  position: absolute;
+  left: 0; 
+  top: 50%; 
+  transform: translateY(-50%);
+}
+.next-arrow{
+  position: absolute;
+  right: 0; 
+  top: 50%; 
+  transform: translateY(-50%);
+}
+.arrow-enabled{
+  color: #000 !important;
+}
+.arrow-disabled{
+  color: lightgray !important;
 }

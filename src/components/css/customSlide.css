@@ -4,11 +4,13 @@
   max-width: 420px;
   background-color: #fff;
   overflow-x: hidden;
+  position: relative;
 }
 
 #main__slide{
   width: 266px;
-  height: 167px;
+  height: auto;
+  max-height: 23rem;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -19,7 +21,7 @@
 }
 .swipeable__component{
   width: 266px;
-  height: 167px;
+  height: auto;
   overflow-x: hidden;
   margin: 0 auto;
 }
@@ -108,4 +110,11 @@
 .selectedtag {
   background-color: black;
   color: white;
+}
+
+.prod-desc{
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  gap: .5rem;
 }

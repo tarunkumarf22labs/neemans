@@ -80,31 +80,15 @@ function StoryDrawer({
     >
       {product ? (
         <>
-          <Customslider productimages={product?.images}  productVariants = {product.variants} setVariant={setVariant} />
+          <Customslider productimages={product?.images} productTitle={product.title} productPrice={variant.price} productVariants = {product.variants} setVariant={setVariant} />
           <div
             className="size_container"
             style={{ flexDirection: "column", justifyContent: "center" }}
           >
-            <h5 style={{ fontSize: "14px", textAlign: "center" , paddingTop : "10px" }}>
-              {product.title}
-            </h5>
-            <h5
-              style={{
-                fontSize: "14px",
-                textAlign: "center",
-                marginTop: "10px",
-              }}
-            >
-              £{variant.price}{" "}
-            </h5>
             <br />
-            <button className="atc_button">
-              <a
-                href={`https://paperlondon.com/cart/add?id=${variant.id}&quantity=1&size=6`}
-              >
+              <a href={`https://paperlondon.com/cart/add?id=${variant.id}&quantity=1&size=6`} className="atc_button">
                 ADD TO CART
               </a>
-            </button>
           </div>
         </>
       ) : (

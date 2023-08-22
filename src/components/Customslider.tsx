@@ -2,10 +2,11 @@
 import "./css/customSlide.css";
 import { useEffect, useState } from "uelements";
 import { ImageElement } from "../types";
+import SizeDropdown from "./SizeDropdown";
 
-function Customslider({ productimages, productVariants ,setVariant }: { productimages: ImageElement[] }) {
-   
-    
+function Customslider({ productimages, productTitle, productPrice, productVariants, setVariant }: { productimages: ImageElement[] }) {
+
+
   const [slides, setSlides] = useState({
     currentImg: productimages[0].image,
     currentImgIndex: 0,
@@ -15,21 +16,22 @@ function Customslider({ productimages, productVariants ,setVariant }: { producti
     sizeData: productVariants,
     totalSlides: productimages.length,
   });
+  const [isOpen, setIsOpen] = useState(false);
 
-  
-  
+
+  console.log("Product - >", slides.sizeData)
   useEffect(() => {
     setSlides({
       currentImg: productimages[0].image,
-    currentImgIndex: 0,
-    imgData: productimages,
-    currentSizeIndex: 0,
-    currentSize: productVariants[0].title,
-    sizeData: productVariants,
-    totalSlides: productimages.length,
-    totalSizeSlides: productVariants.length
+      currentImgIndex: 0,
+      imgData: productimages,
+      currentSizeIndex: 0,
+      currentSize: productVariants[0].title,
+      sizeData: productVariants,
+      totalSlides: productimages.length,
+      totalSizeSlides: productVariants.length
     })
-  } ,[productimages[0].image] )
+  }, [productimages[0].image])
   const onCarouselProdClick = (index) => {
     const selectedProduct = slides.imgData[index];
     setSlides({
@@ -56,8 +58,8 @@ function Customslider({ productimages, productVariants ,setVariant }: { producti
       });
   };
 
-  const onClickSizePrev = () =>{
-    if (slides.currentSizeIndex - 1 >= 0){
+  const onClickSizePrev = () => {
+    if (slides.currentSizeIndex - 1 >= 0) {
 
       setSlides({
         ...slides,
@@ -67,8 +69,8 @@ function Customslider({ productimages, productVariants ,setVariant }: { producti
       setVariant(slides.sizeData[slides.currentSizeIndex - 1])
     }
   }
-  const onClickSizeNext = () =>{
-    if (slides.currentSizeIndex + 1 < slides.sizeData?.length){
+  const onClickSizeNext = () => {
+    if (slides.currentSizeIndex + 1 < slides.sizeData?.length) {
 
       setSlides({
         ...slides,
@@ -78,10 +80,10 @@ function Customslider({ productimages, productVariants ,setVariant }: { producti
       setVariant(slides.sizeData[slides.currentSizeIndex + 1])
     }
   }
-  const onSliderSizeClick = (index) =>{
+  const onSliderSizeClick = (index) => {
     const selectedSize = slides.sizeData[index];
-    
-    
+
+
     setVariant(selectedSize)
 
     setSlides({
@@ -89,18 +91,29 @@ function Customslider({ productimages, productVariants ,setVariant }: { producti
       currentSize: selectedSize.title,
       currentSizeIndex: index
     });
+    setIsOpen(!isOpen);
   }
 
   return (
-    <div id="main__container">
-      <SwipeableComponent
-        onSwipeLeft={onClickPrev}
-        onSwipeRight={onClickNext}
-        slides={slides}
-      >
-        <MainSlide slides={slides} currImgIndex={slides.currentImgIndex} />
-      </SwipeableComponent>
-      <div className="all__slides__container">
+    <>
+      <div id="main__container">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" width="40px" height="40px" className={`prev-arrow  ${slides.currentImgIndex - 1 > 0 ? "arrow-disabled" : "arrow-enabled"}`} onClick={()=> onClickPrev()}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+        </svg>
+
+        <SwipeableComponent
+          onSwipeLeft={onClickPrev}
+          onSwipeRight={onClickNext}
+          slides={slides}
+        >
+          <MainSlide slides={slides} currImgIndex={slides.currentImgIndex} />
+        </SwipeableComponent>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" width="40px" height="40px" className={`next-arrow ${slides.currentImgIndex + 1 >= slides.imgData.length? "arrow-disabled" : "arrow-enabled"}`} onClick={()=> onClickNext()}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+        </svg>
+
+
+        {/* <div className="all__slides__container">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -145,8 +158,8 @@ function Customslider({ productimages, productVariants ,setVariant }: { producti
             d="M8.25 4.5l7.5 7.5-7.5 7.5"
           />
         </svg>
-      </div>
-      <div className="all__slides__container">
+      </div> */}
+        {/* <div className="all__slides__container">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -192,8 +205,26 @@ function Customslider({ productimages, productVariants ,setVariant }: { producti
             d="M8.25 4.5l7.5 7.5-7.5 7.5"
           />
         </svg>
+      </div> */}
       </div>
-    </div>
+      <div className="prod-desc">
+        <div className="prod-info">
+          <h5 style={{ fontSize: "14px", marginBottom: ".5rem" }}>
+            {productTitle}
+          </h5>
+          <h5
+            style={{
+              fontSize: "14px",
+            }}
+          >
+            £{productPrice}{" "}
+          </h5>
+        </div>
+        <div className="size-wrapper">
+          <SizeDropdown sizeData={slides.sizeData} currentSize={slides.currentSize} onSliderSizeClick={onSliderSizeClick} isOpen={isOpen} setIsOpen={setIsOpen} />
+        </div>
+      </div>
+    </>
   );
 }
 const MainSlide = ({ slides, currImgIndex }) => {
@@ -226,11 +257,10 @@ const Slide = ({
       className="slide__container"
       onClick={() => handler(index)}
       style={{
-        transform: `${
-          totalSlides - 3 > currImgIndex
-            ? `translateX(-${currImgIndex * 100}%)`
-            : `translateX(-${1* 100}%)`
-        }`,
+        transform: `${totalSlides - 3 > currImgIndex
+          ? `translateX(-${currImgIndex * 100}%)`
+          : `translateX(-${1 * 100}%)`
+          }`,
       }}
     >
       <img
@@ -243,9 +273,9 @@ const Slide = ({
 };
 
 const SizeSlide = ({ slide, handler, currSizeIndex, index, totalSlides }) => {
- 
+
   return (
-    <div className={`slide__container ${currSizeIndex === index? "active__size": ""}`} onClick={() => handler(index)} style={{transform: `${totalSlides - 3 > currSizeIndex  ? `translateX(-${currSizeIndex * 100}%)`: `translateX(-${3.5 * 100}%)`}`}}>
+    <div className={`slide__container ${currSizeIndex === index ? "active__size" : ""}`} onClick={() => handler(index)} style={{ transform: `${totalSlides - 3 > currSizeIndex ? `translateX(-${currSizeIndex * 100}%)` : `translateX(-${3.5 * 100}%)`}` }}>
       <h6 className="size__text">{slide?.title}</h6>
     </div>
   );
