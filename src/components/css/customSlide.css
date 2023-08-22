@@ -1,15 +1,16 @@
-#main__container{
-  width: 100%;
+#main__container {
   height: auto;
-  max-width: 420px;
+  width: 94%;
+  margin: 0 auto;
+  max-width: 400px;
   background-color: #fff;
   overflow-x: hidden;
   position: relative;
 }
 
-#main__slide{
+#main__slide {
   width: 266px;
-  height: auto;
+  height: 16rem;
   max-height: 23rem;
   display: flex;
   align-items: center;
@@ -19,30 +20,35 @@
   /* overflow-x: hidden; */
   transition: transform 0.5s ease-in-out;
 }
-.swipeable__component{
+
+.swipeable__component {
   width: 266px;
   height: auto;
   overflow-x: hidden;
   margin: 0 auto;
 }
-.main__slide__img{
+
+.main__slide__img {
   width: 100%;
   height: 100%;
   flex-shrink: 0;
   flex-basis: auto;
- 
+
 }
-.main__slide__img img{
+
+.main__slide__img img {
   width: 100%;
   height: 100%;
   object-fit: contain;
 }
-.all__slides__container{
+
+.all__slides__container {
   width: 100%;
   height: 100px;
   position: relative;
 }
-.all_slides{
+
+.all_slides {
   width: 85%;
   height: 100px;
   margin: 0 auto;
@@ -50,23 +56,25 @@
   overflow-x: hidden;
 }
 
-.all__slides__container svg{
+.all__slides__container svg {
   height: 1.5rem;
-  width: 1.5rem; 
+  width: 1.5rem;
   position: absolute;
   z-index: 2;
   top: 50%;
   transform: translate(-50%, -50%);
   cursor: pointer;
 }
-.all__slides__container #left__arrow{
+
+.all__slides__container #left__arrow {
   left: 20px;
 }
-.all__slides__container #right__arrow{
+
+.all__slides__container #right__arrow {
   right: -5px;
 }
 
-.slider__container{
+.slider__container {
   max-width: 420px;
   width: 100%;
   height: 100px;
@@ -83,7 +91,8 @@
   position: absolute;
   overflow-x: hidden;
 }
-.slide__container{
+
+.slide__container {
   flex-shrink: 0;
   flex-basis: auto;
   width: 62px;
@@ -93,16 +102,18 @@
   justify-content: center;
   transition: transform 0.5s ease-in-out;
 }
-.slide__container img{
+
+.slide__container img {
   width: 100%;
   height: 100%;
   object-fit: contain;
 }
 
-.active{
+.active {
   border: 1px solid gray;
 }
-.active__size{
+
+.active__size {
   background: black;
   color: #fff;
 }
@@ -112,7 +123,7 @@
   color: white;
 }
 
-.prod-desc{
+.prod-desc {
   display: flex;
   justify-content: space-between;
   padding: 1rem;
