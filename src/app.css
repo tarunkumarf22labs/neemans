@@ -469,7 +469,7 @@
 
 .plugin-inner_container {
   z-index: 2147483647;
-  height: 38rem;
+  height: auto;
   position: absolute;
   width: 100%;
   bottom: 0px;
