@@ -21,8 +21,8 @@
   border-radius: 50% !important ;
   border:  var(--f22stories-circlewidth) solid var(--f22stories-circlecolor) !important ;
   padding: 1px !important ;
-  height: 77px;
-  width: 77px;
+  height: 79px;
+  width: 79px;
   object-fit: cover;
 }
 

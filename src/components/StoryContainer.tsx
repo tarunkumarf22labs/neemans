@@ -56,6 +56,7 @@ function StoryContainer({
     () => handlecount(location, data.id) || 0
   );
   const [productid, setProductId] = useState();
+  const [isSizeOpen, setIsSizeOpen] = useState(false);
 
   useEffect(() => {
     intervalRef.current = setInterval(updateProgress, 100);
@@ -304,11 +305,13 @@ function StoryContainer({
         onClick={() => {
           setisopen((prev) => !prev);
           startProgress();
-
+          setIsSizeOpen(false);
         }}
       >
         <MemoizedStoryDrawer
           isOpen={isopen}
+          isSizeOpen={isSizeOpen}
+          setIsSizeOpen={setIsSizeOpen}
           productname={
             productid || data?.childstories[actualTime]?.dots?.[0]?.productname
           }

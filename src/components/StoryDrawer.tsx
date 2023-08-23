@@ -5,6 +5,8 @@ import { Variant, shopify } from "../types";
 import { memo } from "preact/compat";
 function StoryDrawer({
   isOpen,
+  isSizeOpen,
+  setIsSizeOpen,
   productname,
 }: {
   isOpen: boolean;
@@ -80,7 +82,7 @@ function StoryDrawer({
     >
       {product ? (
         <>
-          <Customslider productimages={product?.images} productTitle={product.title} productPrice={variant.price} productVariants = {product.variants} setVariant={setVariant} />
+          <Customslider productimages={product?.images} productTitle={product.title} productPrice={variant.price} productVariants = {product.variants} setVariant={setVariant} isSizeOpen={isSizeOpen} setIsSizeOpen={setIsSizeOpen}/>
           <div
             className="size_container"
             style={{ flexDirection: "column", justifyContent: "center" }}

@@ -4,7 +4,7 @@ import { useEffect, useState } from "uelements";
 import { ImageElement } from "../types";
 import SizeDropdown from "./SizeDropdown";
 
-function Customslider({ productimages, productTitle, productPrice, productVariants, setVariant }: { productimages: ImageElement[] }) {
+function Customslider({ productimages, productTitle, productPrice, productVariants, setVariant, isSizeOpen, setIsSizeOpen }: { productimages: ImageElement[] }) {
 
 
   const [slides, setSlides] = useState({
@@ -16,7 +16,6 @@ function Customslider({ productimages, productTitle, productPrice, productVarian
     sizeData: productVariants,
     totalSlides: productimages.length,
   });
-  const [isOpen, setIsOpen] = useState(false);
 
 
   console.log("Product - >", slides.sizeData)
@@ -91,7 +90,7 @@ function Customslider({ productimages, productTitle, productPrice, productVarian
       currentSize: selectedSize.title,
       currentSizeIndex: index
     });
-    setIsOpen(!isOpen);
+    setIsSizeOpen(!isSizeOpen);
   }
 console.log("Current Slide -> ", slides.currentImgIndex, slides.currentImgIndex - 1 < 0);
   return (
@@ -221,7 +220,7 @@ console.log("Current Slide -> ", slides.currentImgIndex, slides.currentImgIndex 
           </h5>
         </div>
         <div className="size-wrapper">
-          <SizeDropdown sizeData={slides.sizeData} currentSize={slides.currentSize} onSliderSizeClick={onSliderSizeClick} isOpen={isOpen} setIsOpen={setIsOpen} />
+          <SizeDropdown sizeData={slides.sizeData} currentSize={slides.currentSize} onSliderSizeClick={onSliderSizeClick} isSizeOpen={isSizeOpen} setIsSizeOpen={setIsSizeOpen} />
         </div>
       </div>
     </>
