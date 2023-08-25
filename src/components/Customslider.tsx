@@ -123,7 +123,7 @@ function Customslider({ productimages, productTitle, productDesc, productName,pr
         </div>
       </div>
       <div className="product-deatils">
-        <p style={{textAlign: 'justify'}}>{productDesc.substring(0,84)}...<a className="show-more" href={`https://paperlondon.com/products/${productName}`}>SHOW MORE</a></p>
+        <p style={{textAlign: 'justify'}}>{productDesc.substring(0,80)}...<a className="show-more" href={`https://paperlondon.com/products/${productName}`}>SHOW MORE</a></p>
       </div>
       <div className="all__slides__container">
         <div className="all_slides">
