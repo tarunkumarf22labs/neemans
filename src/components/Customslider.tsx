@@ -4,7 +4,7 @@ import { useEffect, useState } from "uelements";
 import { ImageElement } from "../types";
 import SizeDropdown from "./SizeDropdown";
 
-function Customslider({ productimages, productTitle, productPrice, productVariants, setVariant, isSizeOpen, setIsSizeOpen }: { productimages: ImageElement[] }) {
+function Customslider({ productimages, productTitle, productDesc, productName,productPrice, productVariants, setVariant, isSizeOpen, setIsSizeOpen }: { productimages: ImageElement[] }) {
 
 
   const [slides, setSlides] = useState({
@@ -92,120 +92,9 @@ function Customslider({ productimages, productTitle, productPrice, productVarian
     });
     setIsSizeOpen(!isSizeOpen);
   }
-console.log("Current Slide -> ", slides.currentImgIndex, slides.currentImgIndex - 1 < 0);
+  console.log("Current Slide -> ", slides.currentImgIndex, slides.currentImgIndex - 1 < 0);
   return (
     <>
-      <div id="main__container">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" width="40px" height="40px" className={`prev-arrow  ${slides.currentImgIndex - 1 < 0 ? "arrow-disabled" : "arrow-enabled"}`} onClick={()=> onClickPrev()}>
-          <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
-        </svg>
-
-        <SwipeableComponent
-          onSwipeLeft={onClickPrev}
-          onSwipeRight={onClickNext}
-          slides={slides}
-        >
-          <MainSlide slides={slides} currImgIndex={slides.currentImgIndex} />
-        </SwipeableComponent>
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" width="40px" height="40px" className={`next-arrow ${slides.currentImgIndex + 1 >= slides.imgData.length? "arrow-disabled" : "arrow-enabled"}`} onClick={()=> onClickNext()}>
-          <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-        </svg>
-
-
-        {/* <div className="all__slides__container">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth={1.5}
-          stroke="currentColor"
-          id="left__arrow"
-          onClick={onClickPrev}
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M15.75 19.5L8.25 12l7.5-7.5"
-          />
-        </svg>
-        <div className="all_slides">
-          <div className="slider__container">
-            {slides.imgData.map((slide, index) => (
-              <Slide
-                key={slide?.id}
-                slide={slide}
-                handler={onCarouselProdClick}
-                index={index}
-                currImgIndex={slides.currentImgIndex}
-                totalSlides={slides.totalSlides}
-              />
-            ))}
-          </div>
-        </div>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth={1.5}
-          stroke="currentColor"
-          id="right__arrow"
-          onClick={onClickNext}
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M8.25 4.5l7.5 7.5-7.5 7.5"
-          />
-        </svg>
-      </div> */}
-        {/* <div className="all__slides__container">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth={1.5}
-          stroke="currentColor"
-          id="left__arrow"
-          onClick={onClickSizePrev}
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M15.75 19.5L8.25 12l7.5-7.5"
-          />
-        </svg>
-        <div className="all_slides">
-          <div className="slider__container">
-            {slides.sizeData && slides.sizeData.map((slide, index) => (
-              <SizeSlide
-                key={slide.id}
-                slide={slide}
-                handler={onSliderSizeClick}
-                index={index}
-                currSize={slides.currentSize}
-                currSizeIndex={slides.currentSizeIndex}
-                totalSlides={slides.totalSizeSlides}
-              />
-            ))}
-          </div>
-        </div>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth={1.5}
-          stroke="currentColor"
-          id="right__arrow"
-          onClick={onClickSizeNext}
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M8.25 4.5l7.5 7.5-7.5 7.5"
-          />
-        </svg>
-      </div> */}
-      </div>
       <div className="prod-desc">
         <div className="prod-info">
           <h5 style={{ fontSize: "14px", marginBottom: ".5rem" }}>
@@ -219,8 +108,32 @@ console.log("Current Slide -> ", slides.currentImgIndex, slides.currentImgIndex 
             £{productPrice}{" "}
           </h5>
         </div>
-        <div className="size-wrapper">
+        {/* <div className="size-wrapper">
           <SizeDropdown sizeData={slides.sizeData} currentSize={slides.currentSize} onSliderSizeClick={onSliderSizeClick} isSizeOpen={isSizeOpen} setIsSizeOpen={setIsSizeOpen} />
+        </div> */}
+      </div>
+      
+      <div id="main__container">
+        <div className="prod-images">
+          {slides.imgData.map(prod => (
+            <div className="prod-image">
+              <img src={prod.image} alt={prod.title} />
+            </div>
+          ))}
+        </div>
+      </div>
+      <div className="product-deatils">
+        <p style={{textAlign: 'justify'}}>{productDesc.substring(0,84)}...<a className="show-more" href={`https://paperlondon.com/products/${productName}`}>SHOW MORE</a></p>
+      </div>
+      <div className="all__slides__container">
+        <div className="all_slides">
+          <div className="slider__container">
+            {slides.sizeData && slides.sizeData.map((slide, index) => (
+              <div key={slide.id} className={`slide__container ${slides.currentSizeIndex === index ? "active__size" : ""}`} onClick={() => onSliderSizeClick(index)}>
+                <h6 className="size__text">{slide?.title}</h6>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </>

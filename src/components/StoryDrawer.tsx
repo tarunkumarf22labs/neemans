@@ -14,8 +14,22 @@ function StoryDrawer({
 }) {
   function handledata(xml) {
     const title = xml?.querySelector("title").textContent;
-    console.log(title , "Sahi");
-    
+    let description = xml?.querySelector("body-html").textContent;
+
+    function removeTags(str) {
+      if ((str === null) || (str === ''))
+        return false;
+      else
+        str = str.toString();
+
+      // Regular expression to identify HTML tags in
+      // the input string. Replacing the identified
+      // HTML tag with a null string.
+      return str.replace(/(<([^>]+)>)/ig, '');
+    }
+    description = removeTags(description);
+
+    console.log("Description -> ", description);
     const val = xml?.querySelectorAll("variants variant");
     const variants = Array.from(val).map((vals) => {
       return {
@@ -35,6 +49,7 @@ function StoryDrawer({
 
     const relevantData = {
       title,
+      description,
       variants: variants.filter((obj, index, self) => {
         return index === self.findIndex((el) => el.title === obj.title);
       }),
@@ -47,7 +62,7 @@ function StoryDrawer({
   const [product, setProduct] = useState<any>();
   const [variant, setVariant] = useState("");
 
-  
+
   useEffect(() => {
     async function fetchData() {
       try {
@@ -63,7 +78,7 @@ function StoryDrawer({
         setProduct(relevantData);
         setVariant(relevantData?.variants[0]);
 
-      
+
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -72,7 +87,7 @@ function StoryDrawer({
   }, [productname]);
 
   // setProduct(value);
-
+  console.log("Main Product ->", product)
   return (
     <div
       className="plugin-inner_container"
@@ -82,15 +97,15 @@ function StoryDrawer({
     >
       {product ? (
         <>
-          <Customslider productimages={product?.images} productTitle={product.title} productPrice={variant.price} productVariants = {product.variants} setVariant={setVariant} isSizeOpen={isSizeOpen} setIsSizeOpen={setIsSizeOpen}/>
+          <Customslider productimages={product?.images} productName={productname} productDesc={product?.description} productTitle={product.title} productPrice={variant.price} productVariants={product.variants} setVariant={setVariant} isSizeOpen={isSizeOpen} setIsSizeOpen={setIsSizeOpen} />
           <div
             className="size_container"
             style={{ flexDirection: "column", justifyContent: "center" }}
           >
             <br />
-              <a href={`https://paperlondon.com/cart/add?id=${variant.id}&quantity=1&size=6`} className="atc_button">
-                ADD TO CART
-              </a>
+            <a href={`https://paperlondon.com/cart/add?id=${variant.id}&quantity=1&size=6`} className="atc_button">
+              ADD TO CART
+            </a>
           </div>
         </>
       ) : (
