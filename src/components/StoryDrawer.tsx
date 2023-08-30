@@ -3,33 +3,35 @@ import { useEffect, useState } from "uelements";
 import Customslider from "./Customslider";
 import { Variant, shopify } from "../types";
 import { memo } from "preact/compat";
+import PoweredBy from "./PoweredBy";
 function StoryDrawer({
-  isOpen,
+  setIsOpen,
   isSizeOpen,
   setIsSizeOpen,
   productname,
+  startProgress
 }: {
   isOpen: boolean;
   productname: string;
 }) {
   function handledata(xml) {
     const title = xml?.querySelector("title").textContent;
-    let description = xml?.querySelector("body-html").textContent;
+    // let description = xml?.querySelector("body-html").textContent;
 
-    function removeTags(str) {
-      if ((str === null) || (str === ''))
-        return false;
-      else
-        str = str.toString();
+    // function removeTags(str) {
+    //   if ((str === null) || (str === ''))
+    //     return false;
+    //   else
+    //     str = str.toString();
 
-      // Regular expression to identify HTML tags in
-      // the input string. Replacing the identified
-      // HTML tag with a null string.
-      return str.replace(/(<([^>]+)>)/ig, '');
-    }
-    description = removeTags(description);
+    //   // Regular expression to identify HTML tags in
+    //   // the input string. Replacing the identified
+    //   // HTML tag with a null string.
+    //   return str.replace(/(<([^>]+)>)/ig, '');
+    // }
+    // description = removeTags(description);
 
-    console.log("Description -> ", description);
+    // console.log("Description -> ", description);
     const val = xml?.querySelectorAll("variants variant");
     const variants = Array.from(val).map((vals) => {
       return {
@@ -49,7 +51,7 @@ function StoryDrawer({
 
     const relevantData = {
       title,
-      description,
+      // description,
       variants: variants.filter((obj, index, self) => {
         return index === self.findIndex((el) => el.title === obj.title);
       }),
@@ -86,8 +88,6 @@ function StoryDrawer({
     fetchData();
   }, [productname]);
 
-  // setProduct(value);
-  console.log("Main Product ->", product)
   return (
     <div
       className="plugin-inner_container"
@@ -97,7 +97,18 @@ function StoryDrawer({
     >
       {product ? (
         <>
-          <Customslider productimages={product?.images} productName={productname} productDesc={product?.description} productTitle={product.title} productPrice={variant.price} productVariants={product.variants} setVariant={setVariant} isSizeOpen={isSizeOpen} setIsSizeOpen={setIsSizeOpen} />
+          <Customslider 
+          productimages={product?.images} 
+          productName={productname} 
+          // productDesc={product?.description} 
+          productTitle={product.title} 
+          productPrice={variant.price} 
+          productVariants={product.variants} 
+          setVariant={setVariant} 
+          isSizeOpen={isSizeOpen} 
+          setIsSizeOpen={setIsSizeOpen} 
+          setIsOpen={setIsOpen}
+          startProgress={startProgress}/>
           <div
             className="size_container">
             <a href={`https://paperlondon.com/cart/add?id=${variant.id}&quantity=1&size=6`} className="atc_button">
@@ -111,6 +122,7 @@ function StoryDrawer({
       ) : (
         ""
       )}
+      <PoweredBy/>
     </div>
   );
 }

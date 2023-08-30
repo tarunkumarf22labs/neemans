@@ -1,3 +1,19 @@
+.custom-slider-container{
+  position: relative;
+}
+.nav-icons{
+  position: absolute;
+  top: 10px;
+  right: 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: .9rem;
+}
+.nav-icons svg{
+  width: 20px;
+  height: 20px;
+}
 #main__container {
   height: auto;
   width: 100%;
@@ -135,6 +151,10 @@
   padding: 1rem;
   gap: .5rem;
   overflow-x: auto;
+}
+.prod-info > a{
+  text-decoration: none;
+  color: #000;
 }
 
 .prod-images {

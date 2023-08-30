@@ -6,16 +6,17 @@ import { MemoizedStoryDrawer } from "./StoryDrawer";
 import { StateUpdater } from "preact/hooks";
 import { JSXInternal } from "preact/src/jsx";
 import { useLocalStorage } from "../hook/useLocalStorage";
+import ProductCard from "./ProductCard";
 
 interface IStoryContainerProps {
   data: Ival;
   handleoverlay: () => void;
   handledata: (data: number) => void;
   setshow: StateUpdater<boolean>;
-  setNext : StateUpdater<number>;
-  handeler : () => void
-  dotclickedtoupdate : () => void 
-  fetchUsers : fetchUsers
+  setNext: StateUpdater<number>;
+  handeler: () => void
+  dotclickedtoupdate: () => void
+  fetchUsers: fetchUsers
 }
 
 function StoryContainer({
@@ -32,7 +33,7 @@ function StoryContainer({
   fetchUsers
 }: IStoryContainerProps) {
 
-  
+
   function handlecount(location: Iloaction[], ids: string) {
     let value;
     location.filter((e) => {
@@ -65,8 +66,8 @@ function StoryContainer({
 
 
 
-    
-  
+
+
   const handleproduct = () => {
     if (isopen) {
       setisopen((prev) => !prev);
@@ -93,7 +94,7 @@ function StoryContainer({
   };
 
   const updateProgress = () => {
-    handeler(data?.childstories[actualTime] , data)
+    handeler(data?.childstories[actualTime], data)
     creationparentdata(data.name)
     if (actualTime === data?.childstories.length - 1 && data?.stop) {
       setCurrentTime((prevProgress) => {
@@ -109,18 +110,18 @@ function StoryContainer({
       if (prevProgress >= 100) {
         if (actualTime === data?.childstories.length - 1) {
           stopProgress();
-    
-          
-       
+
+
+
           if (!data.stop) {
             handledata("plus");
             setNext((prev) => prev + 1);
-            
 
-             
+
+
             if (jsondata.length === next + 2) {
-         
-              
+
+
               setactualTime(
                 handlecount(location, data.id + 1) || 0
               );
@@ -134,7 +135,7 @@ function StoryContainer({
         }
 
         if (prevProgress >= 100 && actualTime !== data?.childstories.length) {
-         
+
           stopProgress();
           setCurrentTime(0);
           setactualTime((prev) => prev + 1);
@@ -147,7 +148,7 @@ function StoryContainer({
           return 100;
         }
       }
-      
+
       return prevProgress + 1;
     });
   };
@@ -161,9 +162,9 @@ function StoryContainer({
 
     if (distance > 360) {
       setshow(false)
-        fetchUsers()
-      
-      };
+      fetchUsers()
+
+    };
   }
 
   function handlePointerUp() {
@@ -172,14 +173,14 @@ function StoryContainer({
     }
   }
 
-  
+
   const handlenext = () => {
     if (actualTime >= data?.childstories.length - 1) {
       if (jsondata.length > next + 1) {
         stopProgress();
         setCurrentTime(0);
         setactualTime(0);
-        handeler(data?.childstories[actualTime] , data)
+        handeler(data?.childstories[actualTime], data)
         handledata("plus");
         setNext((prev) => prev + 1);
         return;
@@ -187,13 +188,13 @@ function StoryContainer({
       return;
     }
     setactualTime((prev) => prev + 1);
-    handeler(data?.childstories[actualTime + 1] , data)
+    handeler(data?.childstories[actualTime + 1], data)
     setCurrentTime(0);
   };
 
   const handleprevious = () => {
     if (actualTime <= 0) {
-       if (next > 0) {
+      if (next > 0) {
         stopProgress();
         setCurrentTime(0);
         setactualTime(
@@ -201,7 +202,7 @@ function StoryContainer({
         );
         handledata("minus");
 
-        
+
         setNext((prev) => prev - 1);
         return;
       }
@@ -210,7 +211,7 @@ function StoryContainer({
     setactualTime((prev) => prev - 1);
     setCurrentTime(0);
   };
-
+  // console.log("Story -> ", data?.childstories[actualTime].dots[0].id);
   return (
     <div
       className="StoryContainer"
@@ -253,7 +254,7 @@ function StoryContainer({
             <img src={data?.image} alt="" />
             <h5 className="StoryContainer_title">{data?.name}</h5>
           </div>
-          <Cross onclose={handleoverlay}  fetchUsers = {fetchUsers}  />
+          <Cross onclose={handleoverlay} fetchUsers={fetchUsers} />
         </nav>
 
         <button onClick={handleprevious} className="stories_button">
@@ -267,7 +268,7 @@ function StoryContainer({
 
       {data?.childstories?.map((value, i) => {
         return (
-          <main className={`  ${i === actualTime ? "StoryContainer" : "none"}`}>
+          <main className={`${i === actualTime ? "StoryContainer" : "none"}`}>
             <img
               style={{ pointerEvents: "none" }}
               className={`  ${i < actualTime ? "none" : " data_img "} `}
@@ -279,7 +280,7 @@ function StoryContainer({
       })}
       {/*  */}
 
-      {data?.childstories[actualTime]?.dots?.map((value, i) => {
+      {/* {data?.childstories[actualTime]?.dots?.map((value, i) => {
         return (
           <div
             key={value?.id}
@@ -287,7 +288,7 @@ function StoryContainer({
             style={{ top: `${value.x}%`, left: `${value.y}%` }}
             onClick={() => {
               setProductId(value?.productname);
-              dotclickedtoupdate(productid || data?.childstories[actualTime]?.dots?.[0]?.productname , data?.childstories[actualTime] , data)
+              dotclickedtoupdate(productid || data?.childstories[actualTime]?.dots?.[0]?.productname, data?.childstories[actualTime], data)
               setisopen((prev) => !prev);
               stopProgress();
               if (isopen) {
@@ -298,9 +299,24 @@ function StoryContainer({
             <span className="span_className" />
           </div>
         );
-      })}
-      <div className="product-card">
-        
+      })} */}
+      <div className="product-cards-container" style={{ justifyContent: `${data?.childstories[actualTime]?.dots?.length > 1 ? 'flex-end' : 'center'}` }}>
+
+        <div className="product-cards">
+          {
+            data?.childstories[actualTime]?.dots?.map((prod) => (
+              <ProductCard 
+                key={prod.id} 
+                productname={prod.productname} 
+                stopProgress={stopProgress} 
+                startProgress={startProgress}
+                isOpen={isopen} 
+                setIsOpen={setisopen}
+                triggers={{setProductId, dotclickedtoupdate, productid, data, actualTime}}
+              />
+            ))
+          }
+        </div>
       </div>
 
       <div
@@ -313,8 +329,10 @@ function StoryContainer({
       >
         <MemoizedStoryDrawer
           isOpen={isopen}
+          setIsOpen={setisopen}
           isSizeOpen={isSizeOpen}
           setIsSizeOpen={setIsSizeOpen}
+          startProgress={startProgress}
           productname={
             productid || data?.childstories[actualTime]?.dots?.[0]?.productname
           }
