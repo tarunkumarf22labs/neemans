@@ -14,9 +14,9 @@ interface IStoryContainerProps {
   handledata: (data: number) => void;
   setshow: StateUpdater<boolean>;
   setNext: StateUpdater<number>;
-  handeler: () => void
-  dotclickedtoupdate: () => void
-  fetchUsers: fetchUsers
+  handeler: () => void;
+  dotclickedtoupdate: () => void;
+  fetchUsers: fetchUsers;
 }
 
 function StoryContainer({
@@ -30,10 +30,8 @@ function StoryContainer({
   handeler,
   dotclickedtoupdate,
   creationparentdata,
-  fetchUsers
+  fetchUsers,
 }: IStoryContainerProps) {
-
-
   function handlecount(location: Iloaction[], ids: string) {
     let value;
     location.filter((e) => {
@@ -44,10 +42,6 @@ function StoryContainer({
     });
     return value;
   }
-
-
-
-
 
   const [isopen, setisopen] = useState(false);
   const [currentTime, setCurrentTime] = useState(() => 0);
@@ -63,10 +57,6 @@ function StoryContainer({
     intervalRef.current = setInterval(updateProgress, 100);
     return () => clearInterval(intervalRef.current!);
   }, [data?.id, actualTime]);
-
-
-
-
 
   const handleproduct = () => {
     if (isopen) {
@@ -94,8 +84,8 @@ function StoryContainer({
   };
 
   const updateProgress = () => {
-    handeler(data?.childstories[actualTime], data)
-    creationparentdata(data.name)
+    handeler(data?.childstories[actualTime], data);
+    creationparentdata(data.name);
     if (actualTime === data?.childstories.length - 1 && data?.stop) {
       setCurrentTime((prevProgress) => {
         if (prevProgress <= 100) {
@@ -111,31 +101,20 @@ function StoryContainer({
         if (actualTime === data?.childstories.length - 1) {
           stopProgress();
 
-
-
           if (!data.stop) {
             handledata("plus");
             setNext((prev) => prev + 1);
 
-
-
             if (jsondata.length === next + 2) {
-
-
-              setactualTime(
-                handlecount(location, data.id + 1) || 0
-              );
-              return 0
+              setactualTime(handlecount(location, data.id + 1) || 0);
+              return 0;
             }
-            setactualTime(
-              handlecount(location, data.id + 1) || 0
-            );
+            setactualTime(handlecount(location, data.id + 1) || 0);
             return 0;
           }
         }
 
         if (prevProgress >= 100 && actualTime !== data?.childstories.length) {
-
           stopProgress();
           setCurrentTime(0);
           setactualTime((prev) => prev + 1);
@@ -161,10 +140,9 @@ function StoryContainer({
     const distance = touch.clientY - targetRect.top;
 
     if (distance > 360) {
-      setshow(false)
-      fetchUsers()
-
-    };
+      setshow(false);
+      fetchUsers();
+    }
   }
 
   function handlePointerUp() {
@@ -173,14 +151,13 @@ function StoryContainer({
     }
   }
 
-
   const handlenext = () => {
     if (actualTime >= data?.childstories.length - 1) {
       if (jsondata.length > next + 1) {
         stopProgress();
         setCurrentTime(0);
         setactualTime(0);
-        handeler(data?.childstories[actualTime], data)
+        handeler(data?.childstories[actualTime], data);
         handledata("plus");
         setNext((prev) => prev + 1);
         return;
@@ -188,7 +165,7 @@ function StoryContainer({
       return;
     }
     setactualTime((prev) => prev + 1);
-    handeler(data?.childstories[actualTime + 1], data)
+    handeler(data?.childstories[actualTime + 1], data);
     setCurrentTime(0);
   };
 
@@ -197,11 +174,8 @@ function StoryContainer({
       if (next > 0) {
         stopProgress();
         setCurrentTime(0);
-        setactualTime(
-          handlecount(location, next!) || 0
-        );
+        setactualTime(handlecount(location, next!) || 0);
         handledata("minus");
-
 
         setNext((prev) => prev - 1);
         return;
@@ -269,53 +243,52 @@ function StoryContainer({
       {data?.childstories?.map((value, i) => {
         return (
           <main className={`${i === actualTime ? "StoryContainer" : "none"}`}>
-            <img
-              style={{ pointerEvents: "none" }}
-              className={`  ${i < actualTime ? "none" : " data_img "} `}
-              src={value?.storiescontnet}
-              onClick={handleproduct}
-            />
+            {value?.storiescontnet.split(".")[
+              value?.storiescontnet.split(".").length - 1
+            ] === "mp4" ? (
+              <video autoplay>
+                <source src={value?.storiescontnet} type="video/mp4"></source>
+              </video>
+            ) : (
+              <img
+                style={{ pointerEvents: "none" }}
+                className={`  ${i < actualTime ? "none" : " data_img "} `}
+                src={value?.storiescontnet}
+                onClick={handleproduct}
+              />
+            )}
           </main>
         );
       })}
-      {/*  */}
 
-      {/* {data?.childstories[actualTime]?.dots?.map((value, i) => {
-        return (
-          <div
-            key={value?.id}
-            className="dot"
-            style={{ top: `${value.x}%`, left: `${value.y}%` }}
-            onClick={() => {
-              setProductId(value?.productname);
-              dotclickedtoupdate(productid || data?.childstories[actualTime]?.dots?.[0]?.productname, data?.childstories[actualTime], data)
-              setisopen((prev) => !prev);
-              stopProgress();
-              if (isopen) {
-                startProgress();
-              }
-            }}
-          >
-            <span className="span_className" />
-          </div>
-        );
-      })} */}
-      <div className="product-cards-container" style={{ justifyContent: `${data?.childstories[actualTime]?.dots?.length > 1 ? 'flex-end' : 'center'}` }}>
-
+      <div
+        className="product-cards-container"
+        style={{
+          justifyContent: `${
+            data?.childstories[actualTime]?.dots?.length > 1
+              ? "flex-end"
+              : "center"
+          }`,
+        }}
+      >
         <div className="product-cards">
-          {
-            data?.childstories[actualTime]?.dots?.map((prod) => (
-              <ProductCard 
-                key={prod.id} 
-                productname={prod.productname} 
-                stopProgress={stopProgress} 
-                startProgress={startProgress}
-                isOpen={isopen} 
-                setIsOpen={setisopen}
-                triggers={{setProductId, dotclickedtoupdate, productid, data, actualTime}}
-              />
-            ))
-          }
+          {data?.childstories[actualTime]?.dots?.map((prod) => (
+            <ProductCard
+              key={prod.id}
+              productname={prod.productname}
+              stopProgress={stopProgress}
+              startProgress={startProgress}
+              isOpen={isopen}
+              setIsOpen={setisopen}
+              triggers={{
+                setProductId,
+                dotclickedtoupdate,
+                productid,
+                data,
+                actualTime,
+              }}
+            />
+          ))}
         </div>
       </div>
 

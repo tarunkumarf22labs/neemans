@@ -21,7 +21,7 @@ function handlevalue() {
           const mainelementsofstories = document.querySelector(`#f22-storiesplugin1`);
           if (mainelementsofstories) {
             let el = document.createElement("f22-stories");
-            el.setAttribute("dataUrl", "https://s3.f22labs.cloud/storiespluginassets/ps.json");
+            el.setAttribute("dataUrl", "https://s3.f22labs.cloud/shopclips/shilpashastrastudio.json");
             mainelementsofstories.appendChild(el);
           }
         // });

@@ -69,7 +69,7 @@ function StoryDrawer({
     async function fetchData() {
       try {
         const data = await fetch(
-          `https://paperlondon.com/products/${productname}.xml`,
+          `https://shilpashastrastudio.in/products/${productname}.xml`,
           { redirect: "follow" }
         );
         const value = await data.text();
@@ -111,10 +111,10 @@ function StoryDrawer({
           startProgress={startProgress}/>
           <div
             className="size_container">
-            <a href={`https://paperlondon.com/cart/add?id=${variant.id}&quantity=1&size=6`} className="atc_button">
+            <a href={`https://shilpashastrastudio.in/cart/add?variant=${variant.id}&quantity=1&size=6`} className="atc_button">
               ADD TO CART
             </a>
-            <a href={`https://paperlondon.com/cart/${variant.id}:1?checkout`} className="atc_button">
+            <a href={`https://shilpashastrastudio.in/cart/${variant.id}:1?checkout`} className="atc_button">
               BUY NOW
             </a>
           </div>
