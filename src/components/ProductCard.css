@@ -2,7 +2,7 @@
     position: absolute;
     bottom: 0;
     z-index: 99999;
-    max-height: 19.5rem;
+    max-height: fit-content;
     height: 100%;
     overflow-x: hidden;
     display: flex;
@@ -15,7 +15,7 @@
 .product-cards {
     display: flex;
     justify-content: start;
-    align-items: center;
+    align-items: flex-end;
     gap: .5rem;
     overflow-x: auto;
     height: auto;
