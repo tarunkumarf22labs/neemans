@@ -44,6 +44,7 @@ function StoryContainer({
   }
 
   const [isopen, setisopen] = useState(false);
+  const videoRef = useRef(null);
   const [currentTime, setCurrentTime] = useState(() => 0);
   const intervalRef = useRef<null | number>(null);
   const [location, setLocation] = useLocalStorage("whentostart", []);
@@ -52,9 +53,11 @@ function StoryContainer({
   );
   const [productid, setProductId] = useState();
   const [isSizeOpen, setIsSizeOpen] = useState(false);
-
+    
   useEffect(() => {
     intervalRef.current = setInterval(updateProgress, 100);
+     console.log(data?.id);
+     handleChangeVideo(data?.childstories[0].storiescontnet)
     return () => clearInterval(intervalRef.current!);
   }, [data?.id, actualTime]);
 
@@ -185,6 +188,19 @@ function StoryContainer({
     setactualTime((prev) => prev - 1);
     setCurrentTime(0);
   };
+
+
+  function handleChangeVideo  (newVideoSrc) {
+    // Pause the currently playing video
+    if (videoRef.current) {
+      videoRef.current.pause();
+    }
+    // Set the new video source
+    videoRef.current.src = newVideoSrc;
+    // Load and play the new video
+    videoRef.current.load();
+    videoRef.current.play();
+  };
   // console.log("Story -> ", data?.childstories[actualTime].dots[0].id);
   return (
     <div
@@ -246,9 +262,7 @@ function StoryContainer({
             {value?.storiescontnet.split(".")[
               value?.storiescontnet.split(".").length - 1
             ] === "mp4" ? (
-              <video autoplay>
-                <source src={value?.storiescontnet} type="video/mp4"></source>
-              </video>
+              <video autoplay   ref={videoRef} />
             ) : (
               <img
                 style={{ pointerEvents: "none" }}
