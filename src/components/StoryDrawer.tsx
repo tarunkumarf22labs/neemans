@@ -9,7 +9,8 @@ function StoryDrawer({
   isSizeOpen,
   setIsSizeOpen,
   productname,
-  startProgress
+  startProgress,
+  videoRef
 }: {
   isOpen: boolean;
   productname: string;
@@ -108,7 +109,10 @@ function StoryDrawer({
           isSizeOpen={isSizeOpen} 
           setIsSizeOpen={setIsSizeOpen} 
           setIsOpen={setIsOpen}
-          startProgress={startProgress}/>
+          startProgress={startProgress}
+          videoRef={videoRef}
+          />
+          
           <div
             className="size_container">
             <a href={`https://shilpashastrastudio.in/cart/add?variant=${variant.id}&quantity=1&size=6`} className="atc_button">

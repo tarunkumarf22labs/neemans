@@ -14,7 +14,7 @@ interface IStoryContainerProps {
   handledata: (data: number) => void;
   setshow: StateUpdater<boolean>;
   setNext: StateUpdater<number>;
-  handeler: () => void;
+  handler: () => void;
   dotclickedtoupdate: () => void;
   fetchUsers: fetchUsers;
 }
@@ -27,7 +27,7 @@ function StoryContainer({
   setNext,
   jsondata,
   next,
-  handeler,
+  handler,
   dotclickedtoupdate,
   creationparentdata,
   fetchUsers,
@@ -56,7 +56,6 @@ function StoryContainer({
     
   useEffect(() => {
     intervalRef.current = setInterval(updateProgress, 100);
-     console.log(data?.id);
      handleChangeVideo(data?.childstories[0].storiescontnet)
     return () => clearInterval(intervalRef.current!);
   }, [data?.id, actualTime]);
@@ -87,7 +86,7 @@ function StoryContainer({
   };
 
   const updateProgress = () => {
-    handeler(data?.childstories[actualTime], data);
+    handler(data?.childstories[actualTime], data);
     creationparentdata(data.name);
     if (actualTime === data?.childstories.length - 1 && data?.stop) {
       setCurrentTime((prevProgress) => {
@@ -160,7 +159,7 @@ function StoryContainer({
         stopProgress();
         setCurrentTime(0);
         setactualTime(0);
-        handeler(data?.childstories[actualTime], data);
+        handler(data?.childstories[actualTime], data);
         handledata("plus");
         setNext((prev) => prev + 1);
         return;
@@ -168,7 +167,7 @@ function StoryContainer({
       return;
     }
     setactualTime((prev) => prev + 1);
-    handeler(data?.childstories[actualTime + 1], data);
+    handler(data?.childstories[actualTime + 1], data);
     setCurrentTime(0);
   };
 
@@ -205,8 +204,14 @@ function StoryContainer({
   return (
     <div
       className="StoryContainer"
-      onPointerDown={stopProgress}
-      onPointerUp={handlePointerUp}
+      onPointerDown={()=>{
+        stopProgress();
+        videoRef.current.pause();
+      }}
+      onPointerUp={()=>{
+        handlePointerUp();
+        videoRef.current.play();
+      }}
       onTouchMove={handleTouchMove}
     >
       <div
@@ -257,6 +262,7 @@ function StoryContainer({
       </header>
 
       {data?.childstories?.map((value, i) => {
+        
         return (
           <main className={`${i === actualTime ? "StoryContainer" : "none"}`}>
             {value?.storiescontnet.split(".")[
@@ -294,6 +300,7 @@ function StoryContainer({
               startProgress={startProgress}
               isOpen={isopen}
               setIsOpen={setisopen}
+              videoRef={videoRef}
               triggers={{
                 setProductId,
                 dotclickedtoupdate,
@@ -311,6 +318,7 @@ function StoryContainer({
         onClick={() => {
           setisopen((prev) => !prev);
           startProgress();
+          videoRef.current.play();
           setIsSizeOpen(false);
         }}
       >
@@ -320,6 +328,7 @@ function StoryContainer({
           isSizeOpen={isSizeOpen}
           setIsSizeOpen={setIsSizeOpen}
           startProgress={startProgress}
+          videoRef={videoRef}
           productname={
             productid || data?.childstories[actualTime]?.dots?.[0]?.productname
           }

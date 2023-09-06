@@ -3,7 +3,7 @@
     bottom: 0;
     z-index: 99999;
     max-height: fit-content;
-    height: 75%;
+    height: fit-content;
     overflow-x: hidden;
     display: flex;
     align-items: flex-end;

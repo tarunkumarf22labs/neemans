@@ -11,6 +11,7 @@ const ProductCard = ({
   stopProgress,
   isOpen,
   setIsOpen,
+  videoRef,
   triggers,
 }: Props) => {
   const [product, setProduct] = useState<any>();
@@ -74,6 +75,7 @@ const ProductCard = ({
 
   const handleVariantSelection = (id, index) => {
     stopProgress();
+    videoRef.current.pause();
     setVariant(id);
     setSelectedVariantIndex(index);
     setIsVariantSelectorOpen(true);
@@ -89,8 +91,10 @@ const ProductCard = ({
     );
     setIsOpen((prev) => !prev);
     stopProgress();
+    videoRef.current.pause();
     if (isOpen) {
       startProgress();
+      videoRef.current.play();
     }
   };
   const handleAddToCart = () => {
@@ -171,6 +175,7 @@ const ProductCard = ({
           onClick={() => {
             setVariant(product?.variants[0]?.id);
             stopProgress();
+            videoRef.current.pause()
             setIsVariantSelectorOpen(true);
           }}
         >

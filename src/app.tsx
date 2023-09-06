@@ -121,7 +121,7 @@ export default function App({ dataURL }: { dataURL: string }) {
     setData(data!);
   };
 
-  function handeler(val, sal, clickedproduct = "relive-knit-sneakers") {
+  function handler(val, sal, clickedproduct = "relive-knit-sneakers") {
     const existingItem = mainataindata[sal.name]?.content.findIndex(
       (item) => item.id === val.id
     );
@@ -203,7 +203,7 @@ export default function App({ dataURL }: { dataURL: string }) {
           setNext={setNext}
           next={next}
           jsondata={jsondata}
-          handeler={handeler}
+          handler={handler}
           creationparentdata={creationparentdata}
           dotclickedtoupdate={dotclickedtoupdate}
           fetchUsers={fetchUsers}
