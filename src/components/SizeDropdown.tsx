@@ -1,4 +1,3 @@
-import { useState } from "uelements";
 import "./SizeDropdown.css";
 type Props = {}
 // @ts-ignore
@@ -20,7 +19,7 @@ const SizeDropdown = ({ sizeData, currentSize, onSliderSizeClick, isSizeOpen, se
             <div class={`dropdown-items ${isSizeOpen ? "": "d-none"}`}>
                 {/* @ts-ignore */}
                 {sizeData && sizeData.map((size, index) => (
-                    <div className="dropdown-item" onClick={() => onSliderSizeClick(index)}>{size.title}</div>
+                    <div className="dropdown-item" onClick={() => onSliderSizeClick(size.id, index)}>{size?.title}</div>
                 ))}
             </div>
         </div>
