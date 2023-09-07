@@ -140,7 +140,7 @@ const ProductCard = ({
         >
           <span className="product-card-info-title">{product?.title}</span>
           <span className="product-card-info-price">
-            £{product?.variants[0].price}
+            Rs.{product?.variants[0].price}
           </span>
         </div>
         <div
@@ -149,7 +149,7 @@ const ProductCard = ({
           }`}
         >
           {product?.variants?.map((variant, index) => (
-            index <= 3 && <div
+            <div
               className={`product-card-variant ${
                 selectedVariantIndex == index
                   ? "product-card-variant-active"
