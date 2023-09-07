@@ -157,7 +157,7 @@ function Customslider({
         <div className="all_slides">
           <div className="slider__container">
             {slides.sizeData && slides.sizeData.map((slide, index) => (
-              <div key={slide.id} className={`slide__container ${slides.currentSizeIndex === index ? "active__size" : ""}`} onClick={() => onSliderSizeClick(index)}>
+              <div key={slide.id} className={`slide__container ${slides.currentSizeIndex === index ? "active__size" : ""}`} onClick={() => onSliderSizeClick(index)} style={{color: `${slides.currentSizeIndex === index?  '#fff' : '#000'}`}}>
                 <h6 className="size__text">{slide?.title}</h6>
               </div>
             ))}
