@@ -130,13 +130,21 @@ const ProductCard = ({
       <div className="product-card-content">
         <div
           className="product-card-img"
-          onClick={() => handleOpenProductDetails()}
+          onClick={() => {
+            handleOpenProductDetails();
+            stopProgress();
+            videoRef.current.pause();
+          }}
         >
           <img src={product?.images[0].image} alt={product?.title} />
         </div>
         <div
           className="product-card-info"
-          onClick={() => handleOpenProductDetails()}
+          onClick={() => {
+            handleOpenProductDetails()
+            stopProgress();
+            videoRef.current.pause();
+          }}
         >
           <span className="product-card-info-title">{product?.title}</span>
           <span className="product-card-info-price">
@@ -174,8 +182,6 @@ const ProductCard = ({
           className="add-to-cart-product-card"
           onClick={() => {
             setVariant(product?.variants[0]?.id);
-            stopProgress();
-            videoRef.current.pause()
             setIsVariantSelectorOpen(true);
           }}
         >
