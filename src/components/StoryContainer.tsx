@@ -51,14 +51,20 @@ function StoryContainer({
   const [actualTime, setactualTime] = useState(
     () => handlecount(location, data.id) || 0
   );
+  const [duration, setDuration] = useState(0)
   const [productid, setProductId] = useState();
   const [isSizeOpen, setIsSizeOpen] = useState(false);
-    
+  const [isMuted, setIsMuted] = useState(false);
+  const [count, setCount] = useState(0)
+
   useEffect(() => {
-    intervalRef.current = setInterval(updateProgress, 100);
-     handleChangeVideo(data?.childstories[0].storiescontnet)
-    return () => clearInterval(intervalRef.current!);
-  }, [data?.id, actualTime]);
+    // intervalRef.current = setInterval(updateProgress, 100);
+    videoRef.current!?.addEventListener("timeupdate", handleTimeUpdate);
+    handleChangeVideo(data?.childstories[0].storiescontnet);
+    return () => {
+      videoRef.current!?.removeEventListener("timeupdate", handleTimeUpdate);  
+    }
+  }, [data?.id, actualTime,duration]);
 
   const handleproduct = () => {
     if (isopen) {
@@ -188,8 +194,7 @@ function StoryContainer({
     setCurrentTime(0);
   };
 
-
-  function handleChangeVideo  (newVideoSrc) {
+  function handleChangeVideo(newVideoSrc) {
     // Pause the currently playing video
     if (videoRef.current) {
       videoRef.current.pause();
@@ -199,16 +204,34 @@ function StoryContainer({
     // Load and play the new video
     videoRef.current.load();
     videoRef.current.play();
+  }
+  const handleLoadedMetadata = () => {
+    const video = videoRef.current!;
+    if (!video) return 
+    setDuration(video.duration)
+    // dispatch({ type : 'SETVIDEOLENGTH' , payload :  })
   };
+
+  const handleTimeUpdate = () => {
+    const progress = (videoRef.current?.currentTime / duration) * 100;
+    setCount(progress);
+    console.log(videoRef.current?.currentTime <= duration , videoRef.current?.currentTime , duration , "duration"  );
+    
+    if (videoRef.current?.currentTime >= duration  && videoRef.current?.currentTime > 0) {
+      handlenext()
+    }
+  };
+
+  
   // console.log("Story -> ", data?.childstories[actualTime].dots[0].id);
   return (
     <div
       className="StoryContainer"
-      onPointerDown={()=>{
+      onPointerDown={() => {
         stopProgress();
         videoRef.current.pause();
       }}
-      onPointerUp={()=>{
+      onPointerUp={() => {
         handlePointerUp();
         videoRef.current.play();
       }}
@@ -226,14 +249,7 @@ function StoryContainer({
               <div
                 style={{
                   display: "block !important",
-                  transform:
-                    i == actualTime
-                      ? `scaleX(${currentTime / 100})`
-                      : "scaleX(0)",
-                  WebkitTransform:
-                    i == actualTime
-                      ? `scaleX(${currentTime / 100})`
-                      : "scaleX(0)",
+                  transform: `scaleX(${count / 100})`,
                 }}
                 className={`playbarinline  ${i < actualTime ? "contain" : ""} `}
               ></div>
@@ -249,7 +265,30 @@ function StoryContainer({
             <img src={data?.image} alt="" />
             <h5 className="StoryContainer_title">{data?.name}</h5>
           </div>
-          <Cross onclose={handleoverlay} fetchUsers={fetchUsers} />
+          <div className="story-container-nav-actions">
+            {isMuted ? (<svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              className="mute-icon"
+              onClick={() => setIsMuted(false)}
+            >
+              <path d="M13.5 4.06c0-1.336-1.616-2.005-2.56-1.06l-4.5 4.5H4.508c-1.141 0-2.318.664-2.66 1.905A9.76 9.76 0 001.5 12c0 .898.121 1.768.35 2.595.341 1.24 1.518 1.905 2.659 1.905h1.93l4.5 4.5c.945.945 2.561.276 2.561-1.06V4.06zM17.78 9.22a.75.75 0 10-1.06 1.06L18.44 12l-1.72 1.72a.75.75 0 001.06 1.06l1.72-1.72 1.72 1.72a.75.75 0 101.06-1.06L20.56 12l1.72-1.72a.75.75 0 00-1.06-1.06l-1.72 1.72-1.72-1.72z" />
+            </svg>):(<svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              className="mute-icon"
+              onClick={() => setIsMuted(true)}
+            >
+              <path d="M13.5 4.06c0-1.336-1.616-2.005-2.56-1.06l-4.5 4.5H4.508c-1.141 0-2.318.664-2.66 1.905A9.76 9.76 0 001.5 12c0 .898.121 1.768.35 2.595.341 1.24 1.518 1.905 2.659 1.905h1.93l4.5 4.5c.945.945 2.561.276 2.561-1.06V4.06zM18.584 5.106a.75.75 0 011.06 0c3.808 3.807 3.808 9.98 0 13.788a.75.75 0 11-1.06-1.06 8.25 8.25 0 000-11.668.75.75 0 010-1.06z" />
+              <path d="M15.932 7.757a.75.75 0 011.061 0 6 6 0 010 8.486.75.75 0 01-1.06-1.061 4.5 4.5 0 000-6.364.75.75 0 010-1.06z" />
+            </svg>) }
+
+            
+
+            <Cross onclose={handleoverlay} fetchUsers={fetchUsers} />
+          </div>
         </nav>
 
         <button onClick={handleprevious} className="stories_button">
@@ -260,15 +299,19 @@ function StoryContainer({
           +
         </button>
       </header>
-
+      <div id="story-overlay"></div>
       {data?.childstories?.map((value, i) => {
-        
         return (
           <main className={`${i === actualTime ? "StoryContainer" : "none"}`}>
             {value?.storiescontnet.split(".")[
               value?.storiescontnet.split(".").length - 1
             ] === "mp4" ? (
-              <video autoplay   ref={videoRef} />
+              <video
+                ref={videoRef}
+                onLoadedMetadata={handleLoadedMetadata}
+                autoPlay
+                muted={isMuted}
+              />
             ) : (
               <img
                 style={{ pointerEvents: "none" }}
