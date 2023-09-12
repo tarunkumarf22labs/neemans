@@ -98,32 +98,49 @@ const ProductCard = ({
     }
   };
   const handleAddToCart = () => {
-    const url = "https://shilpashastrastudio.in/cart/add";
-    const data = {
-      quantity: 1,
-      id: variant,
-    };
+// Define the URL
+const url = 'https://shilpashastrastudio.in/cart/add';
+console.log(variant , "variant");
 
-    fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-      body: new URLSearchParams(data).toString(),
-    })
-      .then((response) => {
-        if (response.ok) {
-          window.location.href = "https://shilpashastrastudio.in/cart";
-        } else {
-          throw new Error("Failed to add to cart");
-        }
-      })
-      .then((responseText) => {
-        console.log("Cart Add Response:", responseText);
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
+// Define the request body as an object
+const requestBody = {
+  Style: 'Limited-2',
+  quantity: 1,
+  form_type: 'product',
+  utf8: '✓',
+  id: variant,
+  sections: 'cart-notification-product,cart-notification-button,cart-icon-bubble',
+};
+
+// Convert the request body to JSON
+const jsonRequestBody = JSON.stringify(requestBody);
+
+// Define the POST request options
+const requestOptions = {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json', // Set the content type to JSON
+  },
+  body: jsonRequestBody, // Set the request body as the JSON string
+};
+
+// Make the POST request
+fetch(url, requestOptions)
+  .then(response => {
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    return response.json(); // Parse the response JSON if needed
+  })
+  .then(data => {
+    // Handle the response data here
+    console.log(data);
+  })
+  .catch(error => {
+    // Handle any errors here
+    console.error(error);
+  });
+
   };
   return (
     <div className="product-card">

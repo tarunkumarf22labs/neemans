@@ -176,6 +176,15 @@ export default function App({ dataURL }: { dataURL: string }) {
 
   return (
     <>
+        <h2 style="
+    margin-top: 0;
+    text-transform: uppercase;
+    font-weight: 600;
+    width: 100%;
+    color: #000;
+    text-align: center;
+      margin: 3rem 0 2rem;
+" >Stories</h2>
       <div className="f22storiesstyles">
         <div className="stories_container">
           {jsondata?.map((items, i) => {
