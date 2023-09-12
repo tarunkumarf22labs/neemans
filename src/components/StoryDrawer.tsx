@@ -101,7 +101,7 @@ function StoryDrawer({
       quantity: 1,
       form_type: 'product',
       utf8: '✓',
-      id: variant,
+      id: variant.id,
       sections: 'cart-notification-product,cart-notification-button,cart-icon-bubble',
       sections_url: '/products/gadwal-limited',
     };
