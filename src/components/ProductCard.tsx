@@ -108,8 +108,9 @@ const requestBody = {
   quantity: 1,
   form_type: 'product',
   utf8: '✓',
-  id: variant,
+  id: 45842491441437,
   sections: 'cart-notification-product,cart-notification-button,cart-icon-bubble',
+  sections_url: '/products/gadwal-limited',
 };
 
 // Convert the request body to JSON
