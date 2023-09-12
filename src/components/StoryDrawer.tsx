@@ -89,6 +89,65 @@ function StoryDrawer({
     fetchData();
   }, [productname]);
 
+    
+  const handleAddToCart = () => {
+    // Define the URL
+    const url = 'https://shilpashastrastudio.in/cart/add';
+    console.log(variant , "variant");
+    
+    // Define the request body as an object
+    const requestBody = {
+      Style: 'Limited-2',
+      quantity: 1,
+      form_type: 'product',
+      utf8: '✓',
+      id: 45842491441437,
+      sections: 'cart-notification-product,cart-notification-button,cart-icon-bubble',
+      sections_url: '/products/gadwal-limited',
+    };
+    
+    // Convert the request body to JSON
+    const jsonRequestBody = JSON.stringify(requestBody);
+    
+    // Define the POST request options
+    const requestOptions = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json', // Set the content type to JSON
+      },
+      body: jsonRequestBody, // Set the request body as the JSON string
+    };
+    
+    // Make the POST request
+    fetch(url, requestOptions)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json(); // Parse the response JSON if needed
+      })
+      .then(data => {
+        // Handle the response data here
+        console.log(data);
+      })
+      .catch(error => {
+        // Handle any errors here
+        console.error(error);
+      });
+    
+      };
+
+
+
+
+
+
+
+
+
+
+
+
   return (
     <div
       className="plugin-inner_container"
@@ -115,7 +174,7 @@ function StoryDrawer({
           
           <div
             className="size_container">
-            <a href={`https://shilpashastrastudio.in/cart/add?variant=${variant.id}&quantity=1&size=6`} className="atc_button">
+            <a  onClick={handleAddToCart} className="atc_button">
               ADD TO CART
             </a>
             <a href={`https://shilpashastrastudio.in/cart/${variant.id}:1?checkout`} className="atc_button">

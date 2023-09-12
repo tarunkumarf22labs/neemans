@@ -317,7 +317,7 @@ function StoryContainer({
                 style={{ pointerEvents: "none" }}
                 className={`  ${i < actualTime ? "none" : " data_img "} `}
                 src={value?.storiescontnet}
-                onClick={handleproduct}
+                // onClick={handleproduct}
               />
             )}
           </main>

@@ -123,7 +123,7 @@ function Customslider({
       </div>
       <div className="prod-desc">
         <div className="prod-info">
-          <a href={`https://paperlondon.com/products/${productName}`}>
+          <a href={`https://shilpashastrastudio.in/products/${productName}`}>
             <h5 style={{ fontSize: "14px", marginBottom: ".5rem" }}>
               {productTitle}
             </h5>

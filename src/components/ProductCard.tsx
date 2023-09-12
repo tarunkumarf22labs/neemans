@@ -18,7 +18,7 @@ const ProductCard = ({
   const [variant, setVariant] = useState("");
   const [isVariantSelectorOpen, setIsVariantSelectorOpen] = useState(false);
   const [selectedVariantIndex, setSelectedVariantIndex] = useState(0);
-
+ 
   function handledata(xml) {
     const title = xml?.querySelector("title").textContent;
     const val = xml?.querySelectorAll("variants variant");
@@ -74,7 +74,7 @@ const ProductCard = ({
   }, [productname]);
 
   const handleVariantSelection = (id, index) => {
-    stopProgress();
+    // stopProgress();
     videoRef.current.pause();
     setVariant(id);
     setSelectedVariantIndex(index);
@@ -97,10 +97,12 @@ const ProductCard = ({
       videoRef.current.play();
     }
   };
+  console.log(variant , "bini");
   const handleAddToCart = () => {
 // Define the URL
 const url = 'https://shilpashastrastudio.in/cart/add';
-console.log(variant , "variant");
+
+
 
 // Define the request body as an object
 const requestBody = {
@@ -108,10 +110,12 @@ const requestBody = {
   quantity: 1,
   form_type: 'product',
   utf8: '✓',
-  id: 45842491441437,
+  id: variant,
   sections: 'cart-notification-product,cart-notification-button,cart-icon-bubble',
   sections_url: '/products/gadwal-limited',
 };
+
+console.log(requestBody , "requestBody", "variants");
 
 // Convert the request body to JSON
 const jsonRequestBody = JSON.stringify(requestBody);
@@ -150,7 +154,7 @@ fetch(url, requestOptions)
           className="product-card-img"
           onClick={() => {
             handleOpenProductDetails();
-            stopProgress();
+            // stopProgress();
             videoRef.current.pause();
           }}
         >
@@ -160,7 +164,7 @@ fetch(url, requestOptions)
           className="product-card-info"
           onClick={() => {
             handleOpenProductDetails()
-            stopProgress();
+            // stopProgress();
             videoRef.current.pause();
           }}
         >
@@ -190,8 +194,8 @@ fetch(url, requestOptions)
       </div>
       {isVariantSelectorOpen ? (
         <button
-          className="add-to-cart-product-card"
-            onClick={handleAddToCart}
+        onClick={handleAddToCart}
+          className="add-to-cart-product-card sahibaba"
         >
           Add to Cart
         </button>
