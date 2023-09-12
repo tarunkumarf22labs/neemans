@@ -93,7 +93,7 @@ function StoryDrawer({
   const handleAddToCart = () => {
     // Define the URL
     const url = 'https://shilpashastrastudio.in/cart/add';
-    console.log(variant , "variant");
+
     
     // Define the request body as an object
     const requestBody = {
@@ -101,7 +101,7 @@ function StoryDrawer({
       quantity: 1,
       form_type: 'product',
       utf8: '✓',
-      id: 45842491441437,
+      id: variant,
       sections: 'cart-notification-product,cart-notification-button,cart-icon-bubble',
       sections_url: '/products/gadwal-limited',
     };
