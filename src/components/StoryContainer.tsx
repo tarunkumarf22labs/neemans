@@ -156,6 +156,7 @@ function StoryContainer({
   function handlePointerUp() {
     if (!isopen) {
       startProgress();
+              videoRef.current.play();
     }
   }
 
@@ -203,7 +204,7 @@ function StoryContainer({
     videoRef.current.src = newVideoSrc;
     // Load and play the new video
     videoRef.current.load();
-    videoRef.current.play();
+    // videoRef.current.play();
   }
   const handleLoadedMetadata = () => {
     const video = videoRef.current!;
@@ -233,7 +234,7 @@ function StoryContainer({
       }}
       onPointerUp={() => {
         handlePointerUp();
-        videoRef.current.play();
+
       }}
       onTouchMove={handleTouchMove}
     >
@@ -326,6 +327,9 @@ function StoryContainer({
 
       <div
         className="product-cards-container"
+        onClick={() =>{
+
+        } }
         style={{
           justifyContent: `${
             data?.childstories[actualTime]?.dots?.length > 1

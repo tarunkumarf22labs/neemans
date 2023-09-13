@@ -94,10 +94,9 @@ const ProductCard = ({
     videoRef.current.pause();
     if (isOpen) {
       startProgress();
-      videoRef.current.play();
+      // videoRef.current.play();
     }
   };
-  console.log(variant , "bini");
   const handleAddToCart = () => {
 // Define the URL
 const url = 'https://shilpashastrastudio.in/cart/add';

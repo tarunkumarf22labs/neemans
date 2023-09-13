@@ -4,6 +4,7 @@ import Customslider from "./Customslider";
 import { Variant, shopify } from "../types";
 import { memo } from "preact/compat";
 import PoweredBy from "./PoweredBy";
+import Loader from "./Loader";
 function StoryDrawer({
   setIsOpen,
   isSizeOpen,
@@ -17,22 +18,6 @@ function StoryDrawer({
 }) {
   function handledata(xml) {
     const title = xml?.querySelector("title").textContent;
-    // let description = xml?.querySelector("body-html").textContent;
-
-    // function removeTags(str) {
-    //   if ((str === null) || (str === ''))
-    //     return false;
-    //   else
-    //     str = str.toString();
-
-    //   // Regular expression to identify HTML tags in
-    //   // the input string. Replacing the identified
-    //   // HTML tag with a null string.
-    //   return str.replace(/(<([^>]+)>)/ig, '');
-    // }
-    // description = removeTags(description);
-
-    // console.log("Description -> ", description);
     const val = xml?.querySelectorAll("variants variant");
     const variants = Array.from(val).map((vals) => {
       return {
@@ -64,6 +49,7 @@ function StoryDrawer({
   }
   const [product, setProduct] = useState<any>();
   const [variant, setVariant] = useState("");
+  const [textforCart, setTextforCart] = useState("Add to cart")
 
 
   useEffect(() => {
@@ -91,11 +77,10 @@ function StoryDrawer({
 
     
   const handleAddToCart = () => {
-    // Define the URL
-    const url = 'https://shilpashastrastudio.in/cart/add';
 
     
-    // Define the request body as an object
+    const url = 'https://shilpashastrastudio.in/cart/add';
+
     const requestBody = {
       Style: 'Limited-2',
       quantity: 1,
@@ -106,10 +91,8 @@ function StoryDrawer({
       sections_url: '/products/gadwal-limited',
     };
     
-    // Convert the request body to JSON
     const jsonRequestBody = JSON.stringify(requestBody);
     
-    // Define the POST request options
     const requestOptions = {
       method: 'POST',
       headers: {
@@ -118,7 +101,6 @@ function StoryDrawer({
       body: jsonRequestBody, // Set the request body as the JSON string
     };
     
-    // Make the POST request
     fetch(url, requestOptions)
       .then(response => {
         if (!response.ok) {
@@ -134,20 +116,7 @@ function StoryDrawer({
         // Handle any errors here
         console.error(error);
       });
-    
       };
-
-
-
-
-
-
-
-
-
-
-
-
   return (
     <div
       className="plugin-inner_container"
