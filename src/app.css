@@ -19,7 +19,7 @@
 }
 
 .f22__stories img {
-  border-radius: 50% !important;
+  /* border-radius: 50% !important; */
   border: var(--f22stories-circlewidth) solid var(--f22stories-circlecolor) !important;
   padding: 1px !important;
   height: 79px;

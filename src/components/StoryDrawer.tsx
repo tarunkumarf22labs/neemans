@@ -116,6 +116,7 @@ function StoryDrawer({
       })
       .catch(error => {
         // Handle any errors here
+        setTextforCart("added to cart")
         console.error(error);
       });
       };
