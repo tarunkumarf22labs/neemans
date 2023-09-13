@@ -73,12 +73,13 @@ function StoryDrawer({
       }
     }
     fetchData();
+    setTextforCart("Add to cart")
   }, [productname]);
 
     
   const handleAddToCart = () => {
 
-    
+    setTextforCart(<Loader/>)
     const url = 'https://shilpashastrastudio.in/cart/add';
 
     const requestBody = {
@@ -111,6 +112,7 @@ function StoryDrawer({
       .then(data => {
         // Handle the response data here
         console.log(data);
+        setTextforCart("added to cart")
       })
       .catch(error => {
         // Handle any errors here
@@ -143,9 +145,9 @@ function StoryDrawer({
           
           <div
             className="size_container">
-            <a  onClick={handleAddToCart} className="atc_button">
-              ADD TO CART
-            </a>
+            <button  disabled={textforCart === "Add to cart"  ? false : true   }  onClick={handleAddToCart} className="atc_button" style={{ cursor: "pointer" }} >
+ {textforCart}
+             </button>
             <a href={`https://shilpashastrastudio.in/cart/${variant.id}:1?checkout`} className="atc_button">
               BUY NOW
             </a>
