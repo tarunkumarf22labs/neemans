@@ -207,7 +207,7 @@ export default function App({ dataURL }: { dataURL: string }) {
           })}
         </div>
         <h2
-        style=" font-weight: 600; width: 100%; color: rgb(0, 0, 0); text-align: center; font-size: 14px; margin: 1rem 0px; line-height: 1.5;"
+        style=" font-weight: 500; width: 100%; color: rgb(0, 0, 0); text-align: center; font-size: 14px; margin: 1rem 0px; line-height: 1.5;"
       >
         🔗 Click here to Watch, Relate, and Revel in a world where tradition meets passion. Let’s not just talk about it; let’s experience it together. 🌸
       </h2>
