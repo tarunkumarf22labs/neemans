@@ -1,6 +1,7 @@
 // @ts-nocheck
 import { useEffect, useState } from "uelements";
 import "./ProductCard.css";
+import Loader from "./Loader";
 
 type Props = {
   productname: string;
@@ -18,6 +19,7 @@ const ProductCard = ({
   const [variant, setVariant] = useState("");
   const [isVariantSelectorOpen, setIsVariantSelectorOpen] = useState(false);
   const [selectedVariantIndex, setSelectedVariantIndex] = useState(0);
+  const [textforCart, setTextforCart] = useState("Add to cart")
  
   function handledata(xml) {
     const title = xml?.querySelector("title").textContent;
@@ -71,6 +73,7 @@ const ProductCard = ({
     fetchData();
     setSelectedVariantIndex(0);
     setIsVariantSelectorOpen(false);
+    setTextforCart("Add to cart")
   }, [productname]);
 
   const handleVariantSelection = (id, index) => {
@@ -102,7 +105,7 @@ const ProductCard = ({
 const url = 'https://shilpashastrastudio.in/cart/add';
 
 
-
+setTextforCart(<Loader/>)
 // Define the request body as an object
 const requestBody = {
   Style: 'Limited-2',
@@ -139,10 +142,12 @@ fetch(url, requestOptions)
   .then(data => {
     // Handle the response data here
     console.log(data);
+    setTextforCart("Added To Cart");
   })
   .catch(error => {
     // Handle any errors here
     console.error(error);
+    setTextforCart("Added To Cart");
   });
 
   };
@@ -196,7 +201,7 @@ fetch(url, requestOptions)
         onClick={handleAddToCart}
           className="add-to-cart-product-card sahibaba"
         >
-          Add to Cart
+          {textforCart}
         </button>
       ) : (
         <button
@@ -206,7 +211,7 @@ fetch(url, requestOptions)
             setIsVariantSelectorOpen(true);
           }}
         >
-          Add to Cart
+          {textforCart}
         </button>
       )}
       <div id="powered_by_product_card">
