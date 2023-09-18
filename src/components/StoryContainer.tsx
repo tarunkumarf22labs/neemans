@@ -308,6 +308,7 @@ function StoryContainer({
                 ref={videoRef}
                 onLoadedMetadata={handleLoadedMetadata}
                 autoPlay
+                playsInline
                 muted={isMuted}
               />
             ) : (
