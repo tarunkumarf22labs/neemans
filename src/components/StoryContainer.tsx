@@ -66,15 +66,9 @@ function StoryContainer({
     }
   }, [data?.id, actualTime,duration]);
 
-  const handleproduct = () => {
-    if (isopen) {
-      setisopen((prev) => !prev);
-      startProgress();
-    }
-  };
 
   const startProgress = () => {
-    intervalRef.current = setInterval(updateProgress, 100);
+    // intervalRef.current = setInterval(updateProgress, 100);
   };
   const stopProgress = () => {
     setLocation((prev: Iloaction[]) => {
@@ -88,7 +82,7 @@ function StoryContainer({
       }
       return prev;
     });
-    clearInterval(intervalRef.current!);
+    // clearInterval(intervalRef.current!);
   };
 
   const updateProgress = () => {
@@ -213,7 +207,10 @@ function StoryContainer({
     // dispatch({ type : 'SETVIDEOLENGTH' , payload :  })
   };
 
-  const handleTimeUpdate = () => {
+  const handleTimeUpdate = (event) => {
+
+    console.log(event);
+    
     const progress = (videoRef.current?.currentTime / duration) * 100;
     setCount(progress);
     console.log(videoRef.current?.currentTime <= duration , videoRef.current?.currentTime , duration , "duration"  );
