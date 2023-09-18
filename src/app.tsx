@@ -140,6 +140,7 @@ export default function App({ dataURL }: { dataURL: string }) {
   }
 
   function dotclickedtoupdate(data, val, sal) {
+    try{
     setMainataindata({
       ...mainataindata,
       [sal.name]: {
@@ -158,6 +159,9 @@ export default function App({ dataURL }: { dataURL: string }) {
         ],
       },
     });
+  }catch(error){
+    console.log(error)
+  }
     // console.log(mainataindata[sal.name]);
 
     // let tata  = data.content.find((item) => item.id  ===   val.id)
