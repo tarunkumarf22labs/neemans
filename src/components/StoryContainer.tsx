@@ -265,7 +265,7 @@ function StoryContainer({
           +
         </button>
       </header>
-
+      <div id="story-overlay"></div>
       {data?.childstories?.map((value, i) => {
         return (
           <main className={`${i === actualTime ? "StoryContainer" : "none"}`}>
