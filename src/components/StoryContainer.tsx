@@ -56,7 +56,7 @@ function StoryContainer({
   const [isSizeOpen, setIsSizeOpen] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
   const [count, setCount] = useState(0)
-
+  const [isVariantSelectorOpen, setIsVariantSelectorOpen] = useState(false);
   useEffect(() => {
     // intervalRef.current = setInterval(updateProgress, 100);
     videoRef.current!?.addEventListener("timeupdate", handleTimeUpdate);
@@ -173,6 +173,8 @@ function StoryContainer({
   };
 
   const handleprevious = () => {
+    console.log("data");
+    
     if (actualTime <= 0) {
       if (next > 0) {
         stopProgress();
@@ -213,7 +215,6 @@ function StoryContainer({
     
     const progress = (videoRef.current?.currentTime / duration) * 100;
     setCount(progress);
-    console.log(videoRef.current?.currentTime <= duration , videoRef.current?.currentTime , duration , "duration"  );
     
     if (videoRef.current?.currentTime >= duration  && videoRef.current?.currentTime > 0) {
       handlenext()
@@ -325,18 +326,27 @@ function StoryContainer({
 
       <div
         className="product-cards-container"
-        onClick={() =>{
-
-        } }
         style={{
+          height : isVariantSelectorOpen ? "700px" : "auto",
           justifyContent: `${
             data?.childstories[actualTime]?.dots?.length > 1
               ? "flex-end"
               : "center"
           }`,
         }}
+        onClick={(e) => {
+          e.stopPropagation()
+          if (isVariantSelectorOpen) {
+            videoRef.current.play()
+            setIsVariantSelectorOpen(false)
+          } else {
+            videoRef.current.pause() 
+          }
+          videoRef.current.play()
+        } }
       >
-        <div className="product-cards">
+        <div className="product-cards"     onClick={(e) => {
+          e.stopPropagation()  }} >
           {data?.childstories[actualTime]?.dots?.map((prod) => (
             <ProductCard
               key={prod.id}
@@ -346,6 +356,8 @@ function StoryContainer({
               isOpen={isopen}
               setIsOpen={setisopen}
               videoRef={videoRef}
+              isVariantSelectorOpen={isVariantSelectorOpen}
+              setIsVariantSelectorOpen={setIsVariantSelectorOpen}
               triggers={{
                 setProductId,
                 dotclickedtoupdate,

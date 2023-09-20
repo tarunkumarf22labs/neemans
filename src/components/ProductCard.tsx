@@ -14,10 +14,11 @@ const ProductCard = ({
   setIsOpen,
   videoRef,
   triggers,
+  isVariantSelectorOpen, setIsVariantSelectorOpen
 }: Props) => {
   const [product, setProduct] = useState<any>();
   const [variant, setVariant] = useState("");
-  const [isVariantSelectorOpen, setIsVariantSelectorOpen] = useState(false);
+  // const [isVariantSelectorOpen, setIsVariantSelectorOpen] = useState(false);
   const [selectedVariantIndex, setSelectedVariantIndex] = useState(0);
   const [textforCart, setTextforCart] = useState("Add to cart")
  
@@ -207,6 +208,7 @@ fetch(url, requestOptions)
         <button
           className="add-to-cart-product-card"
           onClick={() => {
+            videoRef.current.pause()
             setVariant(product?.variants[0]?.id);
             setIsVariantSelectorOpen(true);
           }}
