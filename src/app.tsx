@@ -180,7 +180,7 @@ export default function App({ dataURL }: { dataURL: string }) {
 
   return (
     <>
-      <h2
+      {/* <h2
         style="
     margin-top: 0;
     text-transform: uppercase;
@@ -193,7 +193,7 @@ export default function App({ dataURL }: { dataURL: string }) {
 "
       >
         🎥 Experience Beyond Words! 🌟
-      </h2>
+      </h2> */}
       
       <div className="f22storiesstyles" style={{display: 'flex', flexDirection: 'column'}}>
         <div className="stories_container">
@@ -210,11 +210,11 @@ export default function App({ dataURL }: { dataURL: string }) {
             );
           })}
         </div>
-        <h2
+        {/* <h2
         style=" font-weight: 500; width: 100%; color: rgb(0, 0, 0); text-align: center; font-size: 14px; margin: 1rem 0px; line-height: 1.5;"
       >
         🔗 Click here to Watch, Relate, and Revel in a world where tradition meets passion. Let’s not just talk about it; let’s experience it together. 🌸
-      </h2>
+      </h2> */}
       </div>
         
       {show ? (
