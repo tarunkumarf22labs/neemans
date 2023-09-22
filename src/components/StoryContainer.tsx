@@ -59,15 +59,6 @@ function StoryContainer({
  console.log(duration , "duration");
  
   useEffect(() => {
-      if (data?.childstories[actualTime].storiescontnet.includes("mp4")) {
-      //   handleChangeVideo(data?.childstories[actualTime].storiescontnet);
-      //   videoRef.current!?.addEventListener("timeupdate", handleTimeUpdate);
-      //   return
-      videoRef.current.currentTime = 0 ;
-      // videoRef.current.load()
-      videoRef.current.autoplay = true;
-      // return 
-    }
     intervalRef.current = setInterval(updateProgress, 100);
 
     console.log(data?.childstories[currentTime].storiescontnet );
@@ -338,6 +329,7 @@ function StoryContainer({
                 ref={videoRef}
                 onLoadedMetadata={handleLoadedMetadata}
                 autoPlay
+                loop
                 src={value?.storiescontnet}
                 playsInline
                 muted={true}
