@@ -56,7 +56,7 @@ const ProductCard = ({
     async function fetchData() {
       try {
         const data = await fetch(
-          `https://paperlondon.com/products/${productname}.xml`,
+          `https://memara.co.uk/products/${productname}.xml`,
           { redirect: "follow" }
         );
         const value = await data.text();
@@ -102,7 +102,7 @@ const ProductCard = ({
   };
   const handleAddToCart = () => {
 // Define the URL
-const url = 'https://paperlondon.com/cart/add';
+const url = 'https://memara.co.uk/cart/add';
 
 
 setTextforCart(<Loader/>)

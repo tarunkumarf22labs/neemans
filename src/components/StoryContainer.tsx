@@ -60,8 +60,6 @@ function StoryContainer({
  
   useEffect(() => {
     intervalRef.current = setInterval(updateProgress, 100);
-
-    console.log(data?.childstories[currentTime].storiescontnet );
     
     return () => {
       clearInterval(intervalRef.current!);
@@ -324,7 +322,9 @@ function StoryContainer({
           <main className={`${i === actualTime ? "StoryContainer" : "none"}`}>
             {value?.storiescontnet.split(".")[
               value?.storiescontnet.split(".").length - 1
-            ] === "mp4" ? (
+            ] === "mp4" || value?.storiescontnet.split(".")[
+              value?.storiescontnet.split(".").length - 1
+            ] === "mov" ? (
               <video
                 ref={videoRef}
                 onLoadedMetadata={handleLoadedMetadata}
