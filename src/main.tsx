@@ -23,7 +23,7 @@ function handlevalue() {
         // console.log(result);
         console.log(window.location);
         // el.setAttribute("dataUrl", `https://d2v2xr113se7rz.cloudfront.net/shlipashastra-studio/${result}.json`);
-        el.setAttribute("dataUrl", `https://s3.f22labs.cloud/shopclips/${result}.json`);
+        el.setAttribute("dataUrl", `https://s3.f22labs.cloud/shopclips/kikkiza.json`);
 
         mainelementsofstories.appendChild(el);
       }
