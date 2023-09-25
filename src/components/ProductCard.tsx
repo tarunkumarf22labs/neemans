@@ -78,7 +78,7 @@ const ProductCard = ({
 
   const handleVariantSelection = (id, index) => {
     // stopProgress();
-    videoRef.current.pause();
+    // videoRef.current.pause();
     setVariant(id);
     setSelectedVariantIndex(index);
     setIsVariantSelectorOpen(true);
