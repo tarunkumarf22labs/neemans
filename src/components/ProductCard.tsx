@@ -174,7 +174,7 @@ fetch(url, requestOptions)
         >
           <span className="product-card-info-title">{product?.title}</span>
           <span className="product-card-info-price">
-            Rs.{product?.variants[0].price}
+          £ {product?.variants[0].price}
           </span>
         </div>
         <div
