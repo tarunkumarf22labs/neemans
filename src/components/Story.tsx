@@ -15,7 +15,7 @@ function Story({ items, memoizedhandleoverlay  , onClick , fetchUsers , creation
       onClick={() => {memoizedhandleoverlay(items)  , onClick() , fetchUsers() ,  creationparentdata(items.name) }  }
       className="f22__stories"
     >
-      <img src={items.image} />
+      <img src={items.image} loading="eager"/>
       <h6  className="f22_storiesitem" >{items.name}</h6>
     </div>
   );

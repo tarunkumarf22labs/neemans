@@ -54,11 +54,13 @@ const ProductCard = ({
     return relevantData;
   }
   useEffect(() => {
+    const abortController = new AbortController();
+
     async function fetchData() {
       try {
         const data = await fetch(
           `https://shilpashastrastudio.in/products/${productname}.xml`,
-          { redirect: "follow" }
+          { redirect: "follow" , signal : abortController.signal}
         );
         const value = await data.text();
         const parser = new DOMParser();
@@ -75,8 +77,15 @@ const ProductCard = ({
     setSelectedVariantIndex(0);
     setIsVariantSelectorOpen(false);
     setTextforCart("Add to cart")
+    
+   
+ return () => {
+  abortController.abort();
+ }
+
   }, [productname]);
 
+  
   const handleVariantSelection = (id, index) => {
     // stopProgress();
     videoRef.current.pause();
@@ -85,7 +94,7 @@ const ProductCard = ({
     setIsVariantSelectorOpen(true);
   };
   const handleOpenProductDetails = () => {
-    triggers.setProductId(productname);
+  
     triggers.dotclickedtoupdate(
       triggers.productid ||
         triggers.data?.childstories[triggers.actualTime]?.dots?.[0]
@@ -157,13 +166,16 @@ fetch(url, requestOptions)
       <div className="product-card-content">
         <div
           className="product-card-img"
+          onMouseEnter = {() => {
+          triggers.setProductId(productname);
+          }}
           onClick={() => {
             handleOpenProductDetails();
             // stopProgress();
             videoRef.current.pause();
           }}
         >
-          <img src={product?.images[0].image} alt={product?.title} />
+          <img src={product?.images[0].image} alt={product?.title} loading="eager" />
         </div>
         <div
           className="product-card-info"
