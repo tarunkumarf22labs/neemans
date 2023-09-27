@@ -159,6 +159,7 @@ fetch(url, requestOptions)
     <div className="product-card">
       <div className="product-card-content">
         <div
+          onMouseEnter={() => triggers.setProductId(productname)}
           className="product-card-img"
           onClick={() => {
             handleOpenProductDetails();
@@ -170,6 +171,7 @@ fetch(url, requestOptions)
         </div>
         <div
           className="product-card-info"
+          onMouseEnter={() => triggers.setProductId(productname)}
           onClick={() => {
             handleOpenProductDetails()
             // stopProgress();
