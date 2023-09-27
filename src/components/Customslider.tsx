@@ -146,7 +146,7 @@ function Customslider({
         <div className="prod-images">
           {slides.imgData.map(prod => (
             <div className="prod-image">
-              <img src={prod.image} alt={prod.title} />
+              <img src={prod.image} alt={prod.title} loading="eager"/>
             </div>
           ))}
         </div>
