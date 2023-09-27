@@ -154,7 +154,7 @@ function Customslider({
       {/* <div className="product-deatils">
         <p style={{textAlign: 'justify'}}>{productDesc.substring(0,80)}...<a className="show-more" href={`https://memara.co.uk/products/${productName}`}>SHOW MORE</a></p>
       </div> */}
-      <div className="all__slides__container">
+      {slides.sizeData.length > 1 && <div className="all__slides__container">
         <div className="all_slides">
           <div className="slider__container">
             {slides.sizeData && slides.sizeData.map((slide, index) => (
@@ -164,7 +164,7 @@ function Customslider({
             ))}
           </div>
         </div>
-      </div>
+      </div>}
     </div>
   );
 }

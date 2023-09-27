@@ -78,7 +78,7 @@ const ProductCard = ({
 
   const handleVariantSelection = (id, index) => {
     // stopProgress();
-    videoRef.current.pause();
+    // videoRef.current.pause();
     setVariant(id);
     setSelectedVariantIndex(index);
     setIsVariantSelectorOpen(true);
@@ -177,7 +177,7 @@ fetch(url, requestOptions)
           £ {product?.variants[0].price}
           </span>
         </div>
-        <div
+        {product?.variants?.length > 1 && <div
           className={`product-card-variants ${
             isVariantSelectorOpen ? "product-variant-open" : ""
           }`}
@@ -194,9 +194,9 @@ fetch(url, requestOptions)
               {variant?.title}
             </div>
           ))}
-        </div>
+        </div>}
       </div>
-      {isVariantSelectorOpen ? (
+      {isVariantSelectorOpen || product?.variants?.length < 2 ? (
         <button
         onClick={handleAddToCart}
           className="add-to-cart-product-card sahibaba"
