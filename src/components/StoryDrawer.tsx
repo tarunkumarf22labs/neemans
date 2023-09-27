@@ -53,11 +53,12 @@ function StoryDrawer({
 
 
   useEffect(() => {
+    const Abortcontoller = new AbortController()
     async function fetchData() {
       try {
         const data = await fetch(
           `https://memara.co.uk/products/${productname}.xml`,
-          { redirect: "follow" }
+          { redirect: "follow" , signal : Abortcontoller.signal }
         );
         const value = await data.text();
         const parser = new DOMParser();
@@ -74,6 +75,9 @@ function StoryDrawer({
     }
     fetchData();
     setTextforCart("Add to cart")
+    return () => {
+      Abortcontoller.abort()
+    }
   }, [productname]);
 
     
@@ -112,11 +116,11 @@ function StoryDrawer({
       .then(data => {
         // Handle the response data here
         console.log(data);
-        setTextforCart("added to cart")
+        setTextforCart("Added to Cart")
       })
       .catch(error => {
         // Handle any errors here
-        setTextforCart("added to cart")
+        setTextforCart("Added to Cart")
         console.error(error);
       });
       };
