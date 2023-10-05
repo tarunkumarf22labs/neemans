@@ -15,78 +15,13 @@ export default function App({ dataURL }: { dataURL: string }) {
   const [uniqueidanalytics] = useLocalStorage("uniqueidanalytics", nanoid());
   const [next, setNext] = useState(0);
   const [mainataindata, setMainataindata] = useState({});
-   const sdata = [
-    {
-        "id": 1,
-        "image": "https://cdn.shopify.com/s/files/1/1123/3474/files/Thumbnail_image.jpg?v=1695210283",
-        "name": "Suits",
-        "widthofcircle": 1,
-        "borderaroundcircle": "red",
-        "stop": true,
-        "circleanimationf22stories": "15",
-        "childstories": [
-            {
-                "id": "EJxDGyV__PgXYDKORszTu",
-                "storiescontnet": "https://cdn.shopify.com/videos/c/o/v/157aaf9b32ab4378955c858f5882eb59.mp4",
-                "dots": [
-                    {
-                        "id": 1,
-                        "productname": "victoria-waistcoat-in-white-linen"
-                    }
-                ]
-            },
-            {
-                "id": "O9CBKmJYaUvu8RxcF2mt5",
-                "storiescontnet": "https://cdn.shopify.com/videos/c/o/v/b1e52c73127648498704900378b26cd9.mp4",
-                "dots": [
-                    {
-                        "id": 1,
-                        "productname": "matilda-trousers-in-white-linen"
-                    }
-                ]
-            },
-            {
-                "id": "qfYLTsieQt2BsXesGRcvu",
-                "storiescontnet": "https://cdn.shopify.com/videos/c/o/v/be504c94ea0942899f83e0db1840e6d8.mp4"
-            },
-            {
-                "id": "qfYLTsieQt2BsXesGRcvu",
-                "storiescontnet": "https://cdn.shopify.com/videos/c/o/v/be504c94ea0942899f83e0db1840e6d8.mp4",
-                "dots": [
-                    {
-                        "id": 1,
-                        "productname": "emilia-blazer-in-white-linen"
-                    },
-                    {
-                        "id": 2,
-                        "productname": "victoria-waistcoat-in-white-linen"
-                    },
-                    {
-                        "id": 2,
-                        "productname": "matilda-trousers-in-white-linen"
-                    }
-                ]
-            },
-            {
-                "id": "EJxDGyV__PgXYDKORszTu",
-                "storiescontnet": "https://cdn.shopify.com/videos/c/o/v/157aaf9b32ab4378955c858f5882eb59.mp4",
-                "dots": [
-                    {
-                        "id": 1,
-                        "productname": "victoria-waistcoat-in-white-linen"
-                    }
-                ]
-            },
-        ]
-    }
-]
   useEffect(() => {
     async function handledata() {
       let data = await fetch(dataURL);
       let dataval = await data.json();
       // console.log(dataval, "dataval");
 
-      setJsondata(sdata);
+      setJsondata(dataval);
     }
     handledata();
     updateUser();

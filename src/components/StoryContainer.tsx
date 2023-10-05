@@ -71,7 +71,6 @@ function StoryContainer({
 
   
 
-    console.log(data?.childstories[currentTime].storiescontnet );
     
     return () => {
       clearInterval(intervalRef.current!);
@@ -101,7 +100,7 @@ function StoryContainer({
 
   const updateProgress = () => {
     // handler(data?.childstories[actualTime], data);
-    creationparentdata(data.name);
+    // creationparentdata(data.name);
     if (actualTime === data?.childstories.length - 1 && data?.stop) {
       setCurrentTime((prevProgress) => {
         if (prevProgress <= 100) {
@@ -204,22 +203,11 @@ function StoryContainer({
     }
     setactualTime((prev) => prev - 1);
     setDuration(0);
-    setCurrentTime(0);
+    setCurrentTime(() => 0);
 
   };
+  
 
-  function handleChangeVideo(newVideoSrc) {
-    // Pause the currently playing video
-    if (videoRef.current) {
-      videoRef.current.pause();
-    }
-    // Set the new video source
-    videoRef.current.src = newVideoSrc;
-    clearInterval(intervalRef.current!);
-    // Load and play the new video
-    videoRef.current.load();
-    videoRef.current.play();
-  }
   const handleLoadedMetadata = () => {
     const video = videoRef.current!;
     if (!video) return 
@@ -229,11 +217,10 @@ function StoryContainer({
 
   const handleTimeUpdate = (event) => {  
     const progress = (videoRef.current?.currentTime / videoRef.current?.duration) * 100;
-    console.log(progress , "papa");
-    
-    setCurrentTime(progress);
-    // console.log(videoRef.current?.currentTime >= duration  && videoRef.current?.currentTime > 2 , "videoRef.current?.currentTime >= duration  && videoRef.current?.currentTime > 0");
-    console.log(videoRef.current , "videoRef.current" , videoRef.current?.duration );
+       if (progress) {
+        setCurrentTime(progress);
+       }
+
     
     if ( videoRef.current?.currentTime >= videoRef.current?.duration) {
       intervalRef.current = setInterval(updateProgress, 100);
@@ -247,15 +234,19 @@ function StoryContainer({
   };
 
   const renderMedia = () => {
-    // console.log(data?.childstories);
+
     
     const currentObject = data?.childstories[actualTime];
-    //  console.log(currentObject?.storiescontnet?.includes("mp4") , "Sahi" , currentObject[0] , currentObject);
-      console.log(data?.childstories , data?.childstories?.[currentTime] , "data?.childstories[currentTime];" , currentTime);
       
     if (currentObject?.storiescontnet?.includes("jpg")) {
       return (
-        <div className="image-container" >
+        <div className="image-container"
+        style={{ 
+          width : "100%",
+          height : "100%",
+          objectFit :"contain"
+         }}
+        >
           <img src={currentObject?.storiescontnet} alt="Story" 
                           style={{ pointerEvents: "none" }}
                 className={" data_img "}          
@@ -265,7 +256,13 @@ function StoryContainer({
       );
     } else if (currentObject?.storiescontnet?.includes("mp4")) {
       return (
-        <div className="video-container">
+        <div className="video-container"
+        style={{ 
+          width : "100%",
+          height : "100%",
+          objectFit :"contain"
+         }}
+        >
           <video
             // ref={videoRef}
                             ref={videoRef}
@@ -287,19 +284,9 @@ function StoryContainer({
     }
   };
   
-  // console.log("Story -> ", data?.childstories[actualTime].dots[0].id);
   return (
     <div
       className="StoryContainer"
-      // onPointerDown={() => {
-      //   stopProgress();
-      //   videoRef.current.pause();
-      // }}
-      // onPointerUp={() => {
-      //   handlePointerUp();
-
-      // }}
-      // onTouchMove={handleTouchMove}
     >
       <div
         className="playbar"

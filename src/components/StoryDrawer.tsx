@@ -56,7 +56,7 @@ function StoryDrawer({
     async function fetchData() {
       try {
         const data = await fetch(
-          `https://paperlondon.com/products/${productname}.xml`,
+          `https://${window.Shopify.shop}/products/${productname}.xml`,
           { redirect: "follow" }
         );
         const value = await data.text();
@@ -80,7 +80,7 @@ function StoryDrawer({
   const handleAddToCart = () => {
 
     setTextforCart(<Loader/>)
-    const url = 'https://paperlondon.com/cart/add';
+    const url = `https://${window.Shopify.shop}/cart/add`;
 
     const requestBody = {
       Style: 'Limited-2',
@@ -149,7 +149,7 @@ function StoryDrawer({
             <button  disabled={textforCart === "Add to cart"  ? false : true   }  onClick={handleAddToCart} className="atc_button" style={{ cursor: "pointer" }} >
  {textforCart}
              </button>
-            <a href={`https://paperlondon.com/cart/${variant.id}:1?checkout`} className="atc_button">
+            <a href={`https://${window.Shopify.shop}/cart/${variant.id}:1?checkout`} className="atc_button">
               BUY NOW
             </a>
           </div>
