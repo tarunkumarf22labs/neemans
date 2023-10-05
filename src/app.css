@@ -155,7 +155,7 @@
 }
 
 .data_img {
-  height: 100%;
+  height: 100vh;
   width: 100%;
   object-fit: cover;
 }
@@ -510,12 +510,13 @@
 
 .plugin-inner_container {
   z-index: 2147483647;
-  height: 35rem;
+  height: fit-content;
   position: absolute;
   width: 100%;
   bottom: 0px;
   background: white;
   padding: 1rem 0;
+  padding-bottom: 2.5rem;
 }
 
 @media screen and (min-width: 430px) {

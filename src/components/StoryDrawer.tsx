@@ -53,11 +53,12 @@ function StoryDrawer({
 
 
   useEffect(() => {
+    const Abortcontoller = new AbortController()
     async function fetchData() {
       try {
         const data = await fetch(
-          `https://paperlondon.com/products/${productname}.xml`,
-          { redirect: "follow" }
+          `https://ekkathaclothing.com/products/${productname}.xml`,
+          { redirect: "follow" , signal : Abortcontoller.signal }
         );
         const value = await data.text();
         const parser = new DOMParser();
@@ -74,13 +75,16 @@ function StoryDrawer({
     }
     fetchData();
     setTextforCart("Add to cart")
+    return () => {
+      Abortcontoller.abort()
+    }
   }, [productname]);
 
     
   const handleAddToCart = () => {
 
     setTextforCart(<Loader/>)
-    const url = 'https://paperlondon.com/cart/add';
+    const url = 'https://ekkathaclothing.com/cart/add';
 
     const requestBody = {
       Style: 'Limited-2',
@@ -149,7 +153,7 @@ function StoryDrawer({
             <button  disabled={textforCart === "Add to cart"  ? false : true   }  onClick={handleAddToCart} className="atc_button" style={{ cursor: "pointer" }} >
  {textforCart}
              </button>
-            <a href={`https://paperlondon.com/cart/${variant.id}:1?checkout`} className="atc_button">
+            <a href={`https://ekkathaclothing.com/cart/${variant.id}:1?checkout`} className="atc_button">
               BUY NOW
             </a>
           </div>

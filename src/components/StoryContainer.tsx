@@ -54,6 +54,7 @@ function StoryContainer({
   const [isSizeOpen, setIsSizeOpen] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
   const [count,  ] = useState(0)
+  const [isVideo, setIsVideo] = useState(false);
  console.log(duration , "duration");
  
   useEffect(() => {
@@ -63,9 +64,7 @@ function StoryContainer({
   if  (currentObject?.storiescontnet?.includes("jpg")) {
     intervalRef.current = setInterval(updateProgress, 100);
   } 
-   if (currentObject?.storiescontnet?.includes("mp4")) {
-    console.log("papa");
-    
+   if (currentObject?.storiescontnet?.includes("mp4")) {    
     videoRef.current?.addEventListener("timeupdate"  ,handleTimeUpdate)
    }
 
@@ -227,13 +226,12 @@ function StoryContainer({
     // dispatch({ type : 'SETVIDEOLENGTH' , payload :  })
   };
 
-  const handleTimeUpdate = (event) => {  
+    const handleTimeUpdate = (event) => {  
     const progress = (videoRef.current?.currentTime / videoRef.current?.duration) * 100;
-    console.log(progress , "papa");
-    
-    setCurrentTime(progress);
-    // console.log(videoRef.current?.currentTime >= duration  && videoRef.current?.currentTime > 2 , "videoRef.current?.currentTime >= duration  && videoRef.current?.currentTime > 0");
-    console.log(videoRef.current , "videoRef.current" , videoRef.current?.duration );
+       if (progress) {
+        setCurrentTime(progress);
+       }
+
     
     if ( videoRef.current?.currentTime >= videoRef.current?.duration) {
       intervalRef.current = setInterval(updateProgress, 100);
@@ -254,6 +252,7 @@ function StoryContainer({
       console.log(data?.childstories , data?.childstories?.[currentTime] , "data?.childstories[currentTime];" , currentTime);
       
     if (currentObject?.storiescontnet?.includes("jpg")) {
+      setIsVideo(false);
       return (
         <div className="image-container" >
           <img src={currentObject?.storiescontnet} alt="Story" 
@@ -264,16 +263,14 @@ function StoryContainer({
         </div>
       );
     } else if (currentObject?.storiescontnet?.includes("mp4")) {
+      setIsVideo(true);
       return (
         <div className="video-container">
-          <video
-            // ref={videoRef}
-                            ref={videoRef}
-                onLoadedMetadata={handleLoadedMetadata}
+          <video ref={videoRef}
+            onLoadedMetadata={handleLoadedMetadata}
             src={currentObject?.storiescontnet}
             alt="Story"
             autoPlay
-            // onClick={toggleMediaType}
             onEnded={() => {
               console.log("sahi");
               
@@ -337,12 +334,16 @@ function StoryContainer({
             <h5 className="StoryContainer_title">{data?.name}</h5>
           </div>
           <div className="story-container-nav-actions">
-            {/* {isMuted ? (<svg
+            {isVideo && ( isMuted ? (<svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
               fill="currentColor"
               className="mute-icon"
-              onClick={() => setIsMuted(false)}
+              onClick={() => {
+                setIsMuted(false);
+                if(videoRef.current)
+                  videoRef.current.muted = false;
+              }}
             >
               <path d="M13.5 4.06c0-1.336-1.616-2.005-2.56-1.06l-4.5 4.5H4.508c-1.141 0-2.318.664-2.66 1.905A9.76 9.76 0 001.5 12c0 .898.121 1.768.35 2.595.341 1.24 1.518 1.905 2.659 1.905h1.93l4.5 4.5c.945.945 2.561.276 2.561-1.06V4.06zM17.78 9.22a.75.75 0 10-1.06 1.06L18.44 12l-1.72 1.72a.75.75 0 001.06 1.06l1.72-1.72 1.72 1.72a.75.75 0 101.06-1.06L20.56 12l1.72-1.72a.75.75 0 00-1.06-1.06l-1.72 1.72-1.72-1.72z" />
             </svg>):(<svg
@@ -350,11 +351,15 @@ function StoryContainer({
               viewBox="0 0 24 24"
               fill="currentColor"
               className="mute-icon"
-              onClick={() => setIsMuted(true)}
+              onClick={() => {
+                setIsMuted(true);
+                if(videoRef.current)
+                  videoRef.current.muted = true;
+              }}
             >
               <path d="M13.5 4.06c0-1.336-1.616-2.005-2.56-1.06l-4.5 4.5H4.508c-1.141 0-2.318.664-2.66 1.905A9.76 9.76 0 001.5 12c0 .898.121 1.768.35 2.595.341 1.24 1.518 1.905 2.659 1.905h1.93l4.5 4.5c.945.945 2.561.276 2.561-1.06V4.06zM18.584 5.106a.75.75 0 011.06 0c3.808 3.807 3.808 9.98 0 13.788a.75.75 0 11-1.06-1.06 8.25 8.25 0 000-11.668.75.75 0 010-1.06z" />
               <path d="M15.932 7.757a.75.75 0 011.061 0 6 6 0 010 8.486.75.75 0 01-1.06-1.061 4.5 4.5 0 000-6.364.75.75 0 010-1.06z" />
-            </svg>) } */}
+            </svg>) )}
 
             
 

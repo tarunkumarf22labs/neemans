@@ -53,11 +53,12 @@ const ProductCard = ({
     return relevantData;
   }
   useEffect(() => {
+    const Abortcontoller = new AbortController()
     async function fetchData() {
       try {
         const data = await fetch(
-          `https://paperlondon.com/products/${productname}.xml`,
-          { redirect: "follow" }
+          `https://ekkathaclothing.com/products/${productname}.xml`,
+          { redirect: "follow" , signal : Abortcontoller.signal }
         );
         const value = await data.text();
         const parser = new DOMParser();
@@ -74,6 +75,9 @@ const ProductCard = ({
     setSelectedVariantIndex(0);
     setIsVariantSelectorOpen(false);
     setTextforCart("Add to cart")
+    return () => {
+      Abortcontoller.abort()
+    }
   }, [productname]);
 
   const handleVariantSelection = (id, index) => {
@@ -102,7 +106,7 @@ const ProductCard = ({
   };
   const handleAddToCart = () => {
 // Define the URL
-const url = 'https://paperlondon.com/cart/add';
+const url = 'https://ekkathaclothing.com/cart/add';
 
 
 setTextforCart(<Loader/>)
@@ -156,6 +160,7 @@ fetch(url, requestOptions)
       <div className="product-card-content">
         <div
           className="product-card-img"
+          onMouseEnter={() => triggers.setProductId(productname)}
           onClick={() => {
             handleOpenProductDetails();
             // stopProgress();
@@ -166,6 +171,7 @@ fetch(url, requestOptions)
         </div>
         <div
           className="product-card-info"
+          onMouseEnter={() => triggers.setProductId(productname)}
           onClick={() => {
             handleOpenProductDetails()
             // stopProgress();
@@ -177,7 +183,7 @@ fetch(url, requestOptions)
             Rs.{product?.variants[0].price}
           </span>
         </div>
-        <div
+        {product?.variants?.length > 1 && <div
           className={`product-card-variants ${
             isVariantSelectorOpen ? "product-variant-open" : ""
           }`}
@@ -194,9 +200,9 @@ fetch(url, requestOptions)
               {variant?.title}
             </div>
           ))}
-        </div>
+        </div>}
       </div>
-      {isVariantSelectorOpen ? (
+      {isVariantSelectorOpen || product?.variants?.length < 2 ? (
         <button
         onClick={handleAddToCart}
           className="add-to-cart-product-card sahibaba"
