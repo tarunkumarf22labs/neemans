@@ -48,9 +48,7 @@ function StoryContainer({
   const [currentTime, setCurrentTime] = useState(() => 0);
   const intervalRef = useRef<null | number>(null);
   const [location, setLocation] = useLocalStorage("whentostart", []);
-  const [actualTime, setactualTime] = useState(
-    () => handlecount(location, data.id) || 0
-  );
+  const [actualTime, setactualTime] = useState(0);
   const [duration, setDuration] = useState(0)
   const [productid, setProductId] = useState();
   const [isSizeOpen, setIsSizeOpen] = useState(false);
@@ -59,13 +57,25 @@ function StoryContainer({
  console.log(duration , "duration");
  
   useEffect(() => {
+    const currentObject = data?.childstories?.[actualTime];
+    console.log(currentObject , "currentObjectbini");
+    
+  if  (currentObject?.storiescontnet?.includes("jpg")) {
     intervalRef.current = setInterval(updateProgress, 100);
+  } 
+   if (currentObject?.storiescontnet?.includes("mp4")) {
+    console.log("papa");
+    
+    videoRef.current?.addEventListener("timeupdate"  ,handleTimeUpdate)
+   }
+
+  
 
     console.log(data?.childstories[currentTime].storiescontnet );
     
     return () => {
       clearInterval(intervalRef.current!);
-      // videoRef.current!?.removeEventListener("timeupdate", handleTimeUpdate);  
+      videoRef.current!?.removeEventListener("timeupdate", handleTimeUpdate);  
     };
   }, [data?.id, actualTime , duration]);
 
@@ -90,7 +100,7 @@ function StoryContainer({
   };
 
   const updateProgress = () => {
-    handler(data?.childstories[actualTime], data);
+    // handler(data?.childstories[actualTime], data);
     creationparentdata(data.name);
     if (actualTime === data?.childstories.length - 1 && data?.stop) {
       setCurrentTime((prevProgress) => {
@@ -164,7 +174,7 @@ function StoryContainer({
         stopProgress();
         setCurrentTime(0);
         setactualTime(0);
-        handler(data?.childstories[actualTime], data);
+        // handler(data?.childstories[actualTime], data);
         handledata("plus");
         setNext((prev) => prev + 1);
         setDuration(0);
@@ -173,7 +183,7 @@ function StoryContainer({
       return;
     }
     setactualTime((prev) => prev + 1);
-    handler(data?.childstories[actualTime + 1], data);
+    // handler(data?.childstories[actualTime + 1], data);
     setDuration(0);
     setCurrentTime(0);
   
@@ -219,6 +229,8 @@ function StoryContainer({
 
   const handleTimeUpdate = (event) => {  
     const progress = (videoRef.current?.currentTime / videoRef.current?.duration) * 100;
+    console.log(progress , "papa");
+    
     setCurrentTime(progress);
     // console.log(videoRef.current?.currentTime >= duration  && videoRef.current?.currentTime > 2 , "videoRef.current?.currentTime >= duration  && videoRef.current?.currentTime > 0");
     console.log(videoRef.current , "videoRef.current" , videoRef.current?.duration );
@@ -226,7 +238,7 @@ function StoryContainer({
     if ( videoRef.current?.currentTime >= videoRef.current?.duration) {
       intervalRef.current = setInterval(updateProgress, 100);
       handlenext()
-      console.log("Sajno");
+      // console.log("Sajno");
       
   
      
@@ -234,6 +246,46 @@ function StoryContainer({
     }
   };
 
+  const renderMedia = () => {
+    // console.log(data?.childstories);
+    
+    const currentObject = data?.childstories[actualTime];
+    //  console.log(currentObject?.storiescontnet?.includes("mp4") , "Sahi" , currentObject[0] , currentObject);
+      console.log(data?.childstories , data?.childstories?.[currentTime] , "data?.childstories[currentTime];" , currentTime);
+      
+    if (currentObject?.storiescontnet?.includes("jpg")) {
+      return (
+        <div className="image-container" >
+          <img src={currentObject?.storiescontnet} alt="Story" 
+                          style={{ pointerEvents: "none" }}
+                className={" data_img "}          
+          />
+          {/* <div ref={durationBarRef} className="duration-bar"></div> */}
+        </div>
+      );
+    } else if (currentObject?.storiescontnet?.includes("mp4")) {
+      return (
+        <div className="video-container">
+          <video
+            // ref={videoRef}
+                            ref={videoRef}
+                onLoadedMetadata={handleLoadedMetadata}
+            src={currentObject?.storiescontnet}
+            alt="Story"
+            autoPlay
+            // onClick={toggleMediaType}
+            onEnded={() => {
+              console.log("sahi");
+              
+            } }
+            // onEnded={nextObject}
+          />
+          {/* <div ref={durationBarRef} className="duration-bar"></div> */}
+
+        </div>
+      );
+    }
+  };
   
   // console.log("Story -> ", data?.childstories[actualTime].dots[0].id);
   return (
@@ -319,32 +371,36 @@ function StoryContainer({
         </button>
       </header>
       <div id="story-overlay"></div>
-      {data?.childstories?.map((value, i) => {
-        return (
-          <main className={`${i === actualTime ? "StoryContainer" : "none"}`}>
-            {value?.storiescontnet.split(".")[
-              value?.storiescontnet.split(".").length - 1
-            ] === "mp4" ? (
-              <video
-                ref={videoRef}
-                onLoadedMetadata={handleLoadedMetadata}
-                autoPlay
-                loop
-                src={value?.storiescontnet}
-                playsInline
-                muted={true}
-              />
-            ) : (
-              <img
-                style={{ pointerEvents: "none" }}
-                className={`  ${i < actualTime ? "none" : " data_img "} `}
-                src={value?.storiescontnet}
-                // onClick={handleproduct}
-              />
-            )}
-          </main>
-        );
-      })}
+      
+      {/* {data?.childstories?.map((value, i) => {
+        // return (
+        //   <main className={`${i === actualTime ? "StoryContainer" : "none"}`}>
+        //     {value?.storiescontnet.split(".")[
+        //       value?.storiescontnet.split(".").length - 1
+        //     ] === "mp4" ? (
+        //       <video
+        //         ref={videoRef}
+        //         onLoadedMetadata={handleLoadedMetadata}
+        //         autoPlay
+        //         loop
+        //         src={value?.storiescontnet}
+        //         playsInline
+        //         muted={true}
+        //       />
+        //     ) : (
+        //       <img
+        //         style={{ pointerEvents: "none" }}
+        //         className={`  ${i < actualTime ? "none" : " data_img "} `}
+        //         src={value?.storiescontnet}
+        //         // onClick={handleproduct}
+        //       />
+        //     )}
+        //   </main>
+        // );
+      })} */}
+       <main className= {"StoryContainer"} >
+       {renderMedia()}
+       </main>
 
       <div
         className="product-cards-container"
