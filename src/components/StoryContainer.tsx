@@ -271,6 +271,7 @@ function StoryContainer({
             src={currentObject?.storiescontnet}
             alt="Story"
             autoPlay
+            playsInline
             onEnded={() => {
               console.log("sahi");
               

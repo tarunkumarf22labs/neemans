@@ -57,7 +57,7 @@ const ProductCard = ({
     async function fetchData() {
       try {
         const data = await fetch(
-          `https://ekkathaclothing.com/products/${productname}.xml`,
+          `https://paperlondon.com/products/${productname}.xml`,
           { redirect: "follow" , signal : Abortcontoller.signal }
         );
         const value = await data.text();
@@ -82,7 +82,8 @@ const ProductCard = ({
 
   const handleVariantSelection = (id, index) => {
     // stopProgress();
-    videoRef.current.pause();
+    if(videoRef.current)
+      videoRef.current.pause();
     setVariant(id);
     setSelectedVariantIndex(index);
     setIsVariantSelectorOpen(true);
@@ -106,7 +107,7 @@ const ProductCard = ({
   };
   const handleAddToCart = () => {
 // Define the URL
-const url = 'https://ekkathaclothing.com/cart/add';
+const url = 'https://paperlondon.com/cart/add';
 
 
 setTextforCart(<Loader/>)
