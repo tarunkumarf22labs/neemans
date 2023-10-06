@@ -567,7 +567,16 @@
   gap: 1rem;
 }
 .mute-icon{
-  width: 1.5rem; 
-  height: 1.5rem; 
+  width: 1.2rem; 
+  height: 1.2rem; 
   color: #fff;
+}
+.story-container-nav-actions-background{
+  background: #333333bd;
+  border-radius: 50%;
+  padding: 3px;
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
