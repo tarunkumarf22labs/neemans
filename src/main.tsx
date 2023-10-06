@@ -23,7 +23,7 @@ function handlevalue() {
         // console.log(result);
         console.log(window.location);
         // el.setAttribute("dataUrl", `https://s3.f22labs.cloud/shopclips/${result}.json`);
-        el.setAttribute("dataUrl", `https://s3.f22labs.cloud/shopclips/paperlondon-with-video.json`);
+        el.setAttribute("dataUrl", `https://s3.f22labs.cloud/shopclips/paper-with-video.json`);
         mainelementsofstories.appendChild(el);
       }
     };
