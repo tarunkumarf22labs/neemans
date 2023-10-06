@@ -30,12 +30,12 @@ export default function App({ dataURL }: { dataURL: string }) {
 
   document.documentElement.style.setProperty(
     "--f22stories-circlewidth",
-    `${jsondata?.[0]?.widthofcircle}px`
+    `2px`
   );
 
   document.documentElement.style.setProperty(
     "--f22stories-circlecolor",
-    `${jsondata?.[0]?.borderaroundcircle}`
+    `#878706`
   );
 
   document.documentElement.style.setProperty(

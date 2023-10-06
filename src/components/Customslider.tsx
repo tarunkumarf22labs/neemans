@@ -106,7 +106,7 @@ function Customslider({
     <div className="custom-slider-container">
       <div className="nav-icons">
         <a
-          href={`https://paperlondon.com/products/${productName}`}
+          href={`https://www.9shineslabel.com/products/${productName}`}
           target="__blank"
         >
           <svg
@@ -143,7 +143,7 @@ function Customslider({
       </div>
       <div className="prod-desc">
         <div className="prod-info">
-          <a href={`https://paperlondon.com/products/${productName}`}>
+          <a href={`https://www.9shineslabel.com/products/${productName}`}>
             <h5 style={{ fontSize: "14px", marginBottom: ".5rem" }}>
               {productTitle}
             </h5>
@@ -153,7 +153,7 @@ function Customslider({
               fontSize: "14px",
             }}
           >
-            £ {productPrice}{" "}
+            Rs. {productPrice}{" "}
           </h5>
         </div>
         {/* <div className="size-wrapper">
@@ -162,7 +162,7 @@ function Customslider({
       </div>
 
       <div id="main__container">
-        <a href={`https://paperlondon.com/products/${productName}`} style={{textDecoration: "none"}}>
+        <a href={`https://www.9shineslabel.com/products/${productName}`} style={{textDecoration: "none"}}>
           <div className="prod-images">
             {slides.imgData.map((prod) => (
               <div className="prod-image">
@@ -173,7 +173,7 @@ function Customslider({
         </a>
       </div>
       {/* <div className="product-deatils">
-        <p style={{textAlign: 'justify'}}>{productDesc.substring(0,80)}...<a className="show-more" href={`https://paperlondon.com/products/${productName}`}>SHOW MORE</a></p>
+        <p style={{textAlign: 'justify'}}>{productDesc.substring(0,80)}...<a className="show-more" href={`https://www.9shineslabel.com/products/${productName}`}>SHOW MORE</a></p>
       </div> */}
       {slides.sizeData.length > 1 && (
         <div className="all__slides__container">
