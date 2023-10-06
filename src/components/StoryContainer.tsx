@@ -257,7 +257,8 @@ function StoryContainer({
         <div className="image-container" >
           <img src={currentObject?.storiescontnet} alt="Story" 
                           style={{ pointerEvents: "none" }}
-                className={" data_img "}          
+                className={" data_img "}  
+                loading="eager"        
           />
           {/* <div ref={durationBarRef} className="duration-bar"></div> */}
         </div>
@@ -331,7 +332,7 @@ function StoryContainer({
       <header className="main_StoryContainer_header">
         <nav className="StoryContainer_nav">
           <div className="StoryContainer_titlebar">
-            <img src={data?.image} alt="" />
+            <img src={data?.image} alt="" loading="eager"/>
             <h5 className="StoryContainer_title">{data?.name}</h5>
           </div>
           <div className="story-container-nav-actions">

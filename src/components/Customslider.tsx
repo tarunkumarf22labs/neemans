@@ -144,7 +144,7 @@ function Customslider({
       <div className="prod-desc">
         <div className="prod-info">
           <a href={`https://www.9shineslabel.com/products/${productName}`}>
-            <h5 style={{ fontSize: "14px", marginBottom: ".5rem" }}>
+            <h5 style={{ fontSize: "14px", marginBottom: ".5rem", width: '80%' }}>
               {productTitle}
             </h5>
           </a>
@@ -166,7 +166,7 @@ function Customslider({
           <div className="prod-images">
             {slides.imgData.map((prod) => (
               <div className="prod-image">
-                <img src={prod.image} alt={prod.title} />
+                <img src={prod.image} alt={prod.title} style={{maxWidth: "fit-content !important"}} loading="eager"/>
               </div>
             ))}
           </div>

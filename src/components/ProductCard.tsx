@@ -168,7 +168,7 @@ fetch(url, requestOptions)
             videoRef.current.pause();
           }}
         >
-          <img src={product?.images[0].image} alt={product?.title} />
+          <img src={product?.images[0].image} alt={product?.title} loading="eager"/>
         </div>
         <div
           className="product-card-info"
