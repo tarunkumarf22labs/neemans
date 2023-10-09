@@ -35,7 +35,7 @@ export default function App({ dataURL }: { dataURL: string }) {
 
   document.documentElement.style.setProperty(
     "--f22stories-circlecolor",
-    `#46a5b4`
+    `#faa61a`
   );
 
   document.documentElement.style.setProperty(
