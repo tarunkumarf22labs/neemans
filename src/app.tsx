@@ -99,6 +99,10 @@ export default function App({ dataURL }: { dataURL: string }) {
 
   //  handling state
   function handleoverlay() {
+    if(!show)
+      document.body.style.overflow = "hidden";
+    else
+      document.body.style.overflow = "auto";
     setshow((prev) => !prev);
   }
 
