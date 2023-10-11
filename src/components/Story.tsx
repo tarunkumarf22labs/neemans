@@ -33,7 +33,7 @@ function Story({
         id="Layer_1"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 512 512"
-        style="fill: #ffffffbd; width: 50px; height: 50px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);"
+        style="fill: #ffffffbd; width: 50px; height: 50px; position: absolute; top: 41%; left: 43%; transform: translate(-50%, -50%);"
       >
         <g>
           <g>
