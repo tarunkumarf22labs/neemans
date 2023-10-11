@@ -65,7 +65,7 @@ function StoryContainer({
     }
   
   } 
-   if (currentObject?.storiescontnet?.includes("mp4")) {
+   if (currentObject?.storiescontnet?.includes("mp4") || currentObject?.storiescontnet?.includes("mov")) {
     if (loaded) {
       videoRef.current?.addEventListener("timeupdate"  ,handleTimeUpdate)
     }    
@@ -259,7 +259,7 @@ function StoryContainer({
     } else if (currentObject?.storiescontnet?.includes("mp4")) {
       setIsVideo(true);
       return (
-        <div className="video-container">
+        <div className="video-container" style={{height: 'auto'}}>
           <video ref={videoRef}
             onLoadedMetadata={handleLoadedMetadata}
             src={currentObject?.storiescontnet}
@@ -279,7 +279,7 @@ function StoryContainer({
     }else if (currentObject?.storiescontnet?.includes("mov")) {
       setIsVideo(true);
       return (
-        <div className="video-container">
+        <div className="video-container" style={{height: 'auto'}}>
           <video ref={videoRef}
             onLoadedMetadata={handleLoadedMetadata}
             src={currentObject?.storiescontnet}
