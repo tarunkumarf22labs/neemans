@@ -2,6 +2,7 @@
 import { useEffect, useState } from "uelements";
 import "./ProductCard.css";
 import Loader from "./Loader";
+import { format } from "../utils";
 
 type Props = {
   productname: string;
@@ -181,7 +182,7 @@ fetch(url, requestOptions)
         >
           <span className="product-card-info-title">{product?.title}</span>
           <span className="product-card-info-price">
-            Rs. {product?.variants[0].price}
+            Rs. {format(product?.variants[0].price).replace("₹", "")}
           </span>
         </div>
         {product?.variants?.length > 1 && <div
