@@ -17,6 +17,8 @@ function handlevalue() {
       const mainelementsofstories = document.querySelector(`#f22-storiesplugin1`);
       if (mainelementsofstories) {
         let el = document.createElement("f22-stories");
+        el.style.display = "flex";
+        el.style.justifyContent = "flex-start";
         //@ts-ignore
         let  result = window.Shopify?.shop?.split(".")[0] || "ekkatha";
         // let  result = window.Shopify?.shop?.split(".")[0];

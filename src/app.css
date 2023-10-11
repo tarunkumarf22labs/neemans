@@ -17,14 +17,15 @@
   margin-left: 10px;
   text-align: center;
   cursor: pointer;
+  position: relative;
 }
 
 .f22__stories img {
-  border-radius: 50% !important;
+  /* border-radius: 50% !important; */
   border: var(--f22stories-circlewidth) solid var(--f22stories-circlecolor) !important;
   padding: 1px !important;
-  height: 79px;
-  width: 79px;
+  height: 25rem;
+  width: 16rem;
   object-fit: cover;
 }
 
