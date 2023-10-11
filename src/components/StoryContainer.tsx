@@ -276,6 +276,26 @@ function StoryContainer({
           {/* <div ref={durationBarRef} className="duration-bar"></div> */}
         </div>
       );
+    }else if (currentObject?.storiescontnet?.includes("mov")) {
+      setIsVideo(true);
+      return (
+        <div className="video-container">
+          <video ref={videoRef}
+            onLoadedMetadata={handleLoadedMetadata}
+            src={currentObject?.storiescontnet}
+            alt="Story"
+            autoPlay
+            playsInline
+            onLoadedData={imageLoaded}
+            onEnded={() => {
+              console.log("sahi");
+              
+            } }
+            // onEnded={nextObject}
+          />
+          {/* <div ref={durationBarRef} className="duration-bar"></div> */}
+        </div>
+      );
     }
   };
   

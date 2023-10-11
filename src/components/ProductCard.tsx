@@ -57,7 +57,7 @@ const ProductCard = ({
     async function fetchData() {
       try {
         const data = await fetch(
-          `https://thesuperfoodfactory.com/products/${productname}.xml`,
+          `https://www.memara.co.uk/products/${productname}.xml`,
           { redirect: "follow" , signal : Abortcontoller.signal }
         );
         const value = await data.text();
@@ -107,7 +107,7 @@ const ProductCard = ({
   };
   const handleAddToCart = () => {
 // Define the URL
-const url = 'https://thesuperfoodfactory.com/cart/add';
+const url = 'https://www.memara.co.uk/cart/add';
 
 
 setTextforCart(<Loader/>)
