@@ -112,8 +112,11 @@
 .product-variant-open > .product-card-variant{
     display: block;
 }
+.product-card-variant{
+    color: #878787;
+}
 .product-card-variant-active{
-    background-color: #000;
+    background-color: #7FA295;
     color: #fff;
 }
 .add-to-cart-product-card {
