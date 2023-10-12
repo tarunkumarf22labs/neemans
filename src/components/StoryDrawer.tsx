@@ -116,11 +116,11 @@ function StoryDrawer({
       .then(data => {
         // Handle the response data here
         console.log(data);
-        setTextforCart("added to cart")
+        setTextforCart("Added to Cart")
       })
       .catch(error => {
         // Handle any errors here
-        setTextforCart("added to cart")
+        setTextforCart("Added to Cart")
         console.error(error);
       });
       };

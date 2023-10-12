@@ -426,7 +426,7 @@
 .atc_button {
   padding: 0.7rem 1rem;
   width: 50%;
-  background-color: #000000;
+  background-color: #7FA295;
   color: white;
   border: none;
   outline: none;
@@ -440,9 +440,9 @@
 }
 
 .atc_button:nth-child(1) {
-  background: #fff;
-  color: #000;
-  border: 2px solid #000;
+  background: #7FA295;
+  color: #fff;
+  text-transform: uppercase;
 }
 
 .playbar {

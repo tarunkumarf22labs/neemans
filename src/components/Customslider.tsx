@@ -153,7 +153,7 @@ function Customslider({
               fontSize: "14px",
             }}
           >
-            Rs. {productPrice}{" "}
+            £ {productPrice}{" "}
           </h5>
         </div>
         {/* <div className="size-wrapper">
