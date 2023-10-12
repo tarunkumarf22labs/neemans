@@ -17,21 +17,37 @@
   margin-left: 10px;
   text-align: center;
   cursor: pointer;
+  position: relative;
 }
 
 .f22__stories img {
-  border-radius: 50% !important;
   border: var(--f22stories-circlewidth) solid var(--f22stories-circlecolor) !important;
   padding: 1px !important;
-  height: 79px;
-  width: 79px;
+  height: 25rem;
+  width: 16rem;
   object-fit: cover;
 }
 
+.f22__stories svg{
+  animation: zoomInOut 2s ease-in-out infinite;
+}
+
+@keyframes zoomInOut{
+  0%{
+    transform: scale(1);
+  }
+  50%{
+    transform: scale(1.5);
+  }
+  100%{
+    transform: scale(1);
+  }
+}
+
 .f22_storiesitem {
-  font-size: 10px;
+  font-size: 14px;
+  font-weight: 600;
   text-overflow: ellipsis;
-  width: 80px;
   overflow: hidden;
   white-space: nowrap !important;
 }

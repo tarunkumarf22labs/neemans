@@ -152,6 +152,9 @@
   gap: .5rem;
   overflow-x: auto;
 }
+.prod-info{
+  width: 100%;
+}
 .prod-info > a{
   text-decoration: none;
   color: #000;
