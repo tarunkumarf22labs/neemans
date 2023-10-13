@@ -2,6 +2,7 @@
 import { useEffect, useState } from "uelements";
 import "./ProductCard.css";
 import Loader from "./Loader";
+import { getClickdata } from "../hook/firebase";
 
 type Props = {
   productname: string;
@@ -205,7 +206,7 @@ fetch(url, requestOptions)
       </div>
       {isVariantSelectorOpen || product?.variants?.length < 2 ? (
         <button
-        onClick={handleAddToCart}
+        onClick={() => {handleAddToCart(); getClickdata("ADD_TO_CART")}}
           className="add-to-cart-product-card sahibaba"
         >
           {textforCart}

@@ -3,6 +3,7 @@ import "./css/customSlide.css";
 import { useEffect, useState } from "uelements";
 import { ImageElement } from "../types";
 import SizeDropdown from "./SizeDropdown";
+import { getClickdata } from "../hook/firebase";
 
 function Customslider({
   productimages,
@@ -108,6 +109,7 @@ function Customslider({
         <a
           href={`https://www.9shineslabel.com/products/${productName}`}
           target="__blank"
+          onClick={() => getClickdata("VIEW_PRODUCT")}
         >
           <svg
             width="20"
@@ -143,7 +145,7 @@ function Customslider({
       </div>
       <div className="prod-desc">
         <div className="prod-info">
-          <a href={`https://www.9shineslabel.com/products/${productName}`}>
+          <a href={`https://www.9shineslabel.com/products/${productName}`} onClick={()=> getClickdata("VIEW_PRODUCT")}>
             <h5 style={{ fontSize: "14px", marginBottom: ".5rem", width: '80%' }}>
               {productTitle}
             </h5>
@@ -162,7 +164,7 @@ function Customslider({
       </div>
 
       <div id="main__container">
-        <a href={`https://www.9shineslabel.com/products/${productName}`} style={{textDecoration: "none"}}>
+        <a href={`https://www.9shineslabel.com/products/${productName}`} style={{textDecoration: "none"}} onClick={()=> getClickdata("VIEW_PRODUCT")}>
           <div className="prod-images">
             {slides.imgData.map((prod) => (
               <div className="prod-image">

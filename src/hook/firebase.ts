@@ -39,5 +39,18 @@ export const loadFirebase = () => {
 
 
 
-
-
+export  async  function getClickdata(params) {
+  const collectionName = window.Shopify.shop.replace(".myshopify.com" , "");
+  const firestore      = window.firebase.firestore();
+  const collectionRef  = firestore.collection(collectionName);
+  const specificDocumentId = "analytics"; 
+  const specificDocumentRef = collectionRef.doc(specificDocumentId);
+  
+  const viewsSubcollection = specificDocumentRef.collection(params);
+  const timestamp = new Date();
+  const viewsData = {
+    timestamp: timestamp,
+    count: 1, 
+  };
+  viewsSubcollection.add(viewsData)
+  }
