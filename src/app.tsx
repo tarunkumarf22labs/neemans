@@ -4,7 +4,7 @@ import StoryContainer from "./components/StoryContainer";
 import Story from "./components/Story";
 import "./app.css";
 import { Ival } from "./types";
-import { loadFirebase } from "./hook/firebase";
+import { getClickdata, loadFirebase } from "./hook/firebase";
 import { nanoid } from "nanoid";
 import { useLocalStorage } from "./hook/useLocalStorage";
 
@@ -203,7 +203,10 @@ export default function App({ dataURL }: { dataURL: string }) {
                 items={items}
                 memoizedhandleoverlay={memoizedhandleoverlay}
                 key={items.id}
-                onClick={() => setNext(i)}
+                onClick={() =>{
+                  setNext(i)
+                  getClickdata("views");
+                }}
                 fetchUsers={fetchUsers}
                 creationparentdata={creationparentdata}
               />

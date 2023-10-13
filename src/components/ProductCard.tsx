@@ -2,6 +2,7 @@
 import { useEffect, useState } from "uelements";
 import "./ProductCard.css";
 import Loader from "./Loader";
+import { getClickdata } from "../hook/firebase";
 
 type Props = {
   productname: string;
@@ -19,8 +20,8 @@ const ProductCard = ({
   const [variant, setVariant] = useState("");
   const [isVariantSelectorOpen, setIsVariantSelectorOpen] = useState(false);
   const [selectedVariantIndex, setSelectedVariantIndex] = useState(0);
-  const [textforCart, setTextforCart] = useState("Add to cart")
- 
+  const [textforCart, setTextforCart] = useState("Add to cart");
+
   function handledata(xml) {
     const title = xml?.querySelector("title").textContent;
     const val = xml?.querySelectorAll("variants variant");
@@ -53,12 +54,12 @@ const ProductCard = ({
     return relevantData;
   }
   useEffect(() => {
-    const Abortcontoller = new AbortController()
+    const Abortcontoller = new AbortController();
     async function fetchData() {
       try {
         const data = await fetch(
           `https://paperlondon.com/products/${productname}.xml`,
-          { redirect: "follow" , signal : Abortcontoller.signal }
+          { redirect: "follow", signal: Abortcontoller.signal }
         );
         const value = await data.text();
         const parser = new DOMParser();
@@ -74,16 +75,15 @@ const ProductCard = ({
     fetchData();
     setSelectedVariantIndex(0);
     setIsVariantSelectorOpen(false);
-    setTextforCart("Add to cart")
+    setTextforCart("Add to cart");
     return () => {
-      Abortcontoller.abort()
-    }
+      Abortcontoller.abort();
+    };
   }, [productname]);
 
   const handleVariantSelection = (id, index) => {
     // stopProgress();
-    if(videoRef.current)
-      videoRef.current.pause();
+    if (videoRef.current) videoRef.current.pause();
     setVariant(id);
     setSelectedVariantIndex(index);
     setIsVariantSelectorOpen(true);
@@ -106,55 +106,52 @@ const ProductCard = ({
     }
   };
   const handleAddToCart = () => {
-// Define the URL
-const url = 'https://paperlondon.com/cart/add';
+    // Define the URL
+    const url = "https://paperlondon.com/cart/add";
+
+    setTextforCart(<Loader />);
+    // Define the request body as an object
+    const requestBody = {
+      Style: "Limited-2",
+      quantity: 1,
+      form_type: "product",
+      utf8: "✓",
+      id: variant,
+      sections:
+        "cart-notification-product,cart-notification-button,cart-icon-bubble",
+      sections_url: "/products/gadwal-limited",
+    };
 
 
-setTextforCart(<Loader/>)
-// Define the request body as an object
-const requestBody = {
-  Style: 'Limited-2',
-  quantity: 1,
-  form_type: 'product',
-  utf8: '✓',
-  id: variant,
-  sections: 'cart-notification-product,cart-notification-button,cart-icon-bubble',
-  sections_url: '/products/gadwal-limited',
-};
+    // Convert the request body to JSON
+    const jsonRequestBody = JSON.stringify(requestBody);
 
-console.log(requestBody , "requestBody", "variants");
+    // Define the POST request options
+    const requestOptions = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json", // Set the content type to JSON
+      },
+      body: jsonRequestBody, // Set the request body as the JSON string
+    };
 
-// Convert the request body to JSON
-const jsonRequestBody = JSON.stringify(requestBody);
-
-// Define the POST request options
-const requestOptions = {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json', // Set the content type to JSON
-  },
-  body: jsonRequestBody, // Set the request body as the JSON string
-};
-
-// Make the POST request
-fetch(url, requestOptions)
-  .then(response => {
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-    return response.json(); // Parse the response JSON if needed
-  })
-  .then(data => {
-    // Handle the response data here
-    console.log(data);
-    setTextforCart("Added To Cart");
-  })
-  .catch(error => {
-    // Handle any errors here
-    console.error(error);
-    setTextforCart("Added To Cart");
-  });
-
+    // Make the POST request
+    fetch(url, requestOptions)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json(); // Parse the response JSON if needed
+      })
+      .then((data) => {
+        // Handle the response data here
+        setTextforCart("Added To Cart");
+      })
+      .catch((error) => {
+        // Handle any errors here
+        console.error(error);
+        setTextforCart("Added To Cart");
+      });
   };
   return (
     <div className="product-card">
@@ -174,7 +171,7 @@ fetch(url, requestOptions)
           className="product-card-info"
           onMouseEnter={() => triggers.setProductId(productname)}
           onClick={() => {
-            handleOpenProductDetails()
+            handleOpenProductDetails();
             // stopProgress();
             videoRef.current.pause();
           }}
@@ -184,28 +181,33 @@ fetch(url, requestOptions)
             £{product?.variants[0].price}
           </span>
         </div>
-        {product?.variants?.length > 1 && <div
-          className={`product-card-variants ${
-            isVariantSelectorOpen ? "product-variant-open" : ""
-          }`}
-        >
-          {product?.variants?.map((variant, index) => (
-            <div
-              className={`product-card-variant ${
-                selectedVariantIndex == index
-                  ? "product-card-variant-active"
-                  : ""
-              }`}
-              onClick={() => handleVariantSelection(variant.id, index)}
-            >
-              {variant?.title}
-            </div>
-          ))}
-        </div>}
+        {product?.variants?.length > 1 && (
+          <div
+            className={`product-card-variants ${
+              isVariantSelectorOpen ? "product-variant-open" : ""
+            }`}
+          >
+            {product?.variants?.map((variant, index) => (
+              <div
+                className={`product-card-variant ${
+                  selectedVariantIndex == index
+                    ? "product-card-variant-active"
+                    : ""
+                }`}
+                onClick={() => handleVariantSelection(variant.id, index)}
+              >
+                {variant?.title}
+              </div>
+            ))}
+          </div>
+        )}
       </div>
       {isVariantSelectorOpen || product?.variants?.length < 2 ? (
         <button
-        onClick={handleAddToCart}
+          onClick={() => {
+            handleAddToCart();
+            getClickdata("Add to cart");
+          }}
           className="add-to-cart-product-card sahibaba"
         >
           {textforCart}

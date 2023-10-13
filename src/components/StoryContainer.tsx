@@ -59,7 +59,6 @@ function StoryContainer({
  
   useEffect(() => {
     const currentObject = data?.childstories?.[actualTime];
-    console.log(currentObject , "currentObjectbini");
     
   if  (currentObject?.storiescontnet?.includes("jpg")) {
     intervalRef.current = setInterval(updateProgress, 100);
@@ -70,7 +69,6 @@ function StoryContainer({
 
   
 
-    console.log(data?.childstories[currentTime].storiescontnet );
     
     return () => {
       clearInterval(intervalRef.current!);
@@ -249,7 +247,6 @@ function StoryContainer({
     
     const currentObject = data?.childstories[actualTime];
     //  console.log(currentObject?.storiescontnet?.includes("mp4") , "Sahi" , currentObject[0] , currentObject);
-      console.log(data?.childstories , data?.childstories?.[currentTime] , "data?.childstories[currentTime];" , currentTime);
       
     if (currentObject?.storiescontnet?.includes("jpg")) {
       setIsVideo(false);

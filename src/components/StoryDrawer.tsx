@@ -5,6 +5,7 @@ import { Variant, shopify } from "../types";
 import { memo } from "preact/compat";
 import PoweredBy from "./PoweredBy";
 import Loader from "./Loader";
+import { getClickdata } from "../hook/firebase";
 function StoryDrawer({
   setIsOpen,
   isSizeOpen,
@@ -115,7 +116,6 @@ function StoryDrawer({
       })
       .then(data => {
         // Handle the response data here
-        console.log(data);
         setTextforCart("added to cart")
       })
       .catch(error => {
@@ -150,10 +150,13 @@ function StoryDrawer({
           
           <div
             className="size_container">
-            <button  disabled={textforCart === "Add to cart"  ? false : true   }  onClick={handleAddToCart} className="atc_button" style={{ cursor: "pointer" }} >
+            <button  disabled={textforCart === "Add to cart"  ? false : true   }  onClick={(e) => {
+              handleAddToCart(e);
+              getClickdata("Add to cart")              
+              }} className="atc_button" style={{ cursor: "pointer" }} >
  {textforCart}
              </button>
-            <a href={`https://paperlondon.com/cart/${variant.id}:1?checkout`} className="atc_button">
+            <a href={`https://paperlondon.com/cart/${variant.id}:1?checkout`} className="atc_button" onClick={ () => getClickdata("BUYNOW")} >
               BUY NOW
             </a>
           </div>
