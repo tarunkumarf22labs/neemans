@@ -5,6 +5,7 @@ import { Variant, shopify } from "../types";
 import { memo } from "preact/compat";
 import PoweredBy from "./PoweredBy";
 import Loader from "./Loader";
+import { getClickdata } from "../hook/firebase";
 function StoryDrawer({
   setIsOpen,
   isSizeOpen,
@@ -150,10 +151,10 @@ function StoryDrawer({
           
           <div
             className="size_container">
-            <button  disabled={textforCart === "Add to cart"  ? false : true   }  onClick={handleAddToCart} className="atc_button" style={{ cursor: "pointer" }} >
+            <button  disabled={textforCart === "Add to cart"  ? false : true   }  onClick={() => {handleAddToCart(); getClickdata("ADD_TO_CART")}} className="atc_button" style={{ cursor: "pointer" }} >
  {textforCart}
              </button>
-            <a href={`https://www.9shineslabel.com/cart/${variant.id}:1?checkout`} className="atc_button">
+            <a href={`https://www.9shineslabel.com/cart/${variant.id}:1?checkout`} className="atc_button" onClick={()=>{getClickdata("BUYNOW")}}>
               BUY NOW
             </a>
           </div>
