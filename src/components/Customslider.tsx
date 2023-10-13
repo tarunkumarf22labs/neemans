@@ -109,7 +109,7 @@ function Customslider({
         <a
           href={`https://paperlondon.com/products/${productName}`}
           target="__blank"
-          onClick={()=>getClickdata("View Product")}
+          onClick={()=>getClickdata("VIEW_PRODUCT")}
         >
           <svg
             width="20"
@@ -145,7 +145,7 @@ function Customslider({
       </div>
       <div className="prod-desc">
         <div className="prod-info">
-          <a href={`https://paperlondon.com/products/${productName}`} onClick={()=> getClickdata("View Product")}>
+          <a href={`https://paperlondon.com/products/${productName}`} onClick={()=> getClickdata("VIEW_PRODUCT")}>
             <h5 style={{ fontSize: "14px", marginBottom: ".5rem" }}>
               {productTitle}
             </h5>
@@ -164,7 +164,7 @@ function Customslider({
       </div>
 
       <div id="main__container">
-        <a href={`https://paperlondon.com/products/${productName}`} style={{textDecoration: "none"}} onClick={()=> getClickdata("View Product")}>
+        <a href={`https://paperlondon.com/products/${productName}`} style={{textDecoration: "none"}} onClick={()=> getClickdata("VIEW_PRODUCT")}>
           <div className="prod-images">
             {slides.imgData.map((prod) => (
               <div className="prod-image">

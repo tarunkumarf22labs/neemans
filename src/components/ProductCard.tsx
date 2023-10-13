@@ -206,7 +206,7 @@ const ProductCard = ({
         <button
           onClick={() => {
             handleAddToCart();
-            getClickdata("Add to cart");
+            getClickdata("ADD_TO_CART");
           }}
           className="add-to-cart-product-card sahibaba"
         >

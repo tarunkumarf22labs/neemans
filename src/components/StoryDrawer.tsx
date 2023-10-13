@@ -152,7 +152,7 @@ function StoryDrawer({
             className="size_container">
             <button  disabled={textforCart === "Add to cart"  ? false : true   }  onClick={(e) => {
               handleAddToCart(e);
-              getClickdata("Add to cart")              
+              getClickdata("ADD_TO_CART")              
               }} className="atc_button" style={{ cursor: "pointer" }} >
  {textforCart}
              </button>

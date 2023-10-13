@@ -205,7 +205,7 @@ export default function App({ dataURL }: { dataURL: string }) {
                 key={items.id}
                 onClick={() =>{
                   setNext(i)
-                  getClickdata("views");
+                  getClickdata("VIEWS");
                 }}
                 fetchUsers={fetchUsers}
                 creationparentdata={creationparentdata}
