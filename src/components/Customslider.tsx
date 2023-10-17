@@ -148,13 +148,14 @@ function Customslider({
               {productTitle}
             </h5>
           </a>
-          <h5
+          <span
             style={{
               fontSize: "14px",
             }}
+            className="theme-money"
           >
             £ {productPrice}{" "}
-          </h5>
+          </span>
         </div>
         {/* <div className="size-wrapper">
           <SizeDropdown sizeData={slides.sizeData} currentSize={slides.currentSize} onSliderSizeClick={onSliderSizeClick} isSizeOpen={isSizeOpen} setIsSizeOpen={setIsSizeOpen} />

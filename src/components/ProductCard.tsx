@@ -180,9 +180,7 @@ fetch(url, requestOptions)
           }}
         >
           <span className="product-card-info-title">{product?.title.substring(0, 30)}{product?.title.length > 30 && "..."}</span>
-          <span className="product-card-info-price">
-            £ {product?.variants[0].price}
-          </span>
+          <span dangerouslySetInnerHTML={{__html: product?.variants[0].price}} className="money"/>
         </div>
         {product?.variants?.length > 1 && <div
           className={`product-card-variants ${

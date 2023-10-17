@@ -180,12 +180,6 @@
     padding-left: 10px; */
 }
 
-.money {
-  color: white;
-  font-size: 10px;
-  padding-left: 10px;
-}
-
 .span_className,
 .span_className::before {
   height: var(--circleanimationf22stories) !important;
