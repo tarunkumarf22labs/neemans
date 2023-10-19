@@ -1,9 +1,11 @@
+// @ts-nocheck
 import { useEffect, useState, JSX, useReducer, useRef } from "uelements";
-import SmallComponent from "./SmallComponent";
+import SmallComponent from "./drag-components/SmallComponent";
 import { mediaHandler } from "../reducers";
 import { Crossicon, Muteicon, UnMuteicon   } from "../assets";
-import ProductCard from "./ProductCard";
-import { MemoizedStoryDrawer } from "./StoryDrawer";
+import ProductCardDrag from "../components/drag-components/ProductCardDrag";
+import { MemoizedStoryDrawerDrag } from "../components/drag-components/StoryDrawerDrag";
+import './AppDrag.css';
 
 const mediaHandlerState = {
   toogleopen: false,
@@ -25,6 +27,7 @@ export default function AppDrag({ dataURL }: { dataURL: string }): JSX.Element {
       payload: undefined,
     });
     if (state.ismute) {
+      // @ts-ignore
       dispatch({
         type : "SETISMUTE"
       })
@@ -93,6 +96,7 @@ export default function AppDrag({ dataURL }: { dataURL: string }): JSX.Element {
   };
 
   const handleToogle = () => {
+    // @ts-ignore
   dispatch({
     type : "SETISMUTE"
   })
@@ -104,31 +108,31 @@ export default function AppDrag({ dataURL }: { dataURL: string }): JSX.Element {
   if (state.toogleopen) {
     return (
       <div>
-        <div className="overlay-thing"></div>
-        <div className="video-box">
+        <div className="drag-overlay-thing"></div>
+        <div className="drag-video-box">
           {state.videolength ? (
             <>
               <div
-                className="playbar"
+                className="drag-playbar"
                 style={{
                   gridTemplateColumns: ` repeat($1 ,1fr)  `,
                 }}
               >
-                <div className="playbarinline__wrapper">
+                <div className="drag-playbarinline__wrapper">
                   <div
                     style={{
                       display: "block !important",
                       transform: `scaleX(${progress / 100})`,
                     }}
-                    className={`playbarinline   `}
+                    className={`drag-playbarinline   `}
                   ></div>
-                  <div className="playbarinline__background"></div>
+                  <div className="drag-playbarinline__background"></div>
                 </div>
               </div>
-              <div className="muteop" onClick={handleToogle}>
+              <div className="drag-muteop" onClick={handleToogle}>
                 {!state.ismute ? <Muteicon /> : <UnMuteicon />}
               </div>
-              <div className="crossiconop" onClick={handlePopup}>
+              <div className="drag-crossiconop" onClick={handlePopup}>
                 <Crossicon />
               </div>
             </>
@@ -144,12 +148,12 @@ export default function AppDrag({ dataURL }: { dataURL: string }): JSX.Element {
             autoPlay
           />
 
-          <div className="product-cards-container">
-            <div className="product-cards">
+          <div className="drag-product-cards-container">
+            <div className="drag-product-cards">
               {data?.productNames.map((data) => {
                  
                 return (
-                  <ProductCard
+                  <ProductCardDrag
                     productname={data}
                     setIsOpen={setIsOpen}
                     setproductName={setproductName}
@@ -159,7 +163,7 @@ export default function AppDrag({ dataURL }: { dataURL: string }): JSX.Element {
             </div>
           </div>
           <div
-        className={`f22storiesdrawer ${isOpen ? "f22open" : ""}`}
+        className={`drag-f22storiesdrawer ${isOpen ? "drag-f22open" : ""}`}
         onClick={() => {
           setIsOpen((prev) => !prev);
           // startProgress();
@@ -167,7 +171,7 @@ export default function AppDrag({ dataURL }: { dataURL: string }): JSX.Element {
           // setIsSizeOpen(false);
         }}
       >
-          <MemoizedStoryDrawer
+          <MemoizedStoryDrawerDrag
             productname={productName}
             setIsOpen={setIsOpen}
             isOpen={isOpen}

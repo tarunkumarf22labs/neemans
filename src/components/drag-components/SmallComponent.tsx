@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "uelements";
-import { SmallComponentprops } from "../types";
-import { Playbutton } from "../assets";
-import { useDragnDrop } from "../hook/useDragnDrop";
+import { SmallComponentprops } from "../../types";
+import { Playbutton } from "../../assets";
+import { useDragnDrop } from "../../hook/useDragnDrop";
 
 function SmallComponent({
   video,
@@ -18,13 +18,13 @@ function SmallComponent({
   return (
     <>
       <>
-        <div className={`small-video-container-box`}
+        <div className={`drag-small-video-container-box`}
          ref={containerRef} 
          style={{position: 'fixed' ,touchAction : 'none'}}
         >
-          <div className={"smvideo-container"} data-customattribute={"red"}>
+          <div className={"drag-smvideo-container"} data-customattribute={"red"}>
             <video
-              id="videos"
+              id="drag-videos"
               src={video}
               autoPlay
               muted
@@ -41,8 +41,8 @@ function SmallComponent({
             />
           </div>
 
-          <div className="buttonDiv">
-            <button onClick={handlePopup} className='buttonStyle'>
+          <div className="drag-buttonDiv">
+            <button onClick={handlePopup} className='drag-buttonStyle'>
               <Playbutton />
             </button>
           </div>

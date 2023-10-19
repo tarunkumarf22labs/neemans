@@ -1,0 +1,141 @@
+.drag-product-cards-container {
+    position: absolute;
+    bottom: 0;
+    z-index: 99999;
+    max-height: fit-content;
+    height: 75%;
+    overflow-x: hidden;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+    width: 100%;
+    padding: .5rem 0;
+}
+
+.drag-product-cards {
+    display: flex;
+    justify-content: start;
+    align-items: flex-end;
+    gap: .5rem;
+    overflow-x: auto;
+    height: auto;
+    padding-left: 1rem;
+}
+
+.drag-product-cards::-webkit-scrollbar {
+    height: 0;
+}
+
+.drag-product-card {
+    border-radius: 10px;
+    width: 100%;
+    min-width: 18rem;
+    max-width: 18rem;
+    height: auto;
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
+    overflow: hidden;
+    margin-right: 0.5rem;
+    -webkit-box-shadow: 2px 7px 14px -5px rgba(0, 0, 0, 0.55);
+    -moz-box-shadow: 2px 7px 14px -5px rgba(0, 0, 0, 0.55);
+    box-shadow: 2px 7px 14px -5px rgba(0, 0, 0, 0.55);
+}
+
+.drag-product-card-content {
+    display: grid;
+    grid-template-columns: .5fr 1fr;
+    padding: 5px;
+    background: #ffffffbd;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.drag-product-card-img {
+    width: 100%;
+}
+
+.drag-product-card-img img {
+    border-radius: 5px;
+    aspect-ratio: 1;
+    width: 100%;
+    object-fit: cover;
+    object-position: top;
+}
+
+.drag-product-card-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: .8rem;
+}
+
+.drag-product-card-info-title {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.drag-product-card-info-price {
+    font-weight: 600;
+    font-size: .9rem;
+}
+
+.drag-product-card-variants {
+    grid-column: span 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 0;
+    gap: 1rem;
+    max-height: 0;
+    transition: all 0.3s;
+}
+.drag-product-variant-open{
+    max-height: 15vh;
+    height: auto;
+    padding: .5rem;
+}
+
+.drag-product-card-variant {
+    padding: .5rem;
+    background-color: #fff;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    font-size: 1rem;
+    width: 4rem;
+    text-align: center;
+    display: none;
+}
+.drag-product-variant-open > .drag-product-card-variant{
+    display: block;
+}
+.drag-product-card-variant-active{
+    background-color: #000;
+    color: #fff;
+}
+.drag-add-to-cart-product-card {
+    text-align: center;
+    padding: .8rem;
+    background: #000;
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    border: 0;
+    font-size: 1rem;
+}
+
+#drag-powered_by_product_card{
+    background: #333333bd;
+    color: #fff;
+    font-size: .6rem;
+    padding: 0.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#drag-powered_by_product_card span{
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
