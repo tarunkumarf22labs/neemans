@@ -58,7 +58,7 @@ const ProductCard = ({
     async function fetchData() {
       try {
         const data = await fetch(
-          `https://youthrobe.com/products/${productname}.xml`,
+          `https://notthathigh.com/products/${productname}.xml`,
           { redirect: "follow", signal: Abortcontoller.signal }
         );
         const value = await data.text();
@@ -107,7 +107,7 @@ const ProductCard = ({
   };
   const handleAddToCart = () => {
     // Define the URL
-    const url = "https://youthrobe.com/cart/add";
+    const url = "https://notthathigh.com/cart/add";
 
     setTextforCart(<Loader />);
     // Define the request body as an object
