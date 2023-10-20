@@ -107,7 +107,7 @@ function Customslider({
     <div className="custom-slider-container">
       <div className="nav-icons">
         <a
-          href={`https://paperlondon.com/products/${productName}`}
+          href={`https://youthrobe.com/products/${productName}`}
           target="__blank"
           onClick={()=>getClickdata("VIEW_PRODUCT")}
         >
@@ -145,8 +145,8 @@ function Customslider({
       </div>
       <div className="prod-desc">
         <div className="prod-info">
-          <a href={`https://paperlondon.com/products/${productName}`} onClick={()=> getClickdata("VIEW_PRODUCT")}>
-            <h5 style={{ fontSize: "14px", marginBottom: ".5rem" }}>
+          <a href={`https://youthrobe.com/products/${productName}`} onClick={()=> getClickdata("VIEW_PRODUCT")}>
+            <h5 style={{ fontSize: "14px", marginBottom: ".5rem", width: '80%'}}>
               {productTitle}
             </h5>
           </a>
@@ -164,7 +164,7 @@ function Customslider({
       </div>
 
       <div id="main__container">
-        <a href={`https://paperlondon.com/products/${productName}`} style={{textDecoration: "none"}} onClick={()=> getClickdata("VIEW_PRODUCT")}>
+        <a href={`https://youthrobe.com/products/${productName}`} style={{textDecoration: "none"}} onClick={()=> getClickdata("VIEW_PRODUCT")}>
           <div className="prod-images">
             {slides.imgData.map((prod) => (
               <div className="prod-image">
@@ -175,7 +175,7 @@ function Customslider({
         </a>
       </div>
       {/* <div className="product-deatils">
-        <p style={{textAlign: 'justify'}}>{productDesc.substring(0,80)}...<a className="show-more" href={`https://paperlondon.com/products/${productName}`}>SHOW MORE</a></p>
+        <p style={{textAlign: 'justify'}}>{productDesc.substring(0,80)}...<a className="show-more" href={`https://youthrobe.com/products/${productName}`}>SHOW MORE</a></p>
       </div> */}
       {slides.sizeData.length > 1 && (
         <div className="all__slides__container">
