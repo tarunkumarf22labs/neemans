@@ -18,7 +18,7 @@ function handlevalue() {
       if (mainelementsofstories) {
         let el = document.createElement("f22-stories");
         //@ts-ignore
-        let  result = window.Shopify?.shop?.split(".")[0] || "9shine";
+        let  result = window.Shopify?.shop?.split(".")[0] || "not-thathigh";
         // let  result = window.Shopify?.shop?.split(".")[0];
         // console.log(result);
         console.log(window.location);
