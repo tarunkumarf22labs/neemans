@@ -20,9 +20,9 @@ export default function App({ dataURL }: { dataURL: string }) {
     async function handledata() {
       let data = await fetch(dataURL);
       let dataval = await data.json();
-      // console.log(dataval, "dataval");
-
-      setJsondata(dataval);
+         console.log(dataval ,"dataval");
+         
+      setJsondata(dataval[window.location.pathname]);
     }
     handledata();
     updateUser();
