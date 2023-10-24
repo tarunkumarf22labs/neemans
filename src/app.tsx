@@ -22,7 +22,7 @@ export default function App({ dataURL }: { dataURL: string }) {
       let dataval = await data.json();
       // console.log(dataval, "dataval");
 
-      setJsondata(dataval);
+      setJsondata(dataval[window.location.pathname]);
     }
     handledata();
     updateUser();
