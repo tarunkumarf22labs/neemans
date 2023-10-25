@@ -4,6 +4,7 @@ import { useEffect, useState } from "uelements";
 import { ImageElement } from "../types";
 import SizeDropdown from "./SizeDropdown";
 import { getClickdata } from "../hook/firebase";
+import { format } from "../utils";
 
 function Customslider({
   productimages,
@@ -155,7 +156,7 @@ function Customslider({
               fontSize: "14px",
             }}
           >
-            Rs. {productPrice}{" "}
+            {productPrice && 'Rs.'} {format(productPrice).replace("₹", "")}
           </h5>
         </div>
         {/* <div className="size-wrapper">
