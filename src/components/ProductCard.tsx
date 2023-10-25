@@ -58,7 +58,7 @@ const ProductCard = ({
     async function fetchData() {
       try {
         const data = await fetch(
-          `https://www.9shineslabel.com/products/${productname}.xml`,
+          `https://ekkathaclothing.com/products/${productname}.xml`,
           { redirect: "follow" , signal : Abortcontoller.signal }
         );
         const value = await data.text();
@@ -108,7 +108,7 @@ const ProductCard = ({
   };
   const handleAddToCart = () => {
 // Define the URL
-const url = 'https://www.9shineslabel.com/cart/add';
+const url = 'https://ekkathaclothing.com/cart/add';
 
 
 setTextforCart(<Loader/>)
@@ -182,7 +182,7 @@ fetch(url, requestOptions)
         >
           <span className="product-card-info-title">{product?.title}</span>
           <span className="product-card-info-price">
-            Rs.{product?.variants[0].price}
+            Rs. {product?.variants[0].price}
           </span>
         </div>
         {product?.variants?.length > 1 && <div
