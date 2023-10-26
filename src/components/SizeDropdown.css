@@ -1,0 +1,44 @@
+.size-dropdown {
+    width: 8rem;
+    position: relative;
+}
+.current-size-wrapper{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    border: 1px solid #000;
+    gap: 1rem;
+}
+.current-size {
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 0.5rem;
+   
+}
+.arrow-icon{
+    transition: all 0.2s;
+}
+.rotate{
+    transform: rotate(180deg);
+}
+
+.dropdown-items {
+    position: absolute;
+    left: 0;
+    top: 100%;
+    border: 1px solid #000;
+    width: 100%;
+    background-color: #fff;
+    max-height: 8rem;
+    overflow-y: auto;
+}
+.d-none{
+    display: none;
+}
+
+.dropdown-item {
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 0.5rem;
+}
